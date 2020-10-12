@@ -13,6 +13,8 @@
 		}
 
 		public function showListCinema($message = "") {
+			$this->cinemaDao = new CinemaDAO();
+			$cinemaList = $this->cinemaDao->getAll();
 			require_once(VIEWS_PATH."adm-list-cinema.php");
 		}
 
@@ -20,34 +22,26 @@
 			require_once(VIEWS_PATH."adm-add-cinema.php");
 		}
 		
-		public function showListView() {
-			$this->cinemaDao = new CinemaDAO();
-			$cinemaList = $this->cinemaDao->getAll();
-			require_once(VIEWS_PATH."adm-list-cinema.php");
-		}
 
-		public function add($name, $capacity, $address, $price) {
+		public function add($name, $capacity, $address, $price, $imageUrl) {
 			$this->cinemaDao = new CinemaDAO();
 			$cinema = new Cinema();
 			$cinema->setName($name);
 			$cinema->setCapacity($capacity);
 			$cinema->setAddress($address);
 			$cinema->setPrice($price);
+			$cinema->setImageUrl($imageUrl);
 
 			$this->cinemaDao->add($cinema);
-			$this->showListView();
+			$this->showListCinema();
 		}
 
-		public function delete($id) {
-			$this->cinemaDao = new CinemaDAO();
-			$isUsed = $this->cinemaDao->isUsed($id);
-			if( $isUsed != 0) {
-				echo "Can't remove that cinema, because has Screenings asociated";
-			} else {
-				$this->cinemaDao->remove($id);
-			}
-			$this->showListView();
-		}
+		public function Remove($id)
+        {
+            $this->CinemaDAO->Remove($id);
+
+            $this->showListCinema();
+        }
 
 		public function update($id,$name, $capacity, $adress, $value) {
 			$this->cinemaDao = new CinemaDAO();
@@ -59,7 +53,7 @@
 			$updatedCinema->setValue($value);
 
 			$this->cinemaDao->update($updatedCinema);
-			$this->showListView();
+			$this->showListCinema();
 		}
 
 	}

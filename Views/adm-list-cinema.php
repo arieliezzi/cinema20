@@ -19,10 +19,11 @@
       <div class="row">
         <div class="col-md-12">
           <div class="table-responsive">
+          <form action="<?php echo FRONT_ROOT."Cinema/remove" ?>" method="post">
             <table class="table table-bordered ">
               <thead class="thead-dark">
                 <tr>
-                  <th>#</th>
+                  <th style="text-align: center">#</th>
                   <th>Image</th>
                   <th>Name</th>
                   <th>Adress</th>
@@ -31,33 +32,19 @@
                 </tr>
               </thead>
               <tbody>
+              <?php
+              foreach($cinemaList as $cinema) { ?>
                 <tr>
-                  <th style="vertical-align: middle">1</th>
-                  <td style="vertical-align: middle"> <center> <img src="https://media-cdn.tripadvisor.com/media/photo-p/08/e0/88/e4/cine-ambassador.jpg" alt="Malefica Poster" height="300" width="200"> </center> </td>
-                  <td style="vertical-align: middle">Ambassador</td>
-                  <td style="vertical-align: middle">Corrientes 4580 Mar del Plata Buenos Aires</td>
-                  <td style="vertical-align: middle; text-align: center;">500</td>
-                  <td style="text-align: center; vertical-align: middle"><button small type="submit" class="btn btn-primary">Eliminar</button></td>
+                  <th style="text-align: center; vertical-align: middle"><?php echo $cinema->getId(); ?></th>
+                  <td style="text-align: center; vertical-align: middle"> <center> <img src="<?php echo $cinema->getImageUrl(); ?>" alt="Image" height="300" width="200"> </center> </td>
+                  <td style="text-align: center; vertical-align: middle"><?php echo $cinema->getName(); ?></td>
+                  <td style="text-align: center; vertical-align: middle"><?php echo $cinema->getAddress(); ?></td>
+                  <td style="text-align: center; vertical-align: middle;"><?php echo $cinema->getCapacity(); ?></td>
+                  <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $cinema->getId()?>"> Remove </button>
                 </tr>
-                <tr>
-                  <th style="vertical-align: middle">2</th>
-                  <td style="vertical-align: middle"> <center> <img src="https://pbs.twimg.com/profile_images/687480484390154241/vg2DOA1D.png" alt="Rey Leon Poster" height="300" width="300"> </center> </td>
-                  <td style="vertical-align: middle">El Rey Leon</td>
-                  <td style="vertical-align: middle">Un remake del clásico animado de Disney de 1994 'El rey león' que estará dirigido por Jon Favreu. Simba (Donald Glover) es el hijo del rey de los leones, Mufasa, y heredero de todo el reino.</td>
-                  <td style="vertical-align: middle; text-align: center;">500</td>
-                  <td style="text-align: center; vertical-align: middle"><button small type="submit" class="btn btn-primary">Eliminar</button></td>
-                </tr>
-                <tr>
-                  <th style="vertical-align: middle">3</th>
-                  <td style="vertical-align: middle"> <center> <img src="https://image.tmdb.org/t/p/w1280/iKVR1ba3W1wCm9bVCcpnNvxQUWX.jpg" alt="Spiderman Poster" height="300" width="200"> </center> </td>
-                  <td style="vertical-align: middle">Spiderman far from home</td>
-                  <td style="vertical-align: middle">Peter Parker decide irse junto a Michelle Jones, Ned y el resto de sus amigos a pasar unas vacaciones a Europa después de los eventos ocurridos en Vengadores: EndGame.</td>
-                  <td style="vertical-align: middle; text-align: center;">500</td>
-                
-                  <td style="text-align: center; vertical-align: middle"><button small type="submit" class="btn btn-primary">Eliminar</button></td>
-                </tr>
+              <?php } ?>
               </tbody>
-            </table>
+            </table> </form>
           </div>
         </div>
       </div>

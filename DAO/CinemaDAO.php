@@ -11,6 +11,8 @@ class CinemaDAO implements ICinemaDAO
     {
         $this->RetrieveData();
 
+        $cinema->setId($this->GetNextId());
+
         array_push($this->cinemaList, $cinema);
 
         $this->SaveData();
@@ -43,6 +45,16 @@ class CinemaDAO implements ICinemaDAO
             file_put_contents("Data/cinemas.json", $jsonContent);
         }
 
+    public function Remove($id)
+        {            
+            $this->RetrieveData();
+            
+            $this->cinemaList = array_filter($this->cinemaList, function($cinema) use($id){                
+                return $cinema->getId() != $id;
+            });
+            
+            $this->SaveData();
+    }
 
     private function RetrieveData()
     {
@@ -67,6 +79,18 @@ class CinemaDAO implements ICinemaDAO
                 array_push($this->cinemaList, $cinema);
             }
         }
+    }
+
+    private function GetNextId()
+    {
+        $id = 0;
+
+        foreach($this->cinemaList as $cinema)
+        {
+            $id = ($cinema->getId() > $id) ? $cinema->getId() : $id;
+        }
+
+        return $id + 1;
     }
 }
 
