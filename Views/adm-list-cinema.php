@@ -36,7 +36,7 @@
               foreach($cinemaList as $cinema) { ?>
                 <tr>
                   <th style="text-align: center; vertical-align: middle"><?php echo $cinema->getId(); ?></th>
-                  <td style="text-align: center; vertical-align: middle"> <center> <img src="<?php echo $cinema->getImageUrl(); ?>" alt="Image" height="300" width="200"> </center> </td>
+                  <td style="text-align: center; vertical-align: middle"> <center> <img src="<?php echo $cinema->getImageUrl(); ?>" alt="Image" height="100" width="100"> </center> </td>
                   <td style="text-align: center; vertical-align: middle"><?php echo $cinema->getName(); ?></td>
                   <td style="text-align: center; vertical-align: middle"><?php echo $cinema->getAddress(); ?></td>
                   <td style="text-align: center; vertical-align: middle;"><?php echo $cinema->getCapacity(); ?></td>

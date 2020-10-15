@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "imageUrl": "/cinema20/Image/aldrey.png",
+        "imageUrl": "/cinema20/Views/default/images/aldrey.png",
         "name": "Paseo Aldrey",
         "capacity": "300",
         "address": "Sarmiento 2685",
@@ -9,7 +9,7 @@
     },
     {
         "id": 2,
-        "imageUrl": "/cinema20/Image/paseo.png",
+        "imageUrl": "/cinema20/Views/default/images/paseo.png",
         "name": "Cine del paseo",
         "capacity": "200",
         "address": "Diagonal Pueyrredón 3058",
@@ -17,7 +17,7 @@
     },
     {
         "id": 3,
-        "imageUrl": "/cinema20/Image/losgallegos.png",
+        "imageUrl": "/cinema20/Views/default/images/losgallegos.png",
         "name": "Cinema Los Gallegos Shopping",
         "capacity": "250",
         "address": "Rivadavia 3050",
