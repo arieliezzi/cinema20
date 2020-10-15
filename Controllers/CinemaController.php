@@ -6,25 +6,44 @@
 
 	class CinemaController {
 
-		private $cinemaDao;
+		private $cinemaDAO;
 
 		public function index($message = "") {
 			require_once(VIEWS_PATH."adm-add-cinema.php");
 		}
 
-		public function showListCinema($message = "") {
-			$this->cinemaDao = new CinemaDAO();
-			$cinemaList = $this->cinemaDao->getAll();
-			require_once(VIEWS_PATH."adm-list-cinema.php");
-		}
-
-		public function showAddCinema($message = "") {
+		public function showAddView($message = "") {
 			require_once(VIEWS_PATH."adm-add-cinema.php");
 		}
+
+		public function showListView($message = "") {
+			$this->cinemaDAO = new CinemaDAO();
+			$cinemaList = $this->cinemaDAO->getAll();
+			require_once(VIEWS_PATH."adm-list-cinema.php");
+		}	
+
+		public function showListViewToDelete($message = "") {
+			$this->cinemaDAO = new CinemaDAO();
+			$cinemaList = $this->cinemaDAO->getAll();
+			require_once(VIEWS_PATH."adm-list-cinema-to-delete.php");
+		}
+
+		public function showListViewToModify($message = "") {
+			$this->cinemaDAO = new CinemaDAO();
+			$cinemaList = $this->cinemaDAO->getAll();
+			require_once(VIEWS_PATH."adm-list-cinema-to-modify.php");
+		}
 		
+		public function showModifyView ($id) {
+			$this->cinemaDAO = new CinemaDAO();
+			$cinema = $this->cinemaDAO->GetById($id);
+		
+			require_once(VIEWS_PATH."adm-modify-cinema.php");
+		}		
+
 
 		public function add($name, $capacity, $address, $price, $imageUrl) {
-			$this->cinemaDao = new CinemaDAO();
+			$this->cinemaDAO = new CinemaDAO();
 			$cinema = new Cinema();
 			$cinema->setName($name);
 			$cinema->setCapacity($capacity);
@@ -32,28 +51,31 @@
 			$cinema->setPrice($price);
 			$cinema->setImageUrl($imageUrl);
 
-			$this->cinemaDao->add($cinema);
-			$this->showListCinema();
+			$this->cinemaDAO->add($cinema);
+			$this->showListView();
 		}
 
 		public function Remove($id)
         {
+			$this->CinemaDAO = new CinemaDAO();
             $this->CinemaDAO->Remove($id);
 
-            $this->showListCinema();
+            $this->showListView();
         }
 
-		public function update($id,$name, $capacity, $adress, $value) {
-			$this->cinemaDao = new CinemaDAO();
-			$updatedCinema = Cinema();
+		public function update($id,$name, $capacity, $address, $price, $imageUrl) {
+			$this->cinemaDAO = new CinemaDAO();
+			$updatedCinema = new Cinema();
 			$updatedCinema->setID($id);
 			$updatedCinema->setName($name);
 			$updatedCinema->setCapacity($capacity);
-			$updatedCinema->setAdress($adress);
-			$updatedCinema->setValue($value);
+			$updatedCinema->setAddress($address);
+			$updatedCinema->setPrice($price);
+			$updatedCinema->setImageUrl($imageUrl);
 
-			$this->cinemaDao->update($updatedCinema);
-			$this->showListCinema();
+
+			$this->cinemaDAO->update($updatedCinema);
+			$this->showListView();
 		}
 
 	}

@@ -11,7 +11,7 @@
           <div class="form-group"> <input type="text" class="form-control" placeholder="Name" name="name" id="name"> </div>
           <div class="form-group"> <input type="text" class="form-control" placeholder="Adress" name="adress" id="adress"> </div>
           <div class="form-group"> <input type="text" class="form-control" placeholder="Capacity" name="capacity" id="capacity"> </div>
-          <div class="form-group"> <input type="text" class="form-control" placeholder="Price" name="price" id="capacity"> </div>
+          <div class="form-group"> <input type="text" class="form-control" placeholder="Price" name="price" id="price"> </div>
           <div class="form-group"> <input type="text" class="form-control" placeholder="Image URL" name="imageUrl" id="imageUrl"> </div>
           <button type="submit" class="btn btn-primary">Add new cinema<br></button>
         </form>

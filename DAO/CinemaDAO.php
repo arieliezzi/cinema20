@@ -56,6 +56,36 @@ class CinemaDAO implements ICinemaDAO
             $this->SaveData();
     }
 
+    public function GetById($id)
+    {            
+        $this->RetrieveData();
+
+        foreach($this->cinemaList as $cinema)
+        {
+            if ($cinema->getId()==$id)
+            return $cinema;
+        }
+    }
+
+    public function update($updatedCinema)
+    {            
+        $this->RetrieveData();
+
+        foreach($this->cinemaList as $cinema)
+        {
+            if ($cinema->getId()==$updatedCinema->getId())
+            {
+            $cinema->setName($updatedCinema->getName());
+            $cinema->setCapacity($updatedCinema->getCapacity());
+            $cinema->setPrice($updatedCinema->getPrice());
+            $cinema->setAddress($updatedCinema->getAddress());
+            $cinema->setImageUrl($updatedCinema->getImageUrl());
+            }
+
+        }
+        $this->saveData();
+    }
+
     private function RetrieveData()
     {
         $this->cinemaList = array();

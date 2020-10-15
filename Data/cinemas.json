@@ -1,26 +1,34 @@
 [
     {
-        "id": 1,
-        "imageUrl": "https:\/\/pbs.twimg.com\/profile_images\/876826404805070849\/f6M6IUoC_400x400.jpg",
-        "name": "Paseo Aldrey",
-        "capacity": "Rawson",
-        "address": "250",
-        "price": "500"
-    },
-    {
         "id": 2,
         "imageUrl": "",
-        "name": "Ambassador",
-        "capacity": "Corrientes",
-        "address": "150",
-        "price": "150"
+        "name": "",
+        "capacity": "",
+        "address": "",
+        "price": ""
     },
     {
         "id": 3,
         "imageUrl": "",
-        "name": "asfasf",
-        "capacity": "asfasf",
-        "address": "asfasf",
-        "price": "asfasf"
+        "name": "",
+        "capacity": "",
+        "address": "",
+        "price": ""
+    },
+    {
+        "id": 4,
+        "imageUrl": "sdhsdh",
+        "name": "Buenas como estas",
+        "capacity": "wradgadg",
+        "address": "sdhasg",
+        "price": ""
+    },
+    {
+        "id": 6,
+        "imageUrl": "",
+        "name": "",
+        "capacity": "",
+        "address": "",
+        "price": ""
     }
 ]

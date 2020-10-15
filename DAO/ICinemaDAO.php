@@ -5,6 +5,7 @@ use Models\Cinema as Cinema;
     interface ICinemaDAO
     {
         function Add(Cinema $cinema);
+        function Remove ($id);
         function GetAll();
     }
     

@@ -9,7 +9,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="display-2">Cinemas list</h1>
+          <h1 class="display-2">Cinemas to Delete</h1>
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="table-responsive">
-
+          <form action="<?php echo FRONT_ROOT."Cinema/Remove" ?>" method="">
             <table class="table table-bordered ">
               <thead class="thead-dark">
                 <tr>
@@ -29,6 +29,7 @@
                   <th>Adress</th>
                   <th>Capacity</th>
                   <th>Price</th>
+                  <th style="text-align: center">-</th>
                 </tr>
               </thead>
               <tbody>
@@ -41,10 +42,11 @@
                   <td style="text-align: center; vertical-align: middle"><?php echo $cinema->getAddress(); ?></td>
                   <td style="text-align: center; vertical-align: middle;"><?php echo $cinema->getCapacity(); ?></td>
                   <td style="text-align: center; vertical-align: middle;"><?php echo $cinema->getPrice(); ?></td>
+                  <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $cinema->getId()?>"> Remove </button>
                 </tr>
               <?php } ?>
               </tbody>
-            </table> 
+            </table> </form>
           </div>
         </div>
       </div>

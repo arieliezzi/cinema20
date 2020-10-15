@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php 
  include('header.php');
- include('nav-admin.php');
+ include('nav-guest.php');
 ?>
 <html>
 <body>
