@@ -1,34 +1,26 @@
 [
     {
+        "id": 1,
+        "imageUrl": "/cinema20/Image/aldrey.png",
+        "name": "Paseo Aldrey",
+        "capacity": "300",
+        "address": "Sarmiento 2685",
+        "price": "250"
+    },
+    {
         "id": 2,
-        "imageUrl": "",
-        "name": "",
-        "capacity": "",
-        "address": "",
-        "price": ""
+        "imageUrl": "/cinema20/Image/paseo.png",
+        "name": "Cine del paseo",
+        "capacity": "200",
+        "address": "Diagonal Pueyrredón 3058",
+        "price": "200"
     },
     {
         "id": 3,
-        "imageUrl": "",
-        "name": "",
-        "capacity": "",
-        "address": "",
-        "price": ""
-    },
-    {
-        "id": 4,
-        "imageUrl": "sdhsdh",
-        "name": "Buenas como estas",
-        "capacity": "wradgadg",
-        "address": "sdhasg",
-        "price": ""
-    },
-    {
-        "id": 6,
-        "imageUrl": "",
-        "name": "",
-        "capacity": "",
-        "address": "",
-        "price": ""
+        "imageUrl": "/cinema20/Image/losgallegos.png",
+        "name": "Cinema Los Gallegos Shopping",
+        "capacity": "250",
+        "address": "Rivadavia 3050",
+        "price": "220"
     }
 ]
