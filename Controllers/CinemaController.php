@@ -22,18 +22,6 @@
 			require_once(VIEWS_PATH."adm-list-cinema.php");
 		}	
 
-		public function showListViewToDelete($message = "") {
-			$this->cinemaDAO = new CinemaDAO();
-			$cinemaList = $this->cinemaDAO->getAll();
-			require_once(VIEWS_PATH."adm-list-cinema-to-delete.php");
-		}
-
-		public function showListViewToModify($message = "") {
-			$this->cinemaDAO = new CinemaDAO();
-			$cinemaList = $this->cinemaDAO->getAll();
-			require_once(VIEWS_PATH."adm-list-cinema-to-modify.php");
-		}
-		
 		public function showModifyView ($id) {
 			$this->cinemaDAO = new CinemaDAO();
 			$cinema = $this->cinemaDAO->GetById($id);
@@ -63,13 +51,13 @@
             $this->showListView();
         }
 
-		public function update($id,$name, $capacity, $address, $price, $imageUrl) {
+		public function update($id,$name, $address, $capacity, $price, $imageUrl) {
 			$this->cinemaDAO = new CinemaDAO();
 			$updatedCinema = new Cinema();
 			$updatedCinema->setID($id);
 			$updatedCinema->setName($name);
-			$updatedCinema->setCapacity($capacity);
 			$updatedCinema->setAddress($address);
+			$updatedCinema->setCapacity($capacity);
 			$updatedCinema->setPrice($price);
 			$updatedCinema->setImageUrl($imageUrl);
 

@@ -9,7 +9,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="display-2">Cinemas list</h1>
+          <h1 class="display-2">Cinemas List</h1>
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="table-responsive">
-
+         
             <table class="table table-bordered ">
               <thead class="thead-dark">
                 <tr>
@@ -29,6 +29,8 @@
                   <th>Adress</th>
                   <th>Capacity</th>
                   <th>Price</th>
+                  <th style="text-align: center">-</th>
+                  <th style="text-align: center">-</th>
                 </tr>
               </thead>
               <tbody>
@@ -41,6 +43,12 @@
                   <td style="text-align: center; vertical-align: middle"><?php echo $cinema->getAddress(); ?></td>
                   <td style="text-align: center; vertical-align: middle;"><?php echo $cinema->getCapacity(); ?></td>
                   <td style="text-align: center; vertical-align: middle;"><?php echo $cinema->getPrice(); ?></td>
+                  <form action="<?php echo FRONT_ROOT."Cinema/showModifyView" ?>" method="">
+                  <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $cinema->getId()?>"> Modify </button>
+                  </form>
+                  <form action="<?php echo FRONT_ROOT."Cinema/Remove" ?>" method="">
+                  <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $cinema->getId()?>"> Remove </button>
+                  </form>
                 </tr>
               <?php } ?>
               </tbody>
