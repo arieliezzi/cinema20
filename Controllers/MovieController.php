@@ -6,12 +6,12 @@
 	class MovieController {
 
 		public function index($message = "") {
-			require_once(VIEWS_PATH."adm-list-movies.php");
+			require_once(VIEWS_PATH."adm-list-api-movies.php");
 		}
 
 
 		public function showListView($message = "") {
-			require_once(VIEWS_PATH."adm-list-movies.php");
+			require_once(VIEWS_PATH."adm-list-api-movies.php");
 		}	
 
 	}

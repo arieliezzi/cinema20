@@ -13,7 +13,7 @@
       <ul class="navbar-nav">
         <li class="nav-item"> <a class="nav-link text-primary" href="<?php echo FRONT_ROOT ?>Cinema/showAddView">Add Cinema</a> </li>
         <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Cinema/showListView">List Cinema</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Movie/showListView">Movies</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Movie/showListView">API Movies</a> </li>
       </ul>
     </div>
   </div>
