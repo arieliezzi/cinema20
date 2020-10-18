@@ -11,7 +11,6 @@ class GenreDAO implements IGenreDAO
     {
         $this->RetrieveData();
 
-        $genre->setId($this->GetNextId());
 
         array_push($this->genreList, $genre);
 

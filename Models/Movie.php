@@ -9,6 +9,7 @@
 		private $image;
 		private $description;
 		private $genres;
+		private $poster;
 
 		public function setId($id) {
 			$this->id = $id;
@@ -32,6 +33,14 @@
 
 		public function getImage() {
 			return $this->image;
+		}
+
+		public function setPoster($poster) {
+			$this->poster = $poster;
+		}
+
+		public function getPoster() {
+			return $this->poster;
 		}
 
 		public function setDescription($description) {

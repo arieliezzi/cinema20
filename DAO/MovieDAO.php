@@ -11,14 +11,12 @@ class MovieDAO implements IMovieDAO
     {
         $this->RetrieveData();
 
-        $movie->setId($this->GetNextId());
+        //$movie->setId($this->GetNextId());
 
         array_push($this->movieList, $movie);
 
         $this->SaveData();
     }
-
-  
 
     public function GetAll()
     {
@@ -38,6 +36,7 @@ class MovieDAO implements IMovieDAO
                 $valuesArray["image"] = $movie->getImage();
                 $valuesArray["description"] = $movie->getDescription();
                 $valuesArray["genres"] = $movie->getGenres();
+                $valuesArray["poster"] = $movie->getPoster();
     
                 array_push($arrayToEncode, $valuesArray);
             }
@@ -76,6 +75,7 @@ class MovieDAO implements IMovieDAO
                 $movie->setImage($valuesArray["image"]);
                 $movie->setDescription($valuesArray["description"]);
                 $movie->setGenres($valuesArray["genres"]);
+                $movie->setPoster($valuesArray["poster"]);
 
                 array_push($this->movieList, $movie);
             }
