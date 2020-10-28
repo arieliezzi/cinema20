@@ -40,7 +40,7 @@
 			$cinema->setImageUrl($imageUrl);
 
 			$this->cinemaDAO->add($cinema);
-			$this->showListView();
+			$this->showListView("✔️ ¡Cine agregado con exito!");
 		}
 
 		public function Remove($id)
@@ -48,7 +48,7 @@
 			$this->CinemaDAO = new CinemaDAO();
             $this->CinemaDAO->Remove($id);
 
-            $this->showListView();
+            $this->showListView("✔️ ¡Cine eliminado con exito!");
         }
 
 		public function update($id,$name, $address, $capacity, $price, $imageUrl) {
@@ -63,7 +63,7 @@
 
 
 			$this->cinemaDAO->update($updatedCinema);
-			$this->showListView();
+			$this->showListView("✔️ ¡Cine modificado con exito!");
 		}
 
 	}
