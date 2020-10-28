@@ -13,59 +13,64 @@
 		}
 
 
-		public function showListView($message = "") {
-           
-              $movieList = $this->getMoviesApi($message);
-              $this->genreDAO = new GenreDAO();
-              $genreList = $this->genreDAO->getAll();
+        public function showListView($message = "", $genreID = "")
+        {
+            $movieList = $this->getMoviesApi($genreID);
+            $this->genreDAO = new GenreDAO();
+            $genreList = $this->genreDAO->getAll();
 
 			require_once(VIEWS_PATH."adm-list-api-movies.php");
 		}	
 
-        public function getMoviesApi($message = "")
+        public function getMoviesApi($genre = "")
         {
             $movieList = array();
-            if ($message==NULL)
+            if ($genre==NULL )
             {
                 $movieList = $this->getMovies("https://api.themoviedb.org/3/movie/now_playing?page=1&language=es-Ar&api_key=a7580011981ddc91268a6ad5022a8ec7", $movieList);     
             } 
             else
             {
-                $movieList = $this->getMovies("https://api.themoviedb.org/3/movie/now_playing?page=1&language=es-Ar&with_genres=".$message."&api_key=a7580011981ddc91268a6ad5022a8ec7", $movieList);  
+                $movieList = $this->getMovies("https://api.themoviedb.org/3/movie/now_playing?page=1&language=es-Ar&with_genres=".$genre."&api_key=a7580011981ddc91268a6ad5022a8ec7", $movieList);  
             }
     
             return $movieList;
         }
 
-        public function addMovie($id)
+        public function addMovie($id,$genreID)
         {
-        $movieList = $this->getMoviesApi();
+            //Se le pasa por parametro el ID de la pelicula a persistir junto con el genero el cual se uso como filtro.
+            //Se le vuelve a pedir a la API la pagina y se busca la pelicula para posteriormente agregarla.
+            //Tambien se verifica que en las peliculas ya persistentes no exista.
+            $movieList = $this->getMoviesApi();
+            $this->movieDAO = new movieDAO();
+            $internalMovieList = $this->movieDAO->getAll();
+            $state=0;
 
-        $this->movieDAO = new movieDAO();
-        $internalMovieList = $this->movieDAO->getAll();
-        $state=0;
-
-        foreach($movieList as $movie)
-        {
-            if ($movie->getId()==$id)
+            foreach($movieList as $movie)
             {
-                foreach($internalMovieList as $internal)
+                if ($movie->getId()==$id)
                 {
-                    if ($internal->getId()==$movie->getId())
+                    foreach($internalMovieList as $internal)
                     {
-                        $state=1;
+                        if ($internal->getId()==$movie->getId())
+                        {
+                            $state=1;
+                        }
+                    }
+                    
+                    if ($state==0)
+                    {
+                        $this->movieDAO = new MovieDAO();
+                        $this->movieDAO->add($movie); 
+                        $this->showListView("¡Pelicula agregada con exito!",$genreID);
+                    }
+                    else
+                    {
+                        $this->showListView("Error al agregar la pelicula, ya persiste.",$genreID);
                     }
                 }
-                
-                if ($state==0)
-                {
-                    $this->movieDAO = new MovieDAO();
-                    $this->movieDAO->add($movie);
-                }
             }
-        }
-
-        $this->showListView();
         }
 
         private function getMovies($url, $movieList)

@@ -5,34 +5,35 @@
 ?>
 <html>
 <body>
-
-
-
+  
 <div class="mt-5">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-
           <h1 class="display-2">API Movies</h1>
-
           <div class="btn-group">
-            <button class="btn btn-primary dropdown-toggle my-2" data-toggle="dropdown">Filter by Genre </button>
-            <div class="dropdown-menu">
-              <h6 class="dropdown-header">Genres</h6>
-              <?php foreach($genreList as $genre) { ?>
-              <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Api/showListView?message=<?php echo ($genre->getId()) ?>"><?php echo $genre->getName(); ?></a>
-              <?php } ?>
-   
-            </div>
+              <button class="btn btn-primary dropdown-toggle my-2" data-toggle="dropdown">Filter by Genre </button>
+              <div class="dropdown-menu">
+                <h6 class="dropdown-header">Genres</h6>
+                <?php foreach($genreList as $genre) { ?>
+                <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Api/showListView?message=&&genreID=<?php echo ($genre->getId()) ?>"><?php echo $genre->getName(); ?></a>
+                <?php } ?>
+              </div>
           </div>
       
 <div class="py-2">
-
     <div class="container">
       <div class="row">
-               
         <div class="col-md-12">
-                  <div class="table-responsive">
+
+          <?php if ($message != NULL) { ?>
+            <div class="alert alert-info" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+              <h4 class="alert-heading"><?php echo $message; ?></h4>
+            </div>
+          <?php } ?>
+
+           <div class="table-responsive">
             <table class="table table-bordered ">
               <thead class="thead-dark">
                 <tr>
@@ -44,17 +45,21 @@
                 </tr>
               </thead>
               <tbody>
-              <?php $id=0; foreach($movieList as $movie) { $id++; ?>
+
+                <?php $id=0; foreach($movieList as $movie) { $id++; ?>
                 <tr>
                   <th style="vertical-align: middle"><?php echo $id; ?></th>
                   <td style="vertical-align: middle"> <center> <img src="<?php echo $movie->getImage(); ?>" alt="Poster" height="300" width="200"> </center> </td>
                   <td style="vertical-align: middle"><?php echo $movie->getTitle(); ?></td>
                   <td style="vertical-align: middle"><?php echo $movie->getDescription(); ?></td>
-                  <form action="<?php echo FRONT_ROOT."Api/addMovie" ?>" method="">
-                        <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $movie->getId()?>"> Add </button>
+                  <form action="<?php echo FRONT_ROOT ?>Api/addMovie" method="">
+                    <div class="form-group"> <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $movie->getId()?>"> </div>
+                    <div class="form-group"> <input type="hidden" class="form-control" name="genre" id="genre" value="<?php echo $genreID?>"> </div>
+                    <td style="text-align: center; vertical-align: middle"> <button type="submit" class="btn btn-primary">Add</button>
                   </form>
                 </tr>
                 <?php } ?>
+
               </tbody>
             </table>
           </div>
