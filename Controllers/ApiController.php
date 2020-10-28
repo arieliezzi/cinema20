@@ -41,7 +41,7 @@
         {
             //Se le pasa por parametro el ID de la pelicula a persistir junto con el genero el cual se uso como filtro.
             //Se le vuelve a pedir a la API la pagina y se busca la pelicula para posteriormente agregarla.
-            //Tambien se verifica que en las peliculas ya persistentes no exista.
+            //Tambien se verifica que en las peliculas ya persistentes no exista!!
             $movieList = $this->getMoviesApi();
             $this->movieDAO = new movieDAO();
             $internalMovieList = $this->movieDAO->getAll();
