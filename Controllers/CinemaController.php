@@ -2,7 +2,7 @@
 	namespace Controllers;
 
 	use Models\Cinema as Cinema;
-	use DAO\CinemaDAO as CinemaDAO;
+	use DAO\CinemaDAODB as CinemaDAODB;
 
 	class CinemaController {
 
@@ -17,42 +17,42 @@
 		}
 
 		public function showListView($message = "") {
-			$this->cinemaDAO = new CinemaDAO();
+			$this->cinemaDAO = new CinemaDAODB();
 			$cinemaList = $this->cinemaDAO->getAll();
 			require_once(VIEWS_PATH."adm-list-cinema.php");
 		}	
 
 		public function showModifyView ($id) {
-			$this->cinemaDAO = new CinemaDAO();
+			$this->cinemaDAO = new CinemaDAODB();
 			$cinema = $this->cinemaDAO->GetById($id);
 		
 			require_once(VIEWS_PATH."adm-modify-cinema.php");
 		}		
 
 
-		public function add($name, $capacity, $address, $price, $imageUrl) {
-			$this->cinemaDAO = new CinemaDAO();
+		public function add($name,$address, $capacity, $price, $imageUrl) {
+			$this->cinemaDAO = new CinemaDAODB();
 			$cinema = new Cinema();
 			$cinema->setName($name);
-			$cinema->setCapacity($capacity);
 			$cinema->setAddress($address);
+			$cinema->setCapacity($capacity);
 			$cinema->setPrice($price);
 			$cinema->setImageUrl($imageUrl);
 
 			$this->cinemaDAO->add($cinema);
-			$this->showListView("✔️ ¡Cine agregado con exito!");
+			$this->showListView();
 		}
 
 		public function Remove($id)
         {
-			$this->CinemaDAO = new CinemaDAO();
+			$this->CinemaDAO = new CinemaDAODB();
             $this->CinemaDAO->Remove($id);
 
-            $this->showListView("✔️ ¡Cine eliminado con exito!");
+            $this->showListView();
         }
 
 		public function update($id,$name, $address, $capacity, $price, $imageUrl) {
-			$this->cinemaDAO = new CinemaDAO();
+			$this->cinemaDAO = new CinemaDAODB();
 			$updatedCinema = new Cinema();
 			$updatedCinema->setID($id);
 			$updatedCinema->setName($name);
@@ -63,7 +63,7 @@
 
 
 			$this->cinemaDAO->update($updatedCinema);
-			$this->showListView("✔️ ¡Cine modificado con exito!");
+			$this->showListView();
 		}
 
 	}
