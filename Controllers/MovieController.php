@@ -22,7 +22,7 @@
 			$this->MovieDAO = new MovieDAO();
             $this->MovieDAO->Remove($id);
 
-            $this->showListView();
+            $this->showListView("✔️ ¡Pelicula eliminada con exito!");
         }
 	}
 

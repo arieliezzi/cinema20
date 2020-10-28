@@ -63,11 +63,11 @@
                     {
                         $this->movieDAO = new MovieDAO();
                         $this->movieDAO->add($movie); 
-                        $this->showListView("¡Pelicula agregada con exito!",$genreID);
+                        $this->showListView("✔️ ¡Pelicula agregada con exito!",$genreID);
                     }
                     else
                     {
-                        $this->showListView("Error al agregar la pelicula, ya persiste.",$genreID);
+                        $this->showListView("❌ Error al agregar la pelicula, ya persiste.",$genreID);
                     }
                 }
             }
