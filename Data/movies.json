@@ -5,9 +5,21 @@
         "image": "https:\/\/image.tmdb.org\/t\/p\/w500\/7D430eqZj8y3oVkLFfsWXGRcpEG.jpg",
         "description": "El viaje de un hombre hacia el futuro para salvar un mundo moribundo.",
         "genres": [
+            18,
             878,
             53
         ],
         "poster": "https:\/\/image.tmdb.org\/t\/p\/w500\/5UkzNSOK561c2QRy2Zr4AkADzLT.jpg"
+    },
+    {
+        "id": 724989,
+        "title": "Mercenarios de \u00e9lite",
+        "image": "https:\/\/image.tmdb.org\/t\/p\/w500\/ugZW8ocsrfgI95pnQ7wrmKDxIe.jpg",
+        "description": "El trabajo del multimillonario CEO de tecnolog\u00eda Donovan Chalmers es tan valioso que contrata mercenarios para protegerlo, y un grupo terrorista secuestra a su hija solo para conseguirlo.",
+        "genres": [
+            28,
+            53
+        ],
+        "poster": "https:\/\/image.tmdb.org\/t\/p\/w500\/86L8wqGMDbwURPni2t7FQ0nDjsH.jpg"
     }
 ]

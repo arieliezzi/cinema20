@@ -30,17 +30,17 @@
 		}		
 
 
-		public function add($name,$address, $capacity, $price, $imageUrl) {
+		public function add($name, $address,$capacity, $price, $imageUrl) {
 			$this->cinemaDAO = new CinemaDAODB();
 			$cinema = new Cinema();
 			$cinema->setName($name);
-			$cinema->setAddress($address);
+            $cinema->setAddress($address);
 			$cinema->setCapacity($capacity);
 			$cinema->setPrice($price);
 			$cinema->setImageUrl($imageUrl);
 
 			$this->cinemaDAO->add($cinema);
-			$this->showListView();
+			$this->showListView("✔️ ¡Cine agregado con exito!");
 		}
 
 		public function Remove($id)
@@ -48,7 +48,7 @@
 			$this->CinemaDAO = new CinemaDAODB();
             $this->CinemaDAO->Remove($id);
 
-            $this->showListView();
+            $this->showListView("✔️ ¡Cine eliminado con exito!");
         }
 
 		public function update($id,$name, $address, $capacity, $price, $imageUrl) {
@@ -63,7 +63,7 @@
 
 
 			$this->cinemaDAO->update($updatedCinema);
-			$this->showListView();
+			$this->showListView("✔️ ¡Cine modificado con exito!");
 		}
 
 	}
