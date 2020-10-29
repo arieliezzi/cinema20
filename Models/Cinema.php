@@ -9,6 +9,8 @@
 		private $capacity;
 		private $address;
 		private $price;
+		private $rooms;
+		private $isActive;
 
 		public function setId($id) {
 			$this->id = $id;
@@ -58,5 +60,21 @@
 			return $this->imageUrl;
 		}
 		
+		public function getRooms()	{
+			return $this->rooms;
+		}
+
+		public function setRooms($rooms)	{
+			return $this->rooms = $rooms;
+		}
+
+		public function getIsActive()	{
+			return $this->isActive;
+		}
+
+		public function setIsActive($isActive)	{
+			return $this->isActive = $isActive;
+		}
+
 	}
 ?>
