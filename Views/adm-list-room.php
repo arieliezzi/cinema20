@@ -43,27 +43,30 @@ include('nav-guest.php');
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($cinemaList as $cinema) { ?>
+                <?php foreach ($roomList as $room) { ?>
                   <tr>
-                    <th style="text-align: center; vertical-align: middle"><?php echo $cinema->getId(); ?></th>
-                    <td style="text-align: center; vertical-align: middle"><?php echo $cinema->getName(); ?></td>
-                    <td style="text-align: center; vertical-align: middle;"><?php echo $cinema->getCapacity(); ?></td>
-                    <td style="text-align: center; vertical-align: middle;"><?php echo $cinema->getPrice(); ?></td>
-
-                    <form action="<?php echo FRONT_ROOT . "Cinema/showModifyView" ?>" method="">
-                      <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $cinema->getId() ?>"> Modify </button>
+                    <th style="text-align: center; vertical-align: middle"><?php echo $room->getId(); ?></th>
+                    <td style="text-align: center; vertical-align: middle"><?php echo $room->getName(); ?></td>
+                    <td style="text-align: center; vertical-align: middle;"><?php echo $room->getCapacity(); ?></td>
+                    <td style="text-align: center; vertical-align: middle;"><?php echo $room->getPrice(); ?></td>
+                    
+                    <form action="<?php echo FRONT_ROOT . "Room/showModifyView" ?>" method="">
+                      <input type="hidden" class="form-control" name="idCinema" id="idCinema" value="<?php echo $idCinema ?>">
+                      <input type="hidden" class="form-control" name="idRoom" id="idRoom" value="idRoom">
+                      <td style="text-align: center; vertical-align: middle"><button type="submit" class="btn btn-primary"> Modify </button>
                     </form>
-                    <form action="<?php echo FRONT_ROOT . "Cinema/Remove" ?>" method="">
-                      <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $cinema->getId() ?>"> Remove </button>
+
+                    <form action="<?php echo FRONT_ROOT . "Room/remove" ?>" method="">
+                      <input type="hidden" class="form-control" name="idCinema" id="idCinema" value="<?php echo $idCinema ?>">
+                      <input type="hidden" class="form-control" name="idRoom" id="idRoom" value="idRoom">
+                      <td style="text-align: center; vertical-align: middle"><button type="submit" class="btn btn-primary"> Remove </button>
                     </form>
                   </tr>
                 <?php } ?>
+                <form action="<?php echo FRONT_ROOT . "Room/showAddView" ?>" method="">
+                      <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $idCinema ?>"> Add Room </button>
+                </form>
               </tbody>
-
-              <form action="<?php echo FRONT_ROOT . "Cinema/Remove" ?>" method="">
-                      <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $cinema->getId() ?>"> Add Room </button>
-              </form>
-
             </table>
           </div>
         </div>

@@ -57,8 +57,8 @@ include('nav-guest.php');
                     <td style="text-align: center; vertical-align: middle;"><?php echo $cinema->getCapacity(); ?></td>
                     <td style="text-align: center; vertical-align: middle;"><?php echo $cinema->getPrice(); ?></td>
 
-                    <form action="<?php echo FRONT_ROOT . "Cinema/showRoom" ?>" method="">
-                      <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $cinema->getId() ?>"> Rooms </button>
+                    <form action="<?php echo FRONT_ROOT . "Room/showCinemaRooms" ?>" method="">
+                      <td style="text-align: center; vertical-align: middle"><button type="submit" name="idCinema" class="btn btn-primary" value="<?php echo $cinema->getId() ?>"> Rooms </button>
                     </form>
                     <form action="<?php echo FRONT_ROOT . "Cinema/showModifyView" ?>" method="">
                       <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $cinema->getId() ?>"> Modify </button>
