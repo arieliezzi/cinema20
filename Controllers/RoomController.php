@@ -60,13 +60,13 @@
 		public function Update($idCinema,$idRoom) {
 			//Aca hay que poner todo lo necesario para que se modifique una sala del cine
 
-			$this->showCinemaRooms("idCinema","✔️ ¡Sala Modificada con exito! Check ID CINEMA: ".$idCinema."");
+			$this->showCinemaRooms($idCinema,"✔️ ¡Sala Modificada con exito! Check ID CINEMA: ".$idCinema."");
 		}	
 
 		public function Remove($idCinema,$idRoom) {
 			//Aca hay que poner todo lo necesario para que se elimine la sala
 
-            $this->showCinemaRooms("idCinema","✔️ ¡Sala eliminada con exito! Check ID CINEMA: ".$idCinema."");
+            $this->showCinemaRooms($idCinema,"✔️ ¡Sala eliminada con exito! Check ID CINEMA: ".$idCinema."");
         }
 	}
 
