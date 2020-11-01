@@ -16,12 +16,12 @@
               <div class="form-group"> <input type="text" class="form-control" placeholder="Cinema Selected" name="id" value="<?php echo "Cinema Selected" ?>" id="id" readonly> </div>
               <div class="form-group"> <input type="text" class="form-control" placeholder="Room Selected" name="id" value="<?php echo "Room Selected" ?>" id="id" readonly> </div>
               <div class="form-group"> <input type="text" class="form-control" placeholder="Movie Selected" name="id" value="<?php echo "Movie Selected" ?>" id="id" readonly> </div>
-             
-              <div class="form-group"> <input type="date" class="form-control" placeholder="" name="id" id="id"> </div>
-              <div class="form-group"> <input type="time" class="form-control" placeholder="" name="id" id="id"> </div>
+
+              <div class="form-group"> Insert a start date <input type="date" class="form-control" placeholder="" name="id" id="id">  </div>
+              <div class="form-group"> Insert a end date <input type="date" class="form-control" placeholder="" name="id" id="id"> </div>
+              <div class="form-group"> Insert time (24hs system)<input type="time" class="form-control" placeholder="" name="id" id="id"> </div>
     
-              <center> <img src="<?php echo "https://image.tmdb.org/t/p/w500/ugZW8ocsrfgI95pnQ7wrmKDxIe.jpg" ?>" alt="Poster" height="450" width="300"> </center>
-              <br>
+            
 
               <button type="submit" class="btn btn-primary">Next ><br></button>
             </form>
