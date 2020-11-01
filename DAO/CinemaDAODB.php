@@ -25,7 +25,7 @@
             $this->connection = Connection::GetInstance();
 
             $this->connection->ExecuteNonQuery($query, $parameters, QueryType::StoredProcedure);
-        }catch(exception $exception)
+        }catch(Exception $exception)
         {
             echo "no se pudo agregar pelicula";
         }
@@ -80,9 +80,6 @@
 
             $result = $this->connection->Execute($query, $parameters, QueryType::Query);
 
-      
-            echo "hola";
-
             foreach($result as $row)
             {
                 $cinema = new cinema();
@@ -91,6 +88,7 @@
                 $cinema->setCapacity($row["capacity"]);
                 $cinema->setAddress($row["address"]);
                 $cinema->setPrice($row["price"]);
+                $cinema->setImageUrl($row["imageUrl"]);
             }
 
             return $cinema;
