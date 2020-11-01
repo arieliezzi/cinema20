@@ -25,6 +25,7 @@
         {
             $movieList = $this->getMoviesApi($genreID);
             $this->genreDAO = new GenreDAODB();
+            //$this->getGenresAPI();
             $genreList = $this->genreDAO->getAll();
 
 			require_once(VIEWS_PATH."adm-list-api-movies.php");
@@ -135,7 +136,7 @@
                 $genre = new genre();
                 $genre->setId($row["id"]);
                 $genre->setName($row["name"]);
-                $genreDao->Add($genre);
+                $genreDao->Add($genre->getID(),$genre->getName());
     
             }
 
