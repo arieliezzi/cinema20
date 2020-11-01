@@ -12,19 +12,24 @@
         private $tableName = "cinemas";
         
         public function Add(Cinema $cinema)
-        {
-            $query = "CALL Cinemas_Add(?, ?, ?, ?, ?)";
+        { try{
+            $query = "CALL Cinemas_Add(?, ?, ?, ?, ?, ?)";
 
             $parameters["name"] = $cinema->getName();
             $parameters["address"] = $cinema->getAddress();
             $parameters["capacity"] = $cinema->getCapacity();
             $parameters["price"] = $cinema->getPrice();
             $parameters["imageUrl"] = $cinema->getImageUrl();
+            $parameters["is_active"]=$cinema->getIsActive();
 
             $this->connection = Connection::GetInstance();
 
             $this->connection->ExecuteNonQuery($query, $parameters, QueryType::StoredProcedure);
+        }catch(exception $exception)
+        {
+            echo "no se pudo agregar pelicula";
         }
+    }
 
         public function GetAll()
         {
@@ -65,26 +70,35 @@
 
         public function GetById($id)
         {            
-            $query = "CALL Cinemas_GetById(?)";
-            $parameters["id_cinema"] =  $id;
+            $tableName="Cinemas";
+
+            $query = "SELECT * FROM ".$this->tableName." WHERE id_cinema = :id_cinema";
+
+            $parameters["id_cinema"] = $id;
 
             $this->connection = Connection::GetInstance();
 
-            $result =  $this->connection->ExecuteNonQuery($query, $parameters, QueryType::StoredProcedure);
+            $result = $this->connection->Execute($query, $parameters, QueryType::Query);
 
-                $cinema = new Cinema();
-                $cinema->setId($result["id_cinema"]);
-                $cinema->setName($result["name"]);
-                $cinema->setAddress($result["address"]);
-                $cinema->setCapacity($result["capacity"]);
-                $cinema->setPrice($result["price"]);
-                $cinema->setImageUrl($result["imageUrl"]);
+      
+            echo "hola";
+
+            foreach($result as $row)
+            {
+                $cinema = new cinema();
+                $cinema->setId($row["id_cinema"]);
+                $cinema->setName($row["name"]);
+                $cinema->setCapacity($row["capacity"]);
+                $cinema->setAddress($row["address"]);
+                $cinema->setPrice($row["price"]);
+            }
 
             return $cinema;
         }
 
         public function update($updatedCinema)
-        {            
+        {  
+            try{         
             $query = "CALL Cinemas_Update(? ,?, ?, ?, ?, ?)";
             
             $parameters["id_cinema"] = $updatedCinema->getId();
@@ -97,6 +111,10 @@
             $this->connection = Connection::GetInstance();
 
             $this->connection->ExecuteNonQuery($query, $parameters, QueryType::StoredProcedure);
+            }catch(Exception $exception)
+            {
+               echo "no se pudo modificar la pelicula";
+            }
         }
         
 

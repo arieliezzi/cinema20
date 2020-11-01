@@ -38,6 +38,7 @@
 			$cinema->setCapacity($capacity);
 			$cinema->setPrice($price);
 			$cinema->setImageUrl($imageUrl);
+			$cinema->setIsActive(true);
 
 			$this->cinemaDAO->add($cinema);
 			$this->showListView("✔️ ¡Cine agregado con exito!");
@@ -51,7 +52,7 @@
             $this->showListView("✔️ ¡Cine eliminado con exito!");
         }
 
-		public function update($id,$name, $address, $capacity, $price, $imageUrl) {
+		public function update($id, $name, $address, $capacity, $price, $imageUrl) {
 			$this->cinemaDAO = new CinemaDAODB();
 			$updatedCinema = new Cinema();
 			$updatedCinema->setID($id);
