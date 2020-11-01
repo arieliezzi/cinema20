@@ -10,6 +10,7 @@
 		private $description;
 		private $genres;
 		private $poster;
+		private $is_active;
 
 		public function setId($id) {
 			$this->id = $id;
@@ -67,6 +68,18 @@
 			return $genresToString.".";
 		}
 
+
+		public function getIs_active()
+		{
+				return $this->is_active;
+		}
+
+		public function setIs_active($is_active)
+		{
+				$this->is_active = $is_active;
+
+				return $this;
+		}
 	}
 
 ?>

@@ -3,8 +3,8 @@
 
     use Models\Movie as Movie;
     use Models\Genre as Genre;
-    use DAO\GenreDAO as GenreDAO;
-    use DAO\MovieDAO as MovieDAO;
+    use DAO\GenreDAODB as GenreDAODB;
+    use DAO\MovieDAODB as MovieDAODB;
 
     class ApiController
     {
@@ -15,7 +15,7 @@
 
         public function showUserListView($message = "") {
             $movieList = $this->getMoviesApi();
-            $this->genreDAO = new GenreDAO();
+            $this->genreDAO = new GenreDAODB();
             $genreList = $this->genreDAO->getAll();
 
 			require_once(VIEWS_PATH."usr-list-show.php");
@@ -24,7 +24,7 @@
         public function showListView($message = "", $genreID = "")
         {
             $movieList = $this->getMoviesApi($genreID);
-            $this->genreDAO = new GenreDAO();
+            $this->genreDAO = new GenreDAODB();
             $genreList = $this->genreDAO->getAll();
 
 			require_once(VIEWS_PATH."adm-list-api-movies.php");
@@ -51,7 +51,7 @@
             //Se le vuelve a pedir a la API la pagina y se busca la pelicula para posteriormente agregarla.
             //Tambien se verifica que en las peliculas ya persistentes no exista!!
             $movieList = $this->getMoviesApi();
-            $this->movieDAO = new movieDAO();
+            $this->movieDAO = new movieDAODB();
             $internalMovieList = $this->movieDAO->getAll();
             $state=0;
 
@@ -69,7 +69,7 @@
                     
                     if ($state==0)
                     {
-                        $this->movieDAO = new MovieDAO();
+                        $this->movieDAO = new MovieDAODB();
                         $this->movieDAO->add($movie); 
                         $this->showListView("✔️ ¡Pelicula agregada con exito!",$genreID);
                     }
@@ -85,7 +85,7 @@
         {
             $response = file_get_contents($url);
         
-            $movieDao = new MovieDAO();
+            $movieDAO = new MovieDAODB();
 
             $arrayToDecode = ($response) ? json_decode($response, true) : array();
 
@@ -126,7 +126,7 @@
     {
         $genresList = array();
         $response = file_get_contents("https://api.themoviedb.org/3/genre/movie/list?api_key=a7580011981ddc91268a6ad5022a8ec7&language=en-US");
-        $genreDao = new GenreDAO();
+        $genreDao = new GenreDAODB();
 
         $arrayToDecode = ($response) ? json_decode($response, true) : array();
 

@@ -2,6 +2,7 @@ CREATE DATABASE IF NOT EXISTS cinema;
 USE cinema;
 
 
+
 CREATE TABLE IF NOT EXISTS cinemas(
         id_cinema INT NOT NULL auto_increment,
 		name VARCHAR(50) NOT NULL,
@@ -14,13 +15,28 @@ CREATE TABLE IF NOT EXISTS cinemas(
 )ENGINE = INNODB;
 
 
-
 CREATE TABLE IF NOT EXISTS movies(
         id_movie INT NOT NULL auto_increment,
         title VARCHAR(50) NOT NULL,
         image VARCHAR(200)NOT NULL,
-        description VARCHAR(300) NOT NULL,
+        description VARCHAR(3000) NOT NULL,
+        poster VARCHAR(300) NOT NULL,
+        is_active INT,
         PRIMARY KEY (id_movie)
+)ENGINE = INNODB;
+
+CREATE TABLE IF NOT EXISTS genres(
+  id_genre INT NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  PRIMARY KEY(id_genre)
+)ENGINE = INNODB;
+
+CREATE TABLE IF NOT EXISTS movieGenre(
+  id_genre INT NOT NULL,
+  id_movie INT NOT NULL,
+  CONSTRAINT fk_movieGenreG foreign key (id_genre) references genres(id_genre),
+  CONSTRAINT fk_movieGenreM foreign key (id_movie) references movies(id_movie),
+  primary key (id_genre,id_movie)
 )ENGINE = INNODB;
 
 CREATE TABLE IF NOT EXISTS rooms(
@@ -45,13 +61,6 @@ CREATE TABLE IF NOT EXISTS shows(
         CONSTRAINT fk_roomMovie foreign key (id_movie) references movies(id_movie)
 )ENGINE = INNODB;
 
-CREATE TABLE IF NOT EXISTS genres(
-  id_genre INT NOT NULL,
-  name VARCHAR(50) NOT NULL,
-  id_movie INT NOT NULL,
-  PRIMARY KEY(id_genre),
-  CONSTRAINT fk_movieGenre foreign key (id_movie) references movies (id_movie)
-)ENGINE = INNODB;
 
 	
 DROP procedure IF EXISTS `Cinemas_GetById`;

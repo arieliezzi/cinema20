@@ -38,7 +38,7 @@
 			$cinema->setCapacity($capacity);
 			$cinema->setPrice($price);
 			$cinema->setImageUrl($imageUrl);
-			$cinema->setIsActive(true);
+			$cinema->setIsActive(1);
 
 			$this->cinemaDAO->add($cinema);
 			$this->showListView("✔️ ¡Cine agregado con exito!");
