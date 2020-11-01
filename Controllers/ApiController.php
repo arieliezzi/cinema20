@@ -114,7 +114,9 @@
                 $genres = array();
 
                 foreach ($row["genre_ids"] as $row) {
-                   array_push($genres, $row);
+                   $genre = new Genre;
+                   $genre->setId($row);
+                   array_push($genres, $genre);
                 }
                 $movie->setGenres($genres);                
                 array_push($movieList, $movie);
