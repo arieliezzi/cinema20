@@ -9,6 +9,7 @@
 		private $movie;
 		private $startDate;
 		private $endDate;
+		private $time;
 
 		public function getId()
 		{
@@ -78,6 +79,18 @@
 		public function setEndDate($endDate)
 		{
 				$this->endDate = $endDate;
+
+				return $this;
+		}
+
+		public function getTime()
+		{
+				return $this->time;
+		}
+
+		public function setTime($time)
+		{
+				$this->time = $time;
 
 				return $this;
 		}
