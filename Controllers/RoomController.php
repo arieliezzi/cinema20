@@ -51,19 +51,14 @@
 			$this->cinemaDAO = new CinemaDAODB();
 
 			$room = new Room();
-			$cinema=new Cinema();
 
 			$isActive=1;
 			$room->setName($name);
             $room->setCapacity($capacity);
 			$room->setPrice($price);
 			$room->setIsActive($isActive);
-			$room->setIdCinema($idCinema);
-			$this->roomDAO->add($room);
-			
-			$cinema=$cinemaDAO->getById($idCinema);
-			$cinema->setRoom($room);
-	        
+			$this->roomDAO->add($room,$idCinema);
+
 			$this->showCinemaRooms($idCinema,"✔️ ¡Sala agregada con exito! Check ID CINEMA: ".$idCinema."");
 		}	
 
