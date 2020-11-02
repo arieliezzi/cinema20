@@ -9,6 +9,7 @@
 		private $price;
 		private $shows;
 		private $isActive;
+		private $idCinema;
 
 		public function getId()
 		{
@@ -78,6 +79,18 @@
 		public function setIsActive($isActive)
 		{
 				$this->isActive = $isActive;
+
+				return $this;
+		}
+
+		public function getIdCinema()
+		{
+				return $this->idCinema;
+		}
+
+		public function setIdCinema($idCinema)
+		{
+				$this->idCinema = $idCinema;
 
 				return $this;
 		}

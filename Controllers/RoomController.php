@@ -2,6 +2,7 @@
 	namespace Controllers;
 
 	use Models\Room as Room;
+	use DAO\RoomDAODB as RoomDAODB;
 
 	class RoomController {
 
@@ -51,9 +52,19 @@
 			require_once(VIEWS_PATH."adm-list-room.php");
 		}	
 
-		public function Add($idCinema) {
+		public function Add($name,$capacity,$price,$idCinema) {
 			//Aca hay que poner todo lo necesario para que se agregue una sala al cine
+			$this->roomDAO = new RoomDAODB();
+			$room = new Room();
+			$isActive=1;
+			$room->setName($name);
+            $room->setCapacity($capacity);
+			$room->setPrice($price);
+			$room->setIsActive($isActive);
+			$room->setIdCinema($idCinema);
 
+			$this->roomDAO->add($room);
+	
 			$this->showCinemaRooms($idCinema,"✔️ ¡Sala agregada con exito! Check ID CINEMA: ".$idCinema."");
 		}	
 
