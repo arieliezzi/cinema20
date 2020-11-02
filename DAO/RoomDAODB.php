@@ -58,14 +58,20 @@
 
 
         public function Remove($id)
-        {            
-            $query="UPDATE rooms SET (is_active = 0) WHERE (id_room = :id_room)";
+        {       
+            try{    
+            $query="UPDATE rooms SET is_active = :is_active WHERE id_room = :id_room";
 
+            $parameters["is_active"]=0;
             $parameters["id_room"] =  $id;
 
             $this->connection = Connection::GetInstance();
 
             $this->connection->ExecuteNonQuery($query, $parameters, QueryType::Query);
+            }catch(Exception $exception)
+            {
+                echo"No se pudo eliminar la sala";
+            }
         }
 
         public function GetById($id)
