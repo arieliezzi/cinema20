@@ -5,6 +5,7 @@
     use DAO\Connection as Connection;
     use DAO\QueryType as QueryType;
     use Models\Cinema as Cinema;
+    use Models\Room as Room;
 
     class CinemaDAODB implements ICinemaDAO
     {
@@ -29,10 +30,34 @@
         {
             echo "no se pudo agregar pelicula";
         }
-    }
+        }
+
+        public function GetRoomsByCinemaId($idCinema)
+        {
+            $query="SELECT * FROM rooms WHERE id_cinema=:id_cinema";
+            $parameters["id_cinema"] = $idCinema;
+            
+            $this->connection = Connection::GetInstance();
+            $result = $this->connection->Execute($query, $parameters, QueryType::Query);
+
+            $roomList=array();
+            foreach($result as $row)
+            {
+                $room=new Room();
+                $room->setId($row["id_room"]);
+                $room->setName($row["name"]);
+                $room->setCapacity($row["capacity"]);
+                $room->setPrice($row["price"]);
+                $room->setIdCinema($idCinema);
+
+                array_push($roomList, $room);
+            }
+          return $roomList;
+        }
 
         public function GetAll()
         {
+
             $cinemaList = array();
 
             $query = "CALL Cinemas_GetAll()";
@@ -50,10 +75,11 @@
                 $cinema->setCapacity($row["capacity"]);
                 $cinema->setPrice($row["price"]);
                 $cinema->setImageUrl($row["imageUrl"]);
-
+                $cinema->setRooms($this->GetRoomsByCinemaId($row["id_cinema"]));
+                
                 array_push($cinemaList, $cinema);
             }
-
+            
             return $cinemaList;
         }
 
@@ -70,6 +96,29 @@
 
         public function GetById($id)
         {            
+            $query="SELECT * FROM rooms WHERE id_cinema=:id_cinema";
+            $parameters["id_cinema"] = $id;
+            
+            $this->connection = Connection::GetInstance();
+            $result = $this->connection->Execute($query, $parameters, QueryType::Query);
+
+            $roomList=array();
+            $totalCapacity=0;
+            foreach($result as $row)
+            {
+                $room=new Room();
+                $room->setId($row["id_room"]);
+                $room->setName($row["name"]);
+                $room->setCapacity($row["capacity"]);
+                $room->setPrice($row["price"]);
+                $room->setIdCinema($id);
+
+                $totalCapacity=$totalCapacity+$row["capacity"];
+                array_push($roomList, $room);
+            }
+
+
+
             $tableName="Cinemas";
 
             $query = "SELECT * FROM ".$this->tableName." WHERE id_cinema = :id_cinema";
@@ -90,9 +139,11 @@
                 $cinema->setPrice($row["price"]);
                 $cinema->setImageUrl($row["imageUrl"]);
             }
+            $cinema->setRooms($roomList);
 
             return $cinema;
         }
+
 
         public function update($updatedCinema)
         {  

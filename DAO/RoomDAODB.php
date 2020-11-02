@@ -10,7 +10,7 @@
     {
         private $connection;
         
-        public function Add(Room $room)
+        public function Add(Room $room,$idCinema)
         { 
          try{
 
@@ -20,7 +20,7 @@
             $parameters["capacity"] = $room->getCapacity();
             $parameters["price"] = $room->getPrice();
             $parameters["is_active"]=$room->getIsActive();
-            $parameters["id_cinema"]=$room->getIdCinema();
+            $parameters["id_cinema"]=$idCinema;
 
             $this->connection = Connection::GetInstance();
 
@@ -31,7 +31,7 @@
             }
         }
 
-        public function GetAll()
+        public function GetAll($idCinema)
         {
             $roomList = array();
 
@@ -49,7 +49,7 @@
                 $room->setCapacity($row["capacity"]);
                 $room->setPrice($row["price"]);
                 $room->setIsActive($row["is_active"]);
-                $cinema->setIdCinema($row["id_cinema"]);
+                $room->setIdCinema($row["id_cinema"]);
 
                 array_push($roomList, $room);
             }

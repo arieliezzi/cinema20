@@ -136,10 +136,10 @@ DELIMITER ;
 DROP procedure IF EXISTS `Rooms_GetAll`;
 
 DELIMITER $$
-CREATE PROCEDURE Rooms_GetAll()
+CREATE PROCEDURE Rooms_GetAll(IN id_cinema INT)
 BEGIN
-	SELECT id_room, name, capacity, price, is_active, id_cinema
-    FROM rooms;
+	SELECT* FROM rooms
+    WHERE (rooms.is_active=1) AND (rooms.id_cinema=id_cinema);
 END$$
 DELIMITER ;
 
@@ -148,8 +148,8 @@ DROP procedure IF EXISTS `Rooms_Delete`;
 DELIMITER $$
 CREATE PROCEDURE Rooms_Delete(IN id_room INT)
 BEGIN
-	DELETE 
-    FROM rooms
+	UPDATE rooms
+    SET rooms.is_active = 0
     WHERE (rooms.id_room = id_room);
 END$$
 DELIMITER ;
