@@ -11,10 +11,10 @@
           <div class="card-body">
             <h1 class="mb-4">Add Room<br></h1>
             <form action="<?php echo FRONT_ROOT ?>Room/add" method="post">
-              <div class="form-group"> <input type="hidden" class="form-control" name="idCinema" id="idCinema" value=<?php echo $idCinema ?>> </div> 
               <div class="form-group"> <input type="text" class="form-control" placeholder="Name" name="name" id="name"> </div>
               <div class="form-group"> <input type="text" class="form-control" placeholder="Capacity" name="capacity" id="capacity"> </div>
               <div class="form-group"> <input type="text" class="form-control" placeholder="Price" name="price" id="price"> </div>
+              <div class="form-group"> <input type="hidden" class="form-control" name="idCinema" id="idCinema" value=<?php echo $idCinema ?>> </div> 
               <button type="submit" class="btn btn-primary">Add new room<br></button>
             </form>
             <br>
