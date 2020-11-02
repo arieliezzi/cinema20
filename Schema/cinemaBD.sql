@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS rooms(
 
 CREATE TABLE IF NOT EXISTS shows(
 		id_show INT NOT NULL auto_increment,
-		startDate DATETIME NOT NULL,
-		endDate DATETIME NOT NULL,
+		startDate DATE NOT NULL,
+		endDate DATE NOT NULL,
         time TIME NOT NULL,
 		id_cinema INT NOT NULL,
 		id_room INT NOT NULL,

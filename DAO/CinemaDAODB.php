@@ -34,8 +34,9 @@
 
         public function GetRoomsByCinemaId($idCinema)
         {
-            $query="SELECT * FROM rooms WHERE id_cinema=:id_cinema";
+            $query="SELECT * FROM rooms WHERE id_cinema=:id_cinema AND is_active = :is_active";
             $parameters["id_cinema"] = $idCinema;
+            $parameters["is_active"] = 1;
             
             $this->connection = Connection::GetInstance();
             $result = $this->connection->Execute($query, $parameters, QueryType::Query);
