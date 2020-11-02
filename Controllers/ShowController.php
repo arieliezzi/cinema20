@@ -33,18 +33,6 @@
 		}	
 
 		public function showModifyView($idCinema,$message = "") {
-			$id=1;
-			$name="Sala 1";
-			$capacity=100;
-			$price=300;
-			
-			$room = new Room();
-			$room->setId($id);
-			$room->setName($name);
-			$room->setCapacity($capacity);
-			$room->setPrice($price);
-
-			//Todo lo anterior es de prueba para que la view funcione, en el caso de hacer bien lo de arriba la view no hay que modificarla
 
 			require_once(VIEWS_PATH."adm-modify-room.php");
 		}	

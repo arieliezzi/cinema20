@@ -10,6 +10,7 @@
 		private $startDate;
 		private $endDate;
 		private $time;
+		private $isActive;
 
 		public function getId()
 		{
@@ -91,6 +92,18 @@
 		public function setTime($time)
 		{
 				$this->time = $time;
+
+				return $this;
+		}
+
+		public function getIsActive()
+		{
+				return $this->isActive;
+		}
+
+		public function setIsActive($isActive)
+		{
+				$this->isActive = $isActive;
 
 				return $this;
 		}
