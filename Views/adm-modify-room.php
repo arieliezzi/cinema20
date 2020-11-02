@@ -12,7 +12,7 @@
             <div class="card-body">
               <form action="<?php echo FRONT_ROOT ?>Room/update" method="post">
                 <div class="form-group"> <input type="hidden" class="form-control" placeholder="id" name="idCinema" value="<?php echo $idCinema; ?>" id="idCinema"> </div>
-                <div class="form-group"> <input type="text" class="form-control" placeholder="ID" name="id" value="<?php echo $room->getId(); ?>" id="id" readonly> </div>
+                <div class="form-group"> <input type="text" class="form-control" placeholder="ID" name="id" value="<?php echo $room->getId(); ?>" id="idRoom" readonly> </div>
                 <div class="form-group"> <input type="text" class="form-control" placeholder="Name" name="name" value="<?php echo $room->getName(); ?>" id="name"> </div>
                 <div class="form-group"> <input type="text" class="form-control" placeholder="Capacity" name="capacity" value="<?php echo $room->getCapacity(); ?>"id="capacity"> </div>
                 <div class="form-group"> <input type="text" class="form-control" placeholder="Price" name="price" value="<?php echo $room->getPrice(); ?>" id="price"> </div>

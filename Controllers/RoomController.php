@@ -15,17 +15,10 @@
 			require_once(VIEWS_PATH."adm-add-room.php");
 		}	
 
-		public function showModifyView($idCinema,$message = "") {
-			$id=1;
-			$name="Sala 1";
-			$capacity=100;
-			$price=300;
-			
-			$room = new Room();
-			$room->setId($id);
-			$room->setName($name);
-			$room->setCapacity($capacity);
-			$room->setPrice($price);
+		public function showModifyView($idCinema,$idRoom) {
+			$this->roomDAO = new RoomDAODB();
+			$room = new Room;
+			$room = $this->roomDAO->getById($idRoom);
 
 			//Todo lo anterior es de prueba para que la view funcione, en el caso de hacer bien lo de arriba la view no hay que modificarla
 
@@ -37,6 +30,7 @@
             $roomList = array();
 			$this->cinemaDAO = new CinemaDAODB();
 			$cinema = $this->cinemaDAO->getById($idCinema);
+
 			foreach($cinema->getRooms() as $room)
 			{
               array_push($roomList,$room);
@@ -62,12 +56,12 @@
 			$this->showCinemaRooms($idCinema,"✔️ ¡Sala agregada con exito! Check ID CINEMA: ".$idCinema."");
 		}	
 
-		public function Update($idCinema,$idRoom) 
+		public function Update($idCinema,$idRoom,$name,$capacity,$price) 
 		{
 			//Aca hay que poner todo lo necesario para que se modifique una sala del cine
 			$this->roomDAO = new RoomDAODB();
 				$updatedRoom = new Room();
-				$updatedRoom->setId($id);
+				$updatedRoom->setId($idRoom);
 				$updatedRoom->setName($name);
 				$updatedRoom->setCapacity($capacity);
 				$updatedRoom->setPrice($price);

@@ -52,13 +52,13 @@ include('nav-guest.php');
                     
                     <form action="<?php echo FRONT_ROOT . "Room/showModifyView" ?>" method="">
                       <input type="hidden" class="form-control" name="idCinema" id="idCinema" value="<?php echo $idCinema ?>">
-                      <input type="hidden" class="form-control" name="idRoom" id="idRoom" value="idRoom">
+                      <input type="hidden" class="form-control" name="idRoom" id="idRoom" value="<?php echo $room->getId(); ?>">
                       <td style="text-align: center; vertical-align: middle"><button type="submit" class="btn btn-primary"> Modify </button>
                     </form>
 
                     <form action="<?php echo FRONT_ROOT . "Room/remove" ?>" method="">
                       <input type="hidden" class="form-control" name="idCinema" id="idCinema" value="<?php echo $idCinema ?>">
-                      <input type="hidden" class="form-control" name="idRoom" id="idRoom" value="idRoom">
+                      <input type="hidden" class="form-control" name="idRoom" id="idRoom" value="<?php echo $room->getId(); ?>">
                       <td style="text-align: center; vertical-align: middle"><button type="submit" class="btn btn-primary"> Remove </button>
                     </form>
                   </tr>

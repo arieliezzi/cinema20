@@ -27,7 +27,7 @@
             $this->connection->ExecuteNonQuery($query, $parameters, QueryType::Query);
             }catch(Exception $exception)
             {
-            echo "no se pudo agregar la sala";
+            echo "No se pudo agregar la sala";
             }
         }
 
@@ -49,7 +49,6 @@
                 $room->setCapacity($row["capacity"]);
                 $room->setPrice($row["price"]);
                 $room->setIsActive($row["is_active"]);
-                $room->setIdCinema($row["id_cinema"]);
 
                 array_push($roomList, $room);
             }
@@ -69,7 +68,46 @@
             $this->connection->ExecuteNonQuery($query, $parameters, QueryType::Query);
         }
 
-        
+        public function GetById($id)
+        {            
+            $query = "SELECT * FROM rooms WHERE id_room = :id_room";
 
+            $parameters["id_room"] = $id;
+
+            $this->connection = Connection::GetInstance();
+
+            $result = $this->connection->Execute($query, $parameters, QueryType::Query);
+
+            foreach($result as $row)
+            {
+                $room = new room();
+                $room->setId($row["id_room"]);
+                $room->setName($row["name"]);
+                $room->setCapacity($row["capacity"]);
+                $room->setPrice($row["price"]);
+            }
+
+            return $room;
+        }
+
+        public function update($updatedRoom)
+        {  
+            try{         
+            $query = "UPDATE rooms SET name= :name, capacity= :capacity, price = :price WHERE (id_room = :id_room)";
+            
+            $parameters["id_room"] = $updatedRoom->getId();
+            $parameters["name"] = $updatedRoom->getName();
+            $parameters["capacity"] = $updatedRoom->getCapacity();
+            $parameters["price"] = $updatedRoom->getPrice();
+
+            $this->connection = Connection::GetInstance();
+
+            $this->connection->ExecuteNonQuery($query, $parameters, QueryType::Query);
+            }catch(Exception $exception)
+            {
+               echo "No se pudo modificar la sala";
+            }
+        }
+        
     }
 ?>

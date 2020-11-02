@@ -96,29 +96,6 @@
 
         public function GetById($id)
         {            
-            $query="SELECT * FROM rooms WHERE id_cinema=:id_cinema";
-            $parameters["id_cinema"] = $id;
-            
-            $this->connection = Connection::GetInstance();
-            $result = $this->connection->Execute($query, $parameters, QueryType::Query);
-
-            $roomList=array();
-            $totalCapacity=0;
-            foreach($result as $row)
-            {
-                $room=new Room();
-                $room->setId($row["id_room"]);
-                $room->setName($row["name"]);
-                $room->setCapacity($row["capacity"]);
-                $room->setPrice($row["price"]);
-                $room->setIdCinema($id);
-
-                $totalCapacity=$totalCapacity+$row["capacity"];
-                array_push($roomList, $room);
-            }
-
-
-
             $tableName="Cinemas";
 
             $query = "SELECT * FROM ".$this->tableName." WHERE id_cinema = :id_cinema";
@@ -128,6 +105,8 @@
             $this->connection = Connection::GetInstance();
 
             $result = $this->connection->Execute($query, $parameters, QueryType::Query);
+
+            $roomList=$this->GetRoomsByCinemaId($id);
 
             foreach($result as $row)
             {
