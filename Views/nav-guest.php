@@ -11,14 +11,11 @@
       <ul class="navbar-nav mx-auto">
       </ul>
       <ul class="navbar-nav">
-        <li class="nav-item"> <a class="nav-link text-primary" href="<?php echo FRONT_ROOT ?>Cinema/showAddView">Add Cinema</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Cinema/showListView">List Cinema</a> </li>
+        <li class="nav-item"> <a class="nav-link text-primary" href="<?php echo FRONT_ROOT ?>Show/showUserListView">User Screening</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Cinema/showListView">Cinemas</a> </li>
         <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Api/showListView">API Movies</a> </li>
         <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Movie/showListView">Internal Movies</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Show/showListView">Shows</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Show/showUserListView">User Screening</a> </li>
-
- 
+        <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Show/showListView">Shows</a> </li> 
       </ul>
     </div>
   </div>
