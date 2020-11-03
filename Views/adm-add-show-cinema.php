@@ -12,13 +12,12 @@
           <div class="card-body">
             <h4 class="mb-4">Select Cinema<br></h1>
             <form action="<?php echo FRONT_ROOT ?>Show/showAddViewRoomSelect" method="post">
-              <div class="form-group"> <input type="hidden" class="form-control" name="idCinema" id="idCinema" value=<?php echo "test" ?>> </div> 
-              
-              <div class="form-group">
-                <select class="form-control">
-                 <option value="1">Ambassador</option>
-                 <option value="2">Los Gallegos</option>
-                 <option value="3">Aldrey</option>
+
+              <div class="form-group" >
+                <select class="form-control" id="idCinema" name="cinemas"> 
+                <?php foreach ($cinemaList as $cinema) { ?>
+                 <option value="<?php echo $cinema->getId(); ?>"><?php echo $cinema->getName(); ?></option>
+                <?php } ?>
                 </select>
               </div>
 

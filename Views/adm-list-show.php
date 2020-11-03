@@ -46,18 +46,20 @@ include('nav-guest.php');
                 </tr>
               </thead>
               <tbody>
-          
+              <?php foreach ($showList as $show) { ?>
                   <tr>
-                    <th style="text-align: center; vertical-align: middle"><?php echo "1" ?></th>
-                    <td style="vertical-align: middle"> <center> <img src="<?php echo "https://image.tmdb.org/t/p/w500/ugZW8ocsrfgI95pnQ7wrmKDxIe.jpg" ?>" alt="Poster" height="100" width="67"> </center> </td>
-                    <td style="text-align: center; vertical-align: middle"><?php echo "Ambassador" ?></td>
-                    <td style="text-align: center; vertical-align: middle"><?php echo "Sala 1" ?></td>
-                    <td style="text-align: center; vertical-align: middle;"><?php echo "Movie 1" ?></td>
-                    <td style="text-align: center; vertical-align: middle;"><?php echo "12/12/2020" ?></td>
-                    <td style="text-align: center; vertical-align: middle;"><?php echo "12:30" ?></td>
-                    <td style="text-align: center; vertical-align: middle;"><button type="submit" name="id" class="btn btn-primary" value="<?php echo "Modify" ?>"> Modify </button></td>
-                    <td style="text-align: center; vertical-align: middle;"><button type="submit" name="id" class="btn btn-primary" value="<?php echo "Delete" ?>"> Delete </button></td>
+                    <th style="text-align: center; vertical-align: middle"><?php echo $show->getId(); ?></th>
+                    <td style="vertical-align: middle"> <center> <img src="<?php echo $show->getMovie()->getImageUrl(); ?>" alt="Poster" height="100" width="67"> </center> </td>
+                    <td style="text-align: center; vertical-align: middle"><?php echo $show->getCinema()->getTitle() ?></td>
+                    <td style="text-align: center; vertical-align: middle"><?php echo $show->getRoom()->getName(); ?></td>
+                    <td style="text-align: center; vertical-align: middle;"><?php echo $show->getMovie()->getTitle() ?></td>
+                    <td style="text-align: center; vertical-align: middle;"><?php echo $show->getStartDate(); ?></td>
+                    <td style="text-align: center; vertical-align: middle;"><?php echo $show->getTime();?></td>
+                    <td style="text-align: center; vertical-align: middle;"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $show->getId(); ?>"> Modify </button></td>
+                    <td style="text-align: center; vertical-align: middle;"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $show->getId();  ?>"> Delete </button></td>
                   </tr>
+              <?php } ?>
+                  
          
                 <form action="<?php echo FRONT_ROOT . "Show/showAddView" ?>" method="">
                       <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo "test" ?>">Add</button>

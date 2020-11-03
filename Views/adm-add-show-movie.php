@@ -12,14 +12,15 @@
           <div class="card-body">
             <h4 class="mb-4">Select Movie<br></h1>
             <form action="<?php echo FRONT_ROOT ?>Show/showAddViewScheduleSelect" method="post">
-              <div class="form-group"> <input type="hidden" class="form-control" name="idCinema" id="idCinema" value=<?php echo "test" ?>> </div> 
-              <div class="form-group"> <input type="text" class="form-control" placeholder="Cinema Selected" name="id" value="<?php echo "Cinema Selected" ?>" id="id" readonly> </div>
-              <div class="form-group"> <input type="text" class="form-control" placeholder="Room Selected" name="id" value="<?php echo "Room Selected" ?>" id="id" readonly> </div>
-              <div class="form-group">
-                <select class="form-control">
-                 <option value="1">Movie 1</option>
-                 <option value="2">Movie 2</option>
-                 <option value="3">Movie 3</option>
+            <div class="form-group"> <input type="hidden" class="form-control" name="idCinema" id="idCinema" value=<?php echo $idCinema ?>> </div> 
+            <div class="form-group"> <input type="hidden" class="form-control" name="idRoom" id="idRoom" value=<?php echo $idRoom ?>> </div> 
+
+
+              <div class="form-group" >
+                <select class="form-control" id="idMovie" name="rooms"> 
+                <?php foreach ($movieList as $movie) { ?>
+                 <option value="<?php echo $movie->getId(); ?>"><?php echo $movie->getTitle(); ?></option>
+                <?php } ?>
                 </select>
               </div>
 

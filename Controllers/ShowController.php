@@ -5,6 +5,10 @@
 	use Models\Room as Room;
 	use Models\Movie as Movie;
 	use Models\Show as Show;
+	use DAO\CinemaDAODB as CinemaDAODB;
+	use DAO\RoomDAODB as RoomDAODB;
+	use DAO\MovieDAODB as MovieDAODB;
+	use DAO\ShowDAODB as ShowDAODB;
 
 	class ShowController {
 
@@ -13,67 +17,75 @@
 		}
 
 		public function showListView($message = "") {
+			$this->showDAO = new ShowDAODB();
+			$showList = $this->showDAO->getAll();
+			$showList = $this->ConstructShow($showList);
+
+
 			require_once(VIEWS_PATH."adm-list-show.php");
 		}	
 
 		public function showAddView($message = "") {
+			$this->cinemaDAO = new CinemaDAODB();
+			$cinemaList = $this->cinemaDAO->getAll();
+
 			require_once(VIEWS_PATH."adm-add-show-cinema.php");
 		}	
 
-		public function showAddViewRoomSelect($message = "") {
+		public function showAddViewRoomSelect($idCinema) {
+			$this->roomDAO = new RoomDAODB();
+			$roomList = $this->roomDAO->getAll($idCinema);
 			require_once(VIEWS_PATH."adm-add-show-room.php");
 		}	
 
-		public function showAddViewMovieSelect($message = "") {
+		public function showAddViewMovieSelect($idCinema,$idRoom) {
+			$this->movieDAO = new MovieDAODB();
+			$movieList = $this->movieDAO->getAll();
 			require_once(VIEWS_PATH."adm-add-show-movie.php");
 		}	
 
-		public function showAddViewScheduleSelect($message = "") {
+		public function showAddViewScheduleSelect($idCinema,$idRoom,$idMovie) {
 			require_once(VIEWS_PATH."adm-add-show-schedule.php");
 		}	
 
-		public function showModifyView($idCinema,$message = "") {
+		public function Add($idCinema,$idRoom,$idMovie,$startDate,$endDate,$time) {
 
-			require_once(VIEWS_PATH."adm-modify-room.php");
+			$this->showDAO = new ShowDAODB();
+			$show = new Show();
+			$show->setStartDate($startDate);
+			$show->setEndDate($endDate);
+			$show->setTime($time);
+			$show->setCinema($idCinema);
+			$show->setRoom($idRoom);
+			$show->setMovie($idMovie);
+			$show->setIsActive(true);
+
+			$this->showDAO->add($show);
+			$this->showListView("✔️ ¡Funcion agregado con exito!");
 		}	
 
-		public function showCinemaRooms($idCinema,$message = "") {
-			//Aca hay que poner todo lo necesario para crear un array de rooms en base al idCinema que le llega desde la otra view
 
-			$id=1;
-			$name="Sala 1";
-			$capacity=100;
-			$price=300;
+		public function Remove($idShow) {
 
-			$room = new Room();
-			$room->setId($id);
-			$room->setName($name);
-			$room->setCapacity($capacity);
-			$room->setPrice($price);
 
-			$roomList = array();
-			array_push($roomList, $room);
-			//Todo lo anterior es de prueba para que la view funcione, en el caso de hacer bien lo de arriba la view no hay que modificarla
+            $this->showListView("✔️ ¡Funcion eliminada con exito!");
+		}
+		
+		public function ConstructShow($showList) {
+	
+			$this->cinemaDAO = new CinemaDAODB();
+			$this->roomDAO = new RoomDAODB();
+			$this->movieDAO = new MovieDAODB();
 
-			require_once(VIEWS_PATH."adm-list-room.php");
-		}	
+			foreach ($showList as $show)
+			{
+				$show->setCinema($this->cinemaDAO->getById($show->getCinema()));
+				$show->setRoom($this->roomDAO->getById($show->getRoom()));
+				$show->setMovie($this->movieDAO->getById($show->getMovie()));
+				array_push($showList, $show);
+			}
 
-		public function Add($idCinema) {
-			//Aca hay que poner todo lo necesario para que se agregue una sala al cine
-
-			$this->showCinemaRooms($idCinema,"✔️ ¡Sala agregada con exito! Check ID CINEMA: ".$idCinema."");
-		}	
-
-		public function Update($idCinema,$idRoom) {
-			//Aca hay que poner todo lo necesario para que se modifique una sala del cine
-
-			$this->showCinemaRooms($idCinema,"✔️ ¡Sala Modificada con exito! Check ID CINEMA: ".$idCinema."");
-		}	
-
-		public function Remove($idCinema,$idRoom) {
-			//Aca hay que poner todo lo necesario para que se elimine la sala
-
-            $this->showCinemaRooms($idCinema,"✔️ ¡Sala eliminada con exito! Check ID CINEMA: ".$idCinema."");
+            return $showList;
         }
 	}
 
