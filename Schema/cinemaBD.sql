@@ -1,8 +1,6 @@
 CREATE DATABASE IF NOT EXISTS cinema;
 USE cinema;
 
-
-
 CREATE TABLE IF NOT EXISTS cinemas(
         id_cinema INT NOT NULL auto_increment,
 		name VARCHAR(50) NOT NULL,
@@ -52,11 +50,15 @@ CREATE TABLE IF NOT EXISTS rooms(
 
 CREATE TABLE IF NOT EXISTS shows(
 		id_show INT NOT NULL auto_increment,
-		startDate DATETIME NOT NULL,
-		endDate DATETIME NOT NULL,
-		id_movie INT NOT NULL,
+		startDate DATE NOT NULL,
+		endDate DATE NOT NULL,
+        time TIME NOT NULL,
+		id_cinema INT NOT NULL,
 		id_room INT NOT NULL,
+        id_movie INT NOT NULL,
+        isActive INT NOT NULL,
         PRIMARY KEY (id_show),
+        CONSTRAINT fk_cinemaShow foreign key (id_cinema) references cinemas(id_cinema),
         CONSTRAINT fk_roomShow foreign key (id_room) references rooms(id_room),
         CONSTRAINT fk_roomMovie foreign key (id_movie) references movies(id_movie)
 )ENGINE = INNODB;
