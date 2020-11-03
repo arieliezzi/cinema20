@@ -16,14 +16,14 @@
             <div class="form-group"> <input type="hidden" class="form-control" name="idRoom" id="idRoom" value=<?php echo $idRoom ?>> </div> 
             <div class="form-group"> <input type="hidden" class="form-control" name="idMovie" id="idMovie" value=<?php echo $idMovie ?>> </div> 
 
-              <div class="form-group"> Insert a start date <input type="date" class="form-control" placeholder="" name="startDate" id="startDate">  </div>
-              <div class="form-group"> Insert a end date <input type="date" class="form-control" placeholder="" name="endDate" id="endDate"> </div>
-              <div class="form-group"> Insert time (24hs system)<input type="time" class="form-control" placeholder="" name="time" id="time"> </div>
-              <div class="form-group"> Insert movie duration (minutes) <input type="number" class="form-control" placeholder="" name="duration" id="duration"> </div>
+              <div class="form-group"> Insert a start date <input required  type="date" class="form-control" placeholder="" name="startDate" id="startDate">  </div>
+              <div class="form-group"> Insert a end date <input required type="date" class="form-control" placeholder="" name="endDate" id="endDate"> </div>
+              <div class="form-group"> Insert time (24hs system)<input required type="time" class="form-control" placeholder="" name="time" id="time"> </div>
+              <div class="form-group"> Insert movie duration (minutes) <input required type="number" class="form-control" placeholder="" name="duration" id="duration"> </div>
              
     
         
-              <button type="submit" class="btn btn-primary">Next ><br></button>
+              <button type="submit" class="btn btn-success">Next ><br></button>
             </form>
             <br>
           </div>

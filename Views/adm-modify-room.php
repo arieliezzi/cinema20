@@ -14,9 +14,9 @@
                 <div class="form-group"> <input type="hidden" class="form-control" placeholder="id" name="idCinema" value="<?php echo $idCinema; ?>" id="idCinema"> </div>
                 <div class="form-group"> <input type="text" class="form-control" placeholder="ID" name="id" value="<?php echo $room->getId(); ?>" id="idRoom" readonly> </div>
                 <div class="form-group"> <input type="text" class="form-control" placeholder="Name" name="name" value="<?php echo $room->getName(); ?>" id="name"> </div>
-                <div class="form-group"> <input type="text" class="form-control" placeholder="Capacity" name="capacity" value="<?php echo $room->getCapacity(); ?>"id="capacity"> </div>
-                <div class="form-group"> <input type="text" class="form-control" placeholder="Price" name="price" value="<?php echo $room->getPrice(); ?>" id="price"> </div>
-                <button type="submit" class="btn btn-primary">Modify Room<br></button>
+                <div class="form-group"> <input type="number" class="form-control" placeholder="Capacity" name="capacity" value="<?php echo $room->getCapacity(); ?>"id="capacity"> </div>
+                <div class="form-group"> <input type="number" class="form-control" placeholder="Price" name="price" value="<?php echo $room->getPrice(); ?>" id="price"> </div>
+                <button type="submit" class="btn btn-success">Modify Room<br></button>
               </form>
             </div>
           </div> <br>

@@ -51,7 +51,7 @@ include('nav-guest.php');
                     <td style="vertical-align: middle"><?php echo $movie->getTitle(); ?></td>
                     <td style="vertical-align: middle"><?php echo $movie->getDescription(); ?></td>
                     <form action="<?php echo FRONT_ROOT . "Movie/Remove" ?>" method="">
-                      <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $movie->getId() ?>"> Delete </button>
+                      <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-danger" value="<?php echo $movie->getId() ?>"> Delete </button>
                     </form>
                   </tr>
                 <?php } ?>

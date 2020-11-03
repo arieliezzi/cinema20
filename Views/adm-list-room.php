@@ -59,7 +59,7 @@ include('nav-guest.php');
                     <form action="<?php echo FRONT_ROOT . "Room/remove" ?>" method="">
                       <input type="hidden" class="form-control" name="idCinema" id="idCinema" value="<?php echo $idCinema ?>">
                       <input type="hidden" class="form-control" name="idRoom" id="idRoom" value="<?php echo $room->getId(); ?>">
-                      <td style="text-align: center; vertical-align: middle"><button type="submit" class="btn btn-primary"> Remove </button>
+                      <td style="text-align: center; vertical-align: middle"><button type="submit" class="btn btn-danger"> Remove </button>
                     </form>
                   </tr>
                 <?php } ?>
@@ -72,7 +72,7 @@ include('nav-guest.php');
               <thead class="thead-dark">
                 <tr>
                   <form action="<?php echo FRONT_ROOT . "Room/showAddView" ?>" method="">
-                    <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $idCinema ?>">Add new Room</button>
+                    <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-success" value="<?php echo $idCinema ?>">Add new Room</button>
                   </form>
                 </tr>
               </thead>

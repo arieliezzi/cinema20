@@ -11,12 +11,12 @@
           <div class="card-body">
             <h1 class="mb-4">Add Cinema<br></h1>
             <form action="<?php echo FRONT_ROOT ?>Cinema/add" method="post">
-              <div class="form-group"> <input type="text" class="form-control" placeholder="Name" name="name" id="name"> </div>
-              <div class="form-group"> <input type="text" class="form-control" placeholder="Adress" name="adress" id="adress"> </div>
-              <div class="form-group"> <input type="text" class="form-control" placeholder="Capacity" name="capacity" id="capacity"> </div>
-              <div class="form-group"> <input type="text" class="form-control" placeholder="Price" name="price" id="price"> </div>
-              <div class="form-group"> <input type="text" class="form-control" placeholder="Image URL" name="imageUrl" id="imageUrl"> </div>
-              <button type="submit" class="btn btn-primary">Add new cinema<br></button>
+              <div class="form-group"> <input required type="text" class="form-control" placeholder="Name" name="name" id="name"> </div>
+              <div class="form-group"> <input required type="text" class="form-control" placeholder="Adress" name="adress" id="adress"> </div>
+              <div class="form-group"> <input required type="number" class="form-control" placeholder="Capacity" name="capacity" id="capacity"> </div>
+              <div class="form-group"> <input required type="number" class="form-control" placeholder="Price" name="price" id="price"> </div>
+              <div class="form-group"> <input required type="text" class="form-control" placeholder="Image URL" name="imageUrl" id="imageUrl"> </div>
+              <button type="submit" class="btn btn-success">Add new cinema<br></button>
             </form>
             <br>
           </div>

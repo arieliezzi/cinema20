@@ -63,7 +63,7 @@ include('nav-guest.php');
                     <form action="<?php echo FRONT_ROOT ?>Api/addMovie" method="">
                       <div class="form-group"> <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $movie->getId() ?>"> </div>
                       <div class="form-group"> <input type="hidden" class="form-control" name="genre" id="genre" value="<?php echo $genreID ?>"> </div>
-                      <td style="text-align: center; vertical-align: middle"> <button type="submit" class="btn btn-primary">Add</button>
+                      <td style="text-align: center; vertical-align: middle"> <button type="submit" class="btn btn-success">Add</button>
                     </form>
                   </tr>
                 <?php } ?>

@@ -64,7 +64,7 @@ include('nav-guest.php');
                       <td style="text-align: center; vertical-align: middle"><button type="submit" name="idShow" class="btn btn-primary" id="idShow" value="<?php echo $show->getId()  ?>"> Modify </button>
                     </form>
 
-                    <td style="text-align: center; vertical-align: middle;"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $show->getId();  ?>"> Delete </button></td>
+                    <td style="text-align: center; vertical-align: middle;"><button type="submit" name="id" class="btn btn-danger" value="<?php echo $show->getId();  ?>"> Delete </button></td>
                   </tr>
                 <?php } ?>
               </tbody>
@@ -77,7 +77,7 @@ include('nav-guest.php');
               <thead class="thead-dark">
                 <tr>
                   <form action="<?php echo FRONT_ROOT . "Show/showAddView" ?>" method="">
-                    <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo "test" ?>">Add new Show</button>
+                    <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-success" value="<?php echo "test" ?>">Add new Show</button>
                   </form>
                 </tr>
               </thead>

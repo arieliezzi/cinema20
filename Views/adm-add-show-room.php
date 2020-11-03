@@ -22,7 +22,7 @@
                 </select>
               </div>
 
-              <button type="submit" class="btn btn-primary">Next ><br></button>
+              <button type="submit" class="btn btn-success">Next ><br></button>
             </form>
             <br>
           </div>

@@ -21,7 +21,7 @@
                 <div class="form-group"> Insert time (24hs system)<input type="time" class="form-control" placeholder="" name="time"  value="<?php echo $show->getTime() ?>" id="time"> </div>
                 <div class="form-group"> Insert movie duration (minutes) <input type="number" class="form-control" placeholder="" name="duration"  value="<?php echo $show->getDuration() ?>" id="duration"> </div>
             
-                <button type="submit" class="btn btn-primary">Modify show<br></button>
+                <button type="submit" class="btn btn-success">Modify show<br></button>
               </form>
             </div>
           </div> <br>
