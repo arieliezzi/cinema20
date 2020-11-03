@@ -16,7 +16,7 @@
         <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Api/showListView">API Movies</a> </li>
         <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Movie/showListView">Internal Movies</a> </li>
         <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Show/showListView">Shows</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Api/showUserListView">User Screening</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Show/showUserListView">User Screening</a> </li>
 
  
       </ul>

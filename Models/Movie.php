@@ -62,8 +62,12 @@
 
 		public function genresToString() {
 			$genresToString = array_pop($this->genres)->getName();
+			$i=1;
 			foreach($this->genres as $genre) {
-				$genresToString = $genresToString.", ".$genre->getName();
+				if ($i<3)
+				{$genresToString = $genresToString.", ".$genre->getName();
+				$i=$i+1;}
+				
 			}
 			return $genresToString.".";
 		}

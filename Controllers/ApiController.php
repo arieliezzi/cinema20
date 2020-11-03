@@ -12,15 +12,6 @@
 			require_once(VIEWS_PATH."adm-list-api-movies.php");
 		}
 
-
-        public function showUserListView($message = "") {
-            $movieList = $this->getMoviesApi();
-            $this->genreDAO = new GenreDAODB();
-            $genreList = $this->genreDAO->getAll();
-
-			require_once(VIEWS_PATH."usr-list-show.php");
-		}	
-
         public function showListView($message = "", $genreID = "")
         {
             $movieList = $this->getMoviesApi($genreID);

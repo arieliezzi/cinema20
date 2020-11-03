@@ -19,6 +19,8 @@
               <div class="form-group"> Insert a start date <input type="date" class="form-control" placeholder="" name="startDate" id="startDate">  </div>
               <div class="form-group"> Insert a end date <input type="date" class="form-control" placeholder="" name="endDate" id="endDate"> </div>
               <div class="form-group"> Insert time (24hs system)<input type="time" class="form-control" placeholder="" name="time" id="time"> </div>
+              <div class="form-group"> Insert movie duration (minutes) <input type="number" class="form-control" placeholder="" name="duration" id="duration"> </div>
+             
     
         
               <button type="submit" class="btn btn-primary">Next ><br></button>

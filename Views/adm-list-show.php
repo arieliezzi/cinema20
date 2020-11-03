@@ -40,25 +40,31 @@ include('nav-guest.php');
                   <th>Room</th>
                   <th>Movie</th>
                   <th>Date</th>
-                  <th>Time</th>
+                  <th>Hour</th>
+                  <th>Duration</th>
                   <th style="text-align: center">-</th>
                   <th style="text-align: center">-</th>
                 </tr>
               </thead>
               <tbody>
-              <?php $i=1; foreach ($showList as $show) { ?>
+              <?php foreach ($showList as $show) { ?>
                   <tr>
-                    <th style="text-align: center; vertical-align: middle"><?php echo ($i); ?></th>
+                    <th style="text-align: center; vertical-align: middle"><?php echo $show->getId(); ?></th>
                     <td style="vertical-align: middle"> <center> <img src="<?php echo $show->getMovie()->getImage(); ?>" alt="Poster" height="100" width="67"> </center> </td>
                     <td style="text-align: center; vertical-align: middle"><?php echo $show->getCinema()->getName() ?></td>
                     <td style="text-align: center; vertical-align: middle"><?php echo $show->getRoom()->getName(); ?></td>
                     <td style="text-align: center; vertical-align: middle;"><?php echo $show->getMovie()->getTitle() ?></td>
                     <td style="text-align: center; vertical-align: middle;"><?php echo $show->getStartDate(); ?></td>
                     <td style="text-align: center; vertical-align: middle;"><?php echo $show->getTime();?></td>
-                    <td style="text-align: center; vertical-align: middle;"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $show->getId(); ?>"> Modify </button></td>
+                    <td style="text-align: center; vertical-align: middle;"><?php echo $show->getDuration()." min"; ?></td>
+
+                    <form action="<?php echo FRONT_ROOT . "Show/showModifyView" ?>" method="">
+                      <td style="text-align: center; vertical-align: middle"><button type="submit" name="idShow" class="btn btn-primary" id="idShow" value="<?php echo $show->getId()  ?>"> Modify </button>
+                    </form>
+
                     <td style="text-align: center; vertical-align: middle;"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $show->getId();  ?>"> Delete </button></td>
                   </tr>
-              <?php $i=$i+1; } ?>
+              <?php } ?>
                   
          
                 <form action="<?php echo FRONT_ROOT . "Show/showAddView" ?>" method="">

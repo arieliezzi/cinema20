@@ -17,15 +17,8 @@
 		}
 
 		public function showListView($message = "") {
-			$this->showDAO = new ShowDAODB();
-			$showList = $this->showDAO->getAll();
-			foreach($showList as $show)
-			{
-				echo $show->getId();
-			}
-			
-			$showList = $this->ConstructShow($showList);
-
+			$this->showDAO = new ShowDAODB();		
+			$showList = $this->ConstructShow($this->showDAO->getAll());
 
 			require_once(VIEWS_PATH."adm-list-show.php");
 		}	
@@ -53,7 +46,14 @@
 			require_once(VIEWS_PATH."adm-add-show-schedule.php");
 		}	
 
-		public function Add($idCinema,$idRoom,$idMovie,$startDate,$endDate,$time) {
+		public function showModifyView($idShow) {
+			$this->showDAO = new ShowDAODB();		
+			$show =$this->showDAO->getById($idShow);
+			$show = $this->ConstructShow($show);
+			require_once(VIEWS_PATH."adm-modify-show.php");
+		}	
+
+		public function Add($idCinema,$idRoom,$idMovie,$startDate,$endDate,$time,$duration) {
 
 			$this->showDAO = new ShowDAODB();
 			$show = new Show();
@@ -63,12 +63,27 @@
 			$show->setCinema($idCinema);
 			$show->setRoom($idRoom);
 			$show->setMovie($idMovie);
+			$show->setDuration($duration);
 			$show->setIsActive(true);
 
 			$this->showDAO->add($show);
-			$this->showListView("✔️ ¡Funcion agregado con exito!");
+			$this->showListView("✔️ ¡Funcion agregada con exito!");
 		}	
 
+		public function Update($idShow,$startDate,$endDate,$time,$duration) 
+		{
+			$this->showDAO = new ShowDAODB();
+				$updatedShow = new Show();
+				$updatedShow->setId($idShow);
+				$updatedShow->setStartDate($startDate);
+				$updatedShow->setEndDate($endDate);
+				$updatedShow->setTime($time);
+				$updatedShow->setDuration($duration);
+
+				$this->showDAO->update($updatedShow);
+			
+			$this->showListView("✔️ ¡Funcion Modificada con exito!");
+		}	
 
 		public function Remove($idShow) {
 
@@ -82,15 +97,31 @@
 			$this->roomDAO = new RoomDAODB();
 			$this->movieDAO = new MovieDAODB();
 
-			foreach ($showList as $show)
+			if (is_array($showList))
 			{
-				$show->setCinema($this->cinemaDAO->getById($show->getCinema()));
-				$show->setRoom($this->roomDAO->getById($show->getRoom()));
-				$show->setMovie($this->movieDAO->getMovie($show->getMovie()));
+				foreach ($showList as $show)
+				{
+					$show->setCinema($this->cinemaDAO->getById($show->getCinema()));
+					$show->setRoom($this->roomDAO->getById($show->getRoom()));
+					$show->setMovie($this->movieDAO->getMovie($show->getMovie()));
+				}
+			} else {
+				$showList->setCinema($this->cinemaDAO->getById($showList->getCinema()));
+				$showList->setRoom($this->roomDAO->getById($showList->getRoom()));
+				$showList->setMovie($this->movieDAO->getMovie($showList->getMovie()));
 			}
-
+	
             return $showList;
-        }
+		}
+
+		public function showUserListView($message = "") {
+			$this->showDAO = new ShowDAODB();		
+			$showList = $this->ConstructShow($this->showDAO->getAll());
+			
+			require_once(VIEWS_PATH."usr-list-show.php");
+		}	
+
+
 	}
 
 ?>

@@ -14,11 +14,12 @@
         public function Add(Show $show)
         { 
          try{
-            $query = "INSERT INTO shows(startDate,endDate,time,id_cinema,id_room,id_movie,isActive) VALUES(:startDate,:endDate,:time,:id_cinema,:id_room,:id_movie,:isActive)";
+            $query = "INSERT INTO shows(startDate,endDate,time,duration,id_cinema,id_room,id_movie,isActive) VALUES(:startDate,:endDate,:time,:duration,:id_cinema,:id_room,:id_movie,:isActive)";
            
             $parameters["startDate"] = $show->getStartDate();
             $parameters["endDate"] = $show->getEndDate();
             $parameters["time"] = $show->getTime();
+            $parameters["duration"] = $show->getDuration();
             $parameters["id_cinema"]=$show->getCinema();
             $parameters["id_room"]=$show->getRoom();
             $parameters["id_movie"]=$show->getMovie();
@@ -47,9 +48,11 @@
                 foreach($result as $row)
                     {
                         $show = new Show();
+                        $show->setId($row["id_show"]);
                         $show->setStartDate($row["startDate"]);
                         $show->setEndDate($row["endDate"]);
                         $show->setTime($row["time"]);
+                        $show->setDuration($row["duration"]);
                         $show->setCinema($row["id_cinema"]);
                         $show->setRoom($row["id_room"]);
                         $show->setMovie($row["id_movie"]);
@@ -96,9 +99,11 @@
             foreach($result as $row)
             {
                 $show = new Show();
+                $show->setId($row["id_show"]);
                 $show->setStartDate($row["startDate"]);
                 $show->setEndDate($row["endDate"]);
                 $show->setTime($row["time"]);
+                $show->setDuration($row["duration"]);
                 $show->setCinema($row["id_cinema"]);
                 $show->setRoom($row["id_room"]);
                 $show->setMovie($row["id_movie"]);
@@ -111,15 +116,13 @@
         public function update($updatedShow)
         {  
             try{         
-            $query = "UPDATE shows SET startDate= :startDate, endDate= :endDate, time = :time, id_cinema= :id_cinema, id_room= :id_room, id_movie= :id_movie, is_active= :is_active WHERE (id_show = :id_show)";
+            $query = "UPDATE shows SET startDate= :startDate, endDate= :endDate, time = :time, duration = :duration WHERE (id_show = :id_show)";
             
+            $parameters["id_show"] = $updatedShow->getId();
             $parameters["startDate"] = $updatedShow->getStartDate();
             $parameters["endDate"] = $updatedShow->getEndDate();
             $parameters["time"] = $updatedShow->getTime();
-            $parameters["id_cinema"]=$updatedShow->getCinema()->getId();
-            $parameters["id_room"]=$updatedShow->getRoom()->getId();
-            $parameters["id_movie"]=$updatedShow->getMovie()->getId();
-            $parameters["isActive"]=$updatedShow->getIsActive();
+            $parameters["duration"] = $updatedShow->getDuration();
 
             $this->connection = Connection::GetInstance();
 

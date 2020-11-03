@@ -30,17 +30,23 @@
 <div class="py-5">
   <div class="container">
     <div class="row">
-    <?php foreach($movieList as $movie) { ?> 
+    <?php foreach($showList as $show) { ?> 
     <!-- Comienzo de tarjeta -->
       <div class="col-md-4 mb-5">
         <div class="card">
-          <img class="card-img-top" src="<?php echo $movie->getImage(); ?>" alt="Card image cap">
+          <img class="card-img-top" src="<?php echo $show->GetMovie()->getImage(); ?>" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title"><?php echo $movie->getTitle(); ?></h5>
-            <p class="card-text"><?php echo $movie->getDescription(); ?></p>
+            <h5 class="card-title"><?php echo substr($show->getMovie()->getTitle(),0,30) ?></h5>
+            <p class="card-text"><?php echo substr($show->getMovie()->getDescription(),0,200)."...";?></p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Género: <?php echo "wr" ?> </li>
+            <li class="list-group-item">Cinema: <?php echo $show->getCinema()->getName(); ?> </li>
+            <li class="list-group-item">Room: <?php echo $show->getRoom()->getName(); ?> </li>
+            <li class="list-group-item">Hour: <?php echo $show->getTime()?> </li>
+            <li class="list-group-item">Duration: <?php echo $show->getDuration()." min"?> </li>
+          </ul>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Genre: <?php echo $show->getMovie()->genresToString(); ?> </li>
           </ul>
           <div class="card-body mx-auto">
             <a href="<?php echo  "" ?>"> 
