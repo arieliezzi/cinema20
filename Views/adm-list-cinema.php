@@ -63,7 +63,7 @@ include('nav-guest.php');
                     <form action="<?php echo FRONT_ROOT . "Cinema/showModifyView" ?>" method="">
                       <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $cinema->getId() ?>"> Modify </button>
                     </form>
-                    <form action="<?php echo FRONT_ROOT . "Cinema/Remove" ?>" method="">
+                    <form action="<?php echo FRONT_ROOT . "Cinema/remove" ?>" method="">
                       <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $cinema->getId() ?>"> Remove </button>
                     </form>
                   </tr>
@@ -76,7 +76,9 @@ include('nav-guest.php');
             <table class="table table-bordered table-hover">
               <thead class="thead-dark">
                 <tr>  
-                    <td style="text-align: center; vertical-align: middle"><button class="btn btn-primary"  href="<?php echo FRONT_ROOT ?>Cinema/showAddView">Add new Cinema</button>
+                  <form action="<?php echo FRONT_ROOT . "Cinema/showListView" ?>" method="">
+                        <td style="text-align: center; vertical-align: middle"><button type="submit" class="btn btn-primary"> Add new Cinema </button>
+                  </form>   
                 </tr>
               </thead>
             </table>
