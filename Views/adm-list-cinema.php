@@ -69,8 +69,19 @@ include('nav-guest.php');
                   </tr>
                 <?php } ?>
               </tbody>
+            </table>            
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead class="thead-dark">
+                <tr>  
+                    <td style="text-align: center; vertical-align: middle"><button class="btn btn-primary"  href="<?php echo FRONT_ROOT ?>Cinema/showAddView">Add new Cinema</button>
+                </tr>
+              </thead>
             </table>
           </div>
+
         </div>
       </div>
     </div>

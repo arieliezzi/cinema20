@@ -63,12 +63,22 @@ include('nav-guest.php');
                     </form>
                   </tr>
                 <?php } ?>
-                <form action="<?php echo FRONT_ROOT . "Room/showAddView" ?>" method="">
-                      <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $idCinema ?>"> Add Room </button>
-                </form>
               </tbody>
             </table>
           </div>
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <form action="<?php echo FRONT_ROOT . "Room/showAddView" ?>" method="">
+                    <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $idCinema ?>">Add new Room</button>
+                  </form>
+                </tr>
+              </thead>
+            </table>
+          </div>
+
         </div>
       </div>
     </div>
