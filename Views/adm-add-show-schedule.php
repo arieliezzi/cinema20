@@ -11,14 +11,14 @@
         <div class="card">
           <div class="card-body">
             <h4 class="mb-4">Select Schedule<br></h1>
-            <form action="<?php echo FRONT_ROOT ?>Show/showListView" method="post">
+            <form action="<?php echo FRONT_ROOT ?>Show/Add" method="post">
             <div class="form-group"> <input type="hidden" class="form-control" name="idCinema" id="idCinema" value=<?php echo $idCinema ?>> </div> 
             <div class="form-group"> <input type="hidden" class="form-control" name="idRoom" id="idRoom" value=<?php echo $idRoom ?>> </div> 
             <div class="form-group"> <input type="hidden" class="form-control" name="idMovie" id="idMovie" value=<?php echo $idMovie ?>> </div> 
 
-              <div class="form-group"> Insert a start date <input type="date" class="form-control" placeholder="" name="id" id="startDate">  </div>
-              <div class="form-group"> Insert a end date <input type="date" class="form-control" placeholder="" name="id" id="endDate"> </div>
-              <div class="form-group"> Insert time (24hs system)<input type="time" class="form-control" placeholder="" name="id" id="time"> </div>
+              <div class="form-group"> Insert a start date <input type="date" class="form-control" placeholder="" name="startDate" id="startDate">  </div>
+              <div class="form-group"> Insert a end date <input type="date" class="form-control" placeholder="" name="endDate" id="endDate"> </div>
+              <div class="form-group"> Insert time (24hs system)<input type="time" class="form-control" placeholder="" name="time" id="time"> </div>
     
         
               <button type="submit" class="btn btn-primary">Next ><br></button>

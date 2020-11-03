@@ -19,6 +19,11 @@
 		public function showListView($message = "") {
 			$this->showDAO = new ShowDAODB();
 			$showList = $this->showDAO->getAll();
+			foreach($showList as $show)
+			{
+				echo $show->getId();
+			}
+			
 			$showList = $this->ConstructShow($showList);
 
 
@@ -81,8 +86,7 @@
 			{
 				$show->setCinema($this->cinemaDAO->getById($show->getCinema()));
 				$show->setRoom($this->roomDAO->getById($show->getRoom()));
-				$show->setMovie($this->movieDAO->getById($show->getMovie()));
-				array_push($showList, $show);
+				$show->setMovie($this->movieDAO->getMovie($show->getMovie()));
 			}
 
             return $showList;

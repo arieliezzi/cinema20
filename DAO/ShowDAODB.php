@@ -4,10 +4,8 @@
     use DAO\IShowDAO as IShowDAO;
     use DAO\Connection as Connection;
     use DAO\QueryType as QueryType;
-    use Models\Cinema as Cinema;
-    use Models\Room as Room;
     use Models\Show as Show;
-    use Models\Movie as Movie;
+
 
     class ShowDAODB implements IShowDAO
     {
@@ -21,9 +19,9 @@
             $parameters["startDate"] = $show->getStartDate();
             $parameters["endDate"] = $show->getEndDate();
             $parameters["time"] = $show->getTime();
-            $parameters["id_cinema"]=$show->getCinema()->getId();
-            $parameters["id_room"]=$show->getRoom()->getId();
-            $parameters["id_movie"]=$show->getMovie()->getId();
+            $parameters["id_cinema"]=$show->getCinema();
+            $parameters["id_room"]=$show->getRoom();
+            $parameters["id_movie"]=$show->getMovie();
             $parameters["isActive"]=$show->getIsActive();
 
             $this->connection = Connection::GetInstance();

@@ -46,11 +46,11 @@ include('nav-guest.php');
                 </tr>
               </thead>
               <tbody>
-              <?php foreach ($showList as $show) { ?>
+              <?php $i=1; foreach ($showList as $show) { ?>
                   <tr>
-                    <th style="text-align: center; vertical-align: middle"><?php echo $show->getId(); ?></th>
-                    <td style="vertical-align: middle"> <center> <img src="<?php echo $show->getMovie()->getImageUrl(); ?>" alt="Poster" height="100" width="67"> </center> </td>
-                    <td style="text-align: center; vertical-align: middle"><?php echo $show->getCinema()->getTitle() ?></td>
+                    <th style="text-align: center; vertical-align: middle"><?php echo ($i); ?></th>
+                    <td style="vertical-align: middle"> <center> <img src="<?php echo $show->getMovie()->getImage(); ?>" alt="Poster" height="100" width="67"> </center> </td>
+                    <td style="text-align: center; vertical-align: middle"><?php echo $show->getCinema()->getName() ?></td>
                     <td style="text-align: center; vertical-align: middle"><?php echo $show->getRoom()->getName(); ?></td>
                     <td style="text-align: center; vertical-align: middle;"><?php echo $show->getMovie()->getTitle() ?></td>
                     <td style="text-align: center; vertical-align: middle;"><?php echo $show->getStartDate(); ?></td>
@@ -58,7 +58,7 @@ include('nav-guest.php');
                     <td style="text-align: center; vertical-align: middle;"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $show->getId(); ?>"> Modify </button></td>
                     <td style="text-align: center; vertical-align: middle;"><button type="submit" name="id" class="btn btn-primary" value="<?php echo $show->getId();  ?>"> Delete </button></td>
                   </tr>
-              <?php } ?>
+              <?php $i=$i+1; } ?>
                   
          
                 <form action="<?php echo FRONT_ROOT . "Show/showAddView" ?>" method="">
