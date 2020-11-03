@@ -16,10 +16,10 @@
                 <div class="form-group"> <input type="text" class="form-control" placeholder="Room" value="<?php echo $show->getRoom()->getName(); ?>" readonly>  </div>
                 <div class="form-group"> <input type="text" class="form-control" placeholder="Movie" value="<?php echo $show->getMovie()->getTitle(); ?>" readonly> </div>
                 
-                <div class="form-group"> Insert a start date <input type="date" class="form-control" placeholder="" name="startDate"  value="<?php echo $show->getStartDate() ?>" id="startDate">  </div>
-                <div class="form-group"> Insert a end date <input type="date" class="form-control" placeholder="" name="endDate" value="<?php echo $show->getEndDate() ?>" id="endDate"> </div>
-                <div class="form-group"> Insert time (24hs system)<input type="time" class="form-control" placeholder="" name="time"  value="<?php echo $show->getTime() ?>" id="time"> </div>
-                <div class="form-group"> Insert movie duration (minutes) <input type="number" class="form-control" placeholder="" name="duration"  value="<?php echo $show->getDuration() ?>" id="duration"> </div>
+                <div class="form-group"> Insert a start date <input required type="date" class="form-control" placeholder="" name="startDate"  value="<?php echo $show->getStartDate() ?>" id="startDate">  </div>
+                <div class="form-group"> Insert a end date <input required type="date" class="form-control" placeholder="" name="endDate" value="<?php echo $show->getEndDate() ?>" id="endDate"> </div>
+                <div class="form-group"> Insert time (24hs system)<input required type="time" class="form-control" placeholder="" name="time"  value="<?php echo $show->getTime() ?>" id="time"> </div>
+                <div class="form-group"> Insert movie duration (minutes) <input required type="number" class="form-control" placeholder="" name="duration"  value="<?php echo $show->getDuration() ?>" id="duration"> </div>
             
                 <button type="submit" class="btn btn-success">Modify show<br></button>
               </form>

@@ -11,12 +11,12 @@
           <div class="card">
             <div class="card-body">
               <form action="<?php echo FRONT_ROOT ?>Cinema/update" method="post">
-                <div class="form-group"> <input type="text" class="form-control" placeholder="ID" name="id" value="<?php echo $cinema->getId(); ?>" id="id" readonly> </div>
-                <div class="form-group"> <input type="text" class="form-control" placeholder="Name" name="name" value="<?php echo $cinema->getName(); ?>" id="name"> </div>
-                <div class="form-group"> <input type="text" class="form-control" placeholder="Adress" name="adress" value="<?php echo $cinema->getAddress(); ?>" id="adress"> </div>
-                <div class="form-group"> <input type="number" class="form-control" placeholder="Capacity" name="capacity" value="<?php echo $cinema->getCapacity(); ?>"id="capacity"> </div>
-                <div class="form-group"> <input type="number" class="form-control" placeholder="Price" name="price" value="<?php echo $cinema->getPrice(); ?>" id="price"> </div>
-                <div class="form-group"> <input type="text" class="form-control" placeholder="Image URL" name="imageUrl" value="<?php echo $cinema->getImageUrl(); ?>" id="imageUrl"> </div>
+                <div class="form-group"> <input required type="text" class="form-control" placeholder="ID" name="id" value="<?php echo $cinema->getId(); ?>" id="id" readonly> </div>
+                <div class="form-group"> <input required type="text" class="form-control" placeholder="Name" name="name" value="<?php echo $cinema->getName(); ?>" id="name"> </div>
+                <div class="form-group"> <input required type="text" class="form-control" placeholder="Adress" name="adress" value="<?php echo $cinema->getAddress(); ?>" id="adress"> </div>
+                <div class="form-group"> <input required type="number" class="form-control" placeholder="Capacity" name="capacity" value="<?php echo $cinema->getCapacity(); ?>"id="capacity"> </div>
+                <div class="form-group"> <input required type="number" class="form-control" placeholder="Price" name="price" value="<?php echo $cinema->getPrice(); ?>" id="price"> </div>
+                <div class="form-group"> <input required type="text" class="form-control" placeholder="Image URL" name="imageUrl" value="<?php echo $cinema->getImageUrl(); ?>" id="imageUrl"> </div>
                 <button type="submit" class="btn btn-success">Modify cinema<br></button>
               </form>
             </div>
