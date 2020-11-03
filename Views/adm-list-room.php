@@ -48,7 +48,7 @@ include('nav-guest.php');
                     <th style="text-align: center; vertical-align: middle"><?php echo $room->getId(); ?></th>
                     <td style="text-align: center; vertical-align: middle"><?php echo $room->getName(); ?></td>
                     <td style="text-align: center; vertical-align: middle;"><?php echo $room->getCapacity(); ?></td>
-                    <td style="text-align: center; vertical-align: middle;"><?php echo $room->getPrice(); ?></td>
+                    <td style="text-align: center; vertical-align: middle;"><?php echo "$".$room->getPrice(); ?></td>
                     
                     <form action="<?php echo FRONT_ROOT . "Room/showModifyView" ?>" method="">
                       <input type="hidden" class="form-control" name="idCinema" id="idCinema" value="<?php echo $idCinema ?>">
