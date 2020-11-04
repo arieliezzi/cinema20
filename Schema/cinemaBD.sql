@@ -194,7 +194,7 @@ DELIMITER ;
 
 
 INSERT INTO cinemas (id_cinema,imageUrl,name,capacity,address,price,is_active)
-VALUES (1,"/cinema2020/Views/default/images/aldrey.png","Paseo Aldrey",300,"Sarmiento 2685",250,true),
-	   (2,"/cinema2020/Views/default/images/paseo.png","Cine del paseo",200,"Diagonal Pueyrredón 3058",200,false),
-	  (3,"/cinema2020/Views/default/images/losgallegos.png","Cinema Los Gallegos Shopping",250,"Rivadavia 3050",220,true);
+VALUES (1,"/cinema2020/Views/default/images/aldrey.png","Paseo Aldrey",0,"Sarmiento 2685",250,true),
+	   (2,"/cinema2020/Views/default/images/paseo.png","Cine del paseo",0,"Diagonal Pueyrredón 3058",200,false),
+	  (3,"/cinema2020/Views/default/images/losgallegos.png","Cinema Los Gallegos Shopping",0,"Rivadavia 3050",220,true);
 	
