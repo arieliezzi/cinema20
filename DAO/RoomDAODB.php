@@ -35,7 +35,7 @@
         {
             $roomList = array();
 
-            $query = "SELECT * FROM rooms WHERE (is_active = 1)";
+            $query = "SELECT * FROM rooms WHERE (is_active = 1) AND (id_cinema = ".$idCinema.")" ;
 
             $this->connection = Connection::GetInstance();
 
