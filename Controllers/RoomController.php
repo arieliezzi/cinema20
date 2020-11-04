@@ -52,6 +52,7 @@
 			$room->setPrice($price);
 			$room->setIsActive($isActive);
 			$this->roomDAO->add($room,$idCinema);
+			$this->cinemaDAO->updateCapacity($idCinema,$capacity);
 
 			$this->showCinemaRooms($idCinema,"✔️ ¡Sala agregada con exito!");
 		}	
@@ -60,12 +61,14 @@
 		{
 			//Aca hay que poner todo lo necesario para que se modifique una sala del cine
 			$this->roomDAO = new RoomDAODB();
+			$this->cinemaDAO = new CinemaDAODB();
+
 				$updatedRoom = new Room();
 				$updatedRoom->setId($idRoom);
 				$updatedRoom->setName($name);
 				$updatedRoom->setCapacity($capacity);
 				$updatedRoom->setPrice($price);
-	
+				$this->cinemaDAO->updateCapacity($idCinema,$capacity);
 				$this->roomDAO->update($updatedRoom);
 			
 			$this->showCinemaRooms($idCinema,"✔️ ¡Sala Modificada con exito!");
@@ -74,7 +77,14 @@
 		public function Remove($idCinema,$idRoom) {
 			//Aca hay que poner todo lo necesario para que se elimine la sala
 			$this->RoomDAO = new RoomDAODB();
-            $this->RoomDAO->Remove($idRoom);
+			$this->CinemaDAO = new CinemaDAODB();
+
+			$room = new Room();
+			$room = $this->RoomDAO->getById($idRoom);
+			$capacity = -($room->getCapacity());
+			$this->CinemaDAO->updateCapacity($idCinema,$capacity);
+		
+			$this->RoomDAO->Remove($idRoom);
             $this->showCinemaRooms($idCinema,"✔️ ¡Sala eliminada con exito!");
         }
 	}

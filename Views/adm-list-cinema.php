@@ -38,8 +38,8 @@ include('nav-guest.php');
                   <th>Image</th>
                   <th>Name</th>
                   <th>Adress</th>
-                  <th>Capacity</th>
-                  <th>Price</th>
+                  <th>Total Capacity</th>
+                  <th>A. Price</th>
                   <th style="text-align: center">-</th>
                   <th style="text-align: center">-</th>
                   <th style="text-align: center">-</th>

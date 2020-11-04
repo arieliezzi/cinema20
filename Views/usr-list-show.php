@@ -50,7 +50,7 @@
           </ul>
           <div class="card-body mx-auto">
             <a href="<?php echo  "" ?>"> 
-              <button href="" class="btn btn-primary">Buy tickets!</button> 
+              <button href="" class="btn btn-dark">Buy tickets!</button> 
             </a>
           </div>
         </div>

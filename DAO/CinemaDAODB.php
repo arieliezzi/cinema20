@@ -161,6 +161,13 @@
             }
         }
         
+        public function updateCapacity ($idCinema,$capacity)
+		{
+			$updatedCinema = new Cinema();
+			$updatedCinema = $this->getById($idCinema);
+			$updatedCinema->setCapacity($updatedCinema->getCapacity()+$capacity);
+			$this->update($updatedCinema);
+		}
 
     }
 ?>
