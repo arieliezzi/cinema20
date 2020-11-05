@@ -27,11 +27,11 @@
             $movieList = array();
             if ($genre==NULL )
             {
-                $movieList = $this->getMovies("https://api.themoviedb.org/3/movie/now_playing?page=1&language=es-Ar&api_key=a7580011981ddc91268a6ad5022a8ec7", $movieList);     
+                $movieList = $this->getMovies("https://api.themoviedb.org/3/movie/now_playing?page=1&language=es-Ar&api_key=".API_KEY, $movieList);     
             } 
             else
             {
-                $movieList = $this->getMovies("https://api.themoviedb.org/3/movie/now_playing?page=1&language=es-Ar&with_genres=".$genre."&api_key=a7580011981ddc91268a6ad5022a8ec7", $movieList);  
+                $movieList = $this->getMovies("https://api.themoviedb.org/3/movie/now_playing?page=1&language=es-Ar&with_genres=".$genre."&api_key=".API_KEY, $movieList);  
             }
     
             return $movieList;
@@ -119,7 +119,7 @@
     public function getGenresApi()
     {
         $genresList = array();
-        $response = file_get_contents("https://api.themoviedb.org/3/genre/movie/list?api_key=a7580011981ddc91268a6ad5022a8ec7&language=en-US");
+        $response = file_get_contents("https://api.themoviedb.org/3/genre/movie/list?api_key=".API_KEY."&language=en-US");
         $genreDao = new GenreDAODB();
 
         $arrayToDecode = ($response) ? json_decode($response, true) : array();
