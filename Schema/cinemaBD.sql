@@ -6,7 +6,6 @@ CREATE TABLE IF NOT EXISTS cinemas(
 		name VARCHAR(50) NOT NULL,
 		address VARCHAR(50) NOT NULL,
 		capacity INT NOT NULL,
-		price INT NOT NULL,
         imageUrl VARCHAR(200),
         is_active INT NOT NULL,
         PRIMARY KEY(id_cinema)
@@ -194,7 +193,7 @@ DELIMITER ;
 
 
 INSERT INTO cinemas (id_cinema,imageUrl,name,capacity,address,price,is_active)
-VALUES (1,"/cinema2020/Views/default/images/aldrey.png","Paseo Aldrey",0,"Sarmiento 2685",250,true),
-	   (2,"/cinema2020/Views/default/images/paseo.png","Cine del paseo",0,"Diagonal Pueyrredón 3058",200,false),
-	  (3,"/cinema2020/Views/default/images/losgallegos.png","Cinema Los Gallegos Shopping",0,"Rivadavia 3050",220,true);
+VALUES (1,"/cinema2020/Views/default/images/aldrey.png","Paseo Aldrey",0,"Sarmiento 2685",true),
+	   (2,"/cinema2020/Views/default/images/paseo.png","Cine del paseo",0,"Diagonal Pueyrredón 3058",false),
+	  (3,"/cinema2020/Views/default/images/losgallegos.png","Cinema Los Gallegos Shopping",0,"Rivadavia 3050",true);
 	

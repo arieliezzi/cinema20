@@ -8,7 +8,6 @@
 		private $name;
 		private $capacity;
 		private $address;
-		private $price;
 		private $rooms;
 		private $isActive;
 
@@ -42,14 +41,6 @@
 
 		public function getAddress() {
 			return $this->address;
-		}
-		
-		public function setPrice($price) {
-			$this->price = $price;
-		}
-
-		public function getPrice() {
-			return $this->price;
 		}
 
 		public function setImageUrl($imageUrl) {

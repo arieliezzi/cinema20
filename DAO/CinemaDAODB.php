@@ -15,12 +15,11 @@
         public function Add(Cinema $cinema)
         { 
          try{
-             $query = "INSERT INTO cinemas(name, address, capacity, price, imageUrl, is_active) VALUES (:name,:address,:capacity,:price,:imageUrl,:is_active)";
+             $query = "INSERT INTO cinemas(name, address, capacity, imageUrl, is_active) VALUES (:name,:address,:capacity,:imageUrl,:is_active)";
 
              $parameters["name"] = $cinema->getName();
              $parameters["address"] = $cinema->getAddress();
              $parameters["capacity"] = $cinema->getCapacity();
-             $parameters["price"] = $cinema->getPrice();
              $parameters["imageUrl"] = $cinema->getImageUrl();
              $parameters["is_active"]=$cinema->getIsActive();
 
@@ -67,7 +66,7 @@
           try{
             $cinemaList = array();
 
-            $query = "SELECT id_cinema,name,address,capacity,price,imageUrl FROM cinemas WHERE is_active = 1";
+            $query = "SELECT id_cinema,name,address,capacity,imageUrl FROM cinemas WHERE is_active = 1";
 
             $this->connection = Connection::GetInstance();
 
@@ -80,7 +79,6 @@
                 $cinema->setName($row["name"]);
                 $cinema->setAddress($row["address"]);
                 $cinema->setCapacity($row["capacity"]);
-                $cinema->setPrice($row["price"]);
                 $cinema->setImageUrl($row["imageUrl"]);
                 $cinema->setRooms($this->GetRoomsByCinemaId($row["id_cinema"]));
                 
@@ -131,7 +129,6 @@
                 $cinema->setName($row["name"]);
                 $cinema->setCapacity($row["capacity"]);
                 $cinema->setAddress($row["address"]);
-                $cinema->setPrice($row["price"]);
                 $cinema->setImageUrl($row["imageUrl"]);
               }
              $cinema->setRooms($roomList);
@@ -143,13 +140,12 @@
         public function update($updatedCinema)
         {  
             try{         
-            $query = "UPDATE cinemas SET  name= :name, address= :address, capacity= :capacity, price= :price, imageUrl= :imageUrl WHERE id_cinema = :id_cinema";
+            $query = "UPDATE cinemas SET  name= :name, address= :address, capacity= :capacity, imageUrl= :imageUrl WHERE id_cinema = :id_cinema";
             
             $parameters["id_cinema"] = $updatedCinema->getId();
             $parameters["name"] = $updatedCinema->getName();
             $parameters["address"] = $updatedCinema->getAddress();
             $parameters["capacity"] = $updatedCinema->getCapacity();
-            $parameters["price"] = $updatedCinema->getPrice();
             $parameters["imageUrl"] = $updatedCinema->getImageUrl();
 
             $this->connection = Connection::GetInstance();

@@ -30,13 +30,18 @@
 		}		
 
 
-		public function add($name, $address,$capacity, $price, $imageUrl) {
+		public function add($name, $address,$capacity, $imageUrl) {
 			$this->cinemaDAO = new CinemaDAODB();
+
+			if (empty($imageUrl))
+			{
+				$imageUrl="/cinema2020/Views/default/images/image-not-found.png";
+			}
+			
 			$cinema = new Cinema();
 			$cinema->setName($name);
             $cinema->setAddress($address);
 			$cinema->setCapacity($capacity);
-			$cinema->setPrice($price);
 			$cinema->setImageUrl($imageUrl);
 			$cinema->setIsActive(1);
 
@@ -52,14 +57,13 @@
             $this->showListView("✔️ ¡Cine eliminado con exito!");
         }
 
-		public function update($id, $name, $address, $capacity, $price, $imageUrl) {
+		public function update($id, $name, $address, $capacity, $imageUrl) {
 			$this->cinemaDAO = new CinemaDAODB();
 			$updatedCinema = new Cinema();
 			$updatedCinema->setID($id);
 			$updatedCinema->setName($name);
 			$updatedCinema->setAddress($address);
 			$updatedCinema->setCapacity($capacity);
-			$updatedCinema->setPrice($price);
 			$updatedCinema->setImageUrl($imageUrl);
 
 
