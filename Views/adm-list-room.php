@@ -12,7 +12,7 @@ include('nav-guest.php');
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="display-2">Room List</h1>
+          <h1 class="display-2">  <?php echo $cinema->getName() ?>'s room list</h1>
         </div>
       </div>
     </div>
