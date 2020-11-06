@@ -63,6 +63,25 @@ CREATE TABLE IF NOT EXISTS shows(
         CONSTRAINT fk_roomMovie foreign key (id_movie) references movies(id_movie)
 )ENGINE = INNODB;
 
+CREATE TABLE IF NOT EXISTS users(
+	 id_user INT NOT NULL auto_increment,
+     email VARCHAR(50) NOT NULL,
+	 pass VARCHAR(5) NOT NULL,
+     primary key(id_user)
+)ENGINE =INNODB;
+
+CREATE TABLE IF NOT EXISTS tickets(
+ id_ticket INT NOT NULL auto_increment,
+ id_user INT NOT NULL unique,
+ id_show INT NOT NULL unique,
+ quantity INT NOT NULL,
+ price INT NOT NULL,
+ car_type VARCHAR(50) NOT NULL,
+ card_number INT NOT NULL,
+ primary key(id_ticket),
+ foreign key (id_user) references users(id_user),
+ foreign key (id_show) references shows(id_show)
+)ENGINE =INNODB;
 
 	
 DROP procedure IF EXISTS `Cinemas_GetById`;
