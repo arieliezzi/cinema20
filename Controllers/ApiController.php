@@ -5,6 +5,7 @@
     use Models\Genre as Genre;
     use DAO\GenreDAODB as GenreDAODB;
     use DAO\MovieDAODB as MovieDAODB;
+    use DAO\ApiDAODB as ApiDAODB;
 
     class ApiController
     {
@@ -14,126 +15,50 @@
 
         public function showListView($message = "", $genreID = "")
         {
-            $movieList = $this->getMoviesApi($genreID);
+            //$this->getGenresFromAPI();
+            $this->ApiDAODB = new ApiDAODB();
             $this->genreDAO = new GenreDAODB();
-            //$this->getGenresAPI();
+          
+            $movieList = $this->ApiDAODB->getMoviesApi($genreID);
             $genreList = $this->genreDAO->getAll();
 
 			require_once(VIEWS_PATH."adm-list-api-movies.php");
-		}	
+        }	
 
-        public function getMoviesApi($genre = "")
+        public function getGenresFromAPI()
         {
-            $movieList = array();
-            if ($genre==NULL )
+            $this->ApiDAODB = new ApiDAODB();
+            $this->GenreDAODB = new GenreDAODB();
+            $genresList = $this->ApiDAODB->getGenresApi();
+            foreach ($genresList as $genre)
             {
-                $movieList = $this->getMovies("https://api.themoviedb.org/3/movie/now_playing?page=1&language=es-Ar&api_key=".API_KEY, $movieList);     
-            } 
-            else
-            {
-                $movieList = $this->getMovies("https://api.themoviedb.org/3/movie/now_playing?page=1&language=es-Ar&with_genres=".$genre."&api_key=".API_KEY, $movieList);  
+                $this->GenreDAODB->Add($genre);
             }
-    
-            return $movieList;
         }
 
         public function addMovie($id,$genreID)
         {
-            //Se le pasa por parametro el ID de la pelicula a persistir junto con el genero el cual se uso como filtro.
-            //Se le vuelve a pedir a la API la pagina y se busca la pelicula para posteriormente agregarla.
-            //Tambien se verifica que en las peliculas ya persistentes no exista!!
-            $movieList = $this->getMoviesApi();
-            $this->movieDAO = new movieDAODB();
-            $internalMovieList = $this->movieDAO->getAll();
-            $state=0;
+        //Se le pasa por parametro el ID de la pelicula a persistir junto con el genero el cual se uso como filtro.
+        //Se le vuelve a pedir a la API la pagina y se busca la pelicula para posteriormente agregarla.
+        //Tambien se verifica que en las peliculas ya persistentes no exista!!
+        $this->movieDAO = new movieDAODB();
+        $this->apiDAO = new ApiDAODB();
+        $movieList = $this->apiDAO->getMoviesApi($genreID);
 
-            foreach($movieList as $movie)
-            {
-                if ($movie->getId()==$id)
-                {
-                    foreach($internalMovieList as $internal)
-                    {
-                        if ($internal->getId()==$movie->getId())
-                        {
-                            $state=1;
-                        }
+        foreach ($movieList as $movie) {
+            if ($movie->getId() == $id) {
+                if ($this->movieDAO->exist($movie->getId())) {
+                    if (($this->movieDAO->isActive($movie->getId()))) {
+                        $this->showListView("❌ Error al agregar la pelicula, ya persiste.", $genreID);
+                    } else {
+                        $this->movieDAO->restore($movie->getId());
+                        $this->showListView("⚠️ ¡Pelicula restaurada con exito!", $genreID);
                     }
-                    
-                    if ($state==0)
-                    {
-                        $this->movieDAO = new MovieDAODB();
-                        $this->movieDAO->add($movie); 
-                        $this->showListView("✔️ ¡Pelicula agregada con exito!",$genreID);
-                    }
-                    else
-                    {
-                        $this->showListView("❌ Error al agregar la pelicula, ya persiste.",$genreID);
-                    }
+                } else {
+                    $this->movieDAO->add($movie);
+                    $this->showListView("✔️ ¡Pelicula agregada con exito!", $genreID);
                 }
             }
         }
-
-        private function getMovies($url, $movieList)
-        {
-            $response = file_get_contents($url);
-        
-            $movieDAO = new MovieDAODB();
-
-            $arrayToDecode = ($response) ? json_decode($response, true) : array();
-
-            foreach($arrayToDecode["results"] as $row)
-            {
-                $movie = new Movie();
-                $movie->setId($row["id"]);
-                $movie->setTitle($row["title"]);
-
-                if($row["poster_path"] != NULL) {
-                    $posterPath = "https://image.tmdb.org/t/p/w500".$row["poster_path"];
-                }else{
-                    $posterPath = FRONT_ROOT.IMG_PATH."noImage.jpg";
-                }
-
-                if($row["backdrop_path"] != NULL) {
-                    $backdropPath = "https://image.tmdb.org/t/p/w500".$row["backdrop_path"];
-                }else{
-                    $backdropPath = FRONT_ROOT.IMG_PATH."noImage.jpg";
-                }
-
-                $movie->setImage($posterPath);
-                $movie->setPoster($backdropPath);
-                $movie->setDescription($row["overview"]);
-                $genres = array();
-
-                foreach ($row["genre_ids"] as $row) {
-                   $genre = new Genre;
-                   $genre->setId($row);
-                   array_push($genres, $genre);
-                }
-                $movie->setGenres($genres);                
-                array_push($movieList, $movie);
-            }
-            return $movieList;
-        }
-    
-
-    public function getGenresApi()
-    {
-        $genresList = array();
-        $response = file_get_contents("https://api.themoviedb.org/3/genre/movie/list?api_key=".API_KEY."&language=en-US");
-        $genreDao = new GenreDAODB();
-
-        $arrayToDecode = ($response) ? json_decode($response, true) : array();
-
-            foreach($arrayToDecode["genres"] as $row)
-            {
-                $genre = new genre();
-                $genre->setId($row["id"]);
-                $genre->setName($row["name"]);
-                $genreDao->Add($genre->getID(),$genre->getName());
-    
-            }
-
     }
 }
-
-?>

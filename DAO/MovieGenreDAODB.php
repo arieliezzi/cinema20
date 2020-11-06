@@ -26,8 +26,8 @@
         ///Esta bien este id?
         public function Remove(int $movieId) {
             try {        
-                $query = "DELETE FROM movieGenre WHERE id = :id";
-                $parameters["id"] =  $id;
+                $query = "DELETE FROM movieGenre WHERE id_movie = :id";
+                $parameters["id"] =  $movieId;
                 $this->connection = Connection::GetInstance();
 
                 $this->connection->ExecuteNonQuery($query, $parameters, QueryType::Query);
@@ -57,4 +57,3 @@
         }
 
     }
-?>

@@ -11,13 +11,13 @@
     {
         private $connection;
 
-        public function Add($idGenre, $name)
+        public function Add(genre $genre)
         {
                 try {   
                 $query = "INSERT INTO genres (id_genre, name) VALUES (:id_genre, :name)";
 
-                $parameters["id_genre"] = $idGenre;
-                $parameters["name"] =  $name;
+                $parameters["id_genre"] = $genre->getId();
+                $parameters["name"] =  $genre->getName();
 
                 $this->connection = Connection::GetInstance();
 

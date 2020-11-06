@@ -11,13 +11,19 @@ class GenreDAO implements IGenreDAO
     {
         $this->RetrieveData();
 
-
         array_push($this->genreList, $genre);
 
         $this->SaveData();
     }
 
-  
+    public function Add( $genre)
+    {
+        $this->RetrieveData();
+
+        array_push($this->genreList, $genre);
+
+        $this->SaveData();
+    }
 
     public function GetAll()
     {

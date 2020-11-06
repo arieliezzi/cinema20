@@ -4,7 +4,7 @@ use Models\Genre as Genre;
 
     interface IGenreDAO
     {
-        function Add(Genre $genre, $name);
+        function Add(Genre $genre);
         function Remove ($id);
         function GetAll();
     }
