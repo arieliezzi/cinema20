@@ -20,9 +20,9 @@
             $parameters["endDate"] = $show->getEndDate();
             $parameters["time"] = $show->getTime();
             $parameters["duration"] = $show->getDuration();
-            $parameters["id_cinema"]=$show->getCinema();
-            $parameters["id_room"]=$show->getRoom();
-            $parameters["id_movie"]=$show->getMovie();
+            $parameters["id_cinema"]=$show->getCinema()->getId();
+            $parameters["id_room"]=$show->getRoom()->getId();
+            $parameters["id_movie"]=$show->getMovie()->getId();
             $parameters["isActive"]=$show->getIsActive();
 
             $this->connection = Connection::GetInstance();

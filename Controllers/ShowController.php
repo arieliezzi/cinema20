@@ -54,15 +54,18 @@
 		}	
 
 		public function Add($idCinema,$idRoom,$idMovie,$startDate,$endDate,$time,$duration) {
-
+			$this->cinemaDAO = new CinemaDAODB();
+			$this->roomDAO = new RoomDAODB();
+			$this->movieDAO = new MovieDAODB();
 			$this->showDAO = new ShowDAODB();
+
 			$show = new Show();
+			$show->setCinema($this->cinemaDAO->getById($idCinema));
+			$show->setRoom($this->roomDAO->getById($idRoom));
+			$show->setMovie($this->movieDAO->getMovie($idMovie));
 			$show->setStartDate($startDate);
 			$show->setEndDate($endDate);
 			$show->setTime($time);
-			$show->setCinema($idCinema);
-			$show->setRoom($idRoom);
-			$show->setMovie($idMovie);
 			$show->setDuration($duration);
 			$show->setIsActive(true);
 
