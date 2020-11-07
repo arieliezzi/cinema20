@@ -32,7 +32,7 @@ include('nav-guest.php');
           <div class="card-body text-center">
             <h1 class="mb-4">Your Tickets</h1>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"> <img class="card-img-top" src="https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl=<?php echo "hola"; ?>" alt="Card image cap"> </li>
+              <li class="list-group-item"> <img class="card-img-top" src="https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl=<?php echo $ticket->getQrInfo(); ?>" alt="Card image cap"> </li>
             </ul>
             <br>
             <a href="<?php echo FRONT_ROOT ?>Show/showUserListView">
