@@ -21,6 +21,9 @@ include('nav-guest.php');
               <?php } ?>
             </div>
           </div>
+          <a href="<?php echo FRONT_ROOT ?>api/getGenresFromAPI">
+              <button class="btn btn-warning">Update Genres from API</button>
+          </a> 
         </div>
       </div>
     </div>
