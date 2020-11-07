@@ -86,7 +86,7 @@
                 }
         }
 
-        
+
         public function getRevenueByCinema($idCinema) 
         {
             try {

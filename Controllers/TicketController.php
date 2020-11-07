@@ -2,6 +2,7 @@
 	namespace Controllers;
 
 	use Models\Ticket as Ticket;
+	use Models\User as User;
 	use DAO\CinemaDAODB as CinemaDAODB;
 	use DAO\RoomDAODB as RoomDAODB;
 	use DAO\MovieDAODB as MovieDAODB;
@@ -27,24 +28,39 @@
 		{	
 			$this->showDAO = new ShowDAODB();
 			$show = $this->constructShow($this->showDAO->getById($idShow));
-			$ticketsRemain=23;	
+			$ticketsRemain=20;	
 
 			require_once(VIEWS_PATH."usr-add-ticket.php");
 		}	
 
 		public function showConfirmView($idUser,$idShow,$quantity,$message = "")
 		{
+			$this->ticketDAO = new TicketDAODB();
 			$this->showDAO = new ShowDAODB();
 			$show = $this->constructShow($this->showDAO->getById($idShow));
-			$ticketsRemain=23;
-
+			$ticketsRemain=20;
 			require_once(VIEWS_PATH."usr-add-ticket-confirm.php");
 		}	
 
 		public function showDetailsView($idUser,$idShow,$quantity,$cardType,$cardNumber,$message = "")
 		{
+			$this->ticketDAO = new TicketDAODB();
 			$this->showDAO = new ShowDAODB();
 			$show = $this->constructShow($this->showDAO->getById($idShow));
+
+			$user = new User();
+			$user->setId(1);
+
+			$ticket = new Ticket();
+			$ticket->setUser($user);
+			$ticket->setShow($show);
+			$ticket->setQuantity($quantity);
+			$ticket->setPrice(($ticket->getShow()->getRoom()->getPrice()*$quantity));
+			$ticket->setCardType($cardType);
+			$ticket->setCardNumber($cardNumber);
+
+			//$this->ticketDAO->add($ticket);
+
 			require_once(VIEWS_PATH."usr-add-ticket-details.php");
 		}	
 

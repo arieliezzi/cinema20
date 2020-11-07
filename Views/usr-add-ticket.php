@@ -44,6 +44,7 @@ include('nav-guest.php');
       </div>
       <!-- Final de la tarjeta -->
 
+      <!-- Comienzo de tarjeta -->
       <div class="col-md-4 col-10 bg-white  text-center">
         <div class="card">
           <div class="card-body">
@@ -59,6 +60,8 @@ include('nav-guest.php');
           <div class="card-footer"> <?php echo $ticketsRemain ?> Tickets Remain</div>
         </div>
       </div>
+      <!-- Final de la tarjeta -->
+
     </div>
   </div>
 </div>
