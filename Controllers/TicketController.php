@@ -8,6 +8,7 @@
 	use DAO\MovieDAODB as MovieDAODB;
 	use DAO\ShowDAODB as ShowDAODB;
 	use DAO\TicketDAODB as TicketDAODB;
+	use DAO\GenreDAODB as GenreDAODB;
 	use DAO\MovieGenreDAODB as MovieGenreDAODB;
 
 	class TicketController 
@@ -35,10 +36,10 @@
 
 		public function showConfirmView($idUser,$idShow,$quantity,$message = "")
 		{
-			$this->ticketDAO = new TicketDAODB();
 			$this->showDAO = new ShowDAODB();
 			$show = $this->constructShow($this->showDAO->getById($idShow));
 			$ticketsRemain=20;
+
 			require_once(VIEWS_PATH."usr-add-ticket-confirm.php");
 		}	
 
@@ -59,12 +60,47 @@
 			$ticket->setCardType($cardType);
 			$ticket->setCardNumber($cardNumber);
 
-			echo $ticket->getQrInfo();
+			$this->ticketDAO->add($ticket);
 
-			//$this->ticketDAO->add($ticket);
+			$message="✔️ Compra confirmada ¡Gracias por su compra!";
 
 			require_once(VIEWS_PATH."usr-add-ticket-details.php");
 		}	
+
+		public function showRevenueView()
+		{
+			$this->cinemaDAO = new CinemaDAODB();
+			$this->movieDAO = new MovieDAODB();
+			$this->genreDAO = new GenreDAODB();
+
+			$cinemaList = $this->cinemaDAO->getAll();
+			$movieList = $this->movieDAO->getAll();
+			$genreList = $this->genreDAO->getAll();
+			require_once(VIEWS_PATH."adm-list-revenue.php");
+		}
+
+		public function revenueByCinema($idCinema)
+		{
+			$this->cinemaDAO = new CinemaDAODB();
+			$this->ticketDAO = new TicketDAODB();
+			$cinema = $this->cinemaDAO->getById($idCinema);
+			$result = $this->ticketDAO->getRevenueByCinema($idCinema);
+			require_once(VIEWS_PATH."adm-list-revenue-by-cinema.php");
+		}
+
+		public function revenueByMovie($idMovie)
+		{
+			$this->movieDAO = new MovieDAODB();
+			$movie = $this->movieDAO->getMovie($idMovie);
+			require_once(VIEWS_PATH."adm-list-revenue-by-movie.php");
+		}
+
+		public function revenueByGenre($idGenre)
+		{
+			$this->movieDAO = new MovieDAODB();
+			$movie = $this->movieDAO->getByGenre($idGenre);
+			require_once(VIEWS_PATH."adm-list-revenue-by-genre.php");
+		}
 
 		public function add($idUser,$idShow,$cardType,$cardNumber,$quantity) 
 		{
@@ -79,7 +115,6 @@
 			$ticket->setQuantity($quantity);
 
 			$this->ticketDAO->add($ticket);
-			$this->showListView("✔️ Compra confirmada ¡Gracias por su compra!");
 		}
 
 		public function remove($idTicket) 

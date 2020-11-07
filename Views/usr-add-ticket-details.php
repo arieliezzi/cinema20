@@ -49,12 +49,12 @@ include('nav-guest.php');
           <div class="card-body text-center">
             <h1 class="mb-4">Tickets Details<br></h1>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><strong>Ticketes:</strong> <?php echo $quantity; ?> </li>
-              <li class="list-group-item"><strong>Price: </strong> <?php echo "$" . $show->getRoom()->getPrice() ?> </li>
-              <li class="list-group-item"><strong>Grand Total:</strong> <?php echo "$" . ($quantity * $show->getRoom()->getPrice()) ?> </li>
-              <li class="list-group-item"><strong>Cinema:</strong> <?php echo $show->getCinema()->getName() ?> </li>
-              <li class="list-group-item"><strong>Room:</strong> <?php echo $show->getRoom()->getName(); ?> </li>
-              <li class="list-group-item"><strong>Hour:</strong> <?php echo $show->getTime(); ?> </li>
+              <li class="list-group-item"><strong>Ticketes:</strong> <?php $ticket->getQuantity(); ?> </li>
+              <li class="list-group-item"><strong>Price: </strong> <?php echo "$" . $ticket->getShow()->getRoom()->getPrice() ?> </li>
+              <li class="list-group-item"><strong>Grand Total:</strong> <?php echo "$" . ($ticket->getQuantity() * $ticket->getShow()->getRoom()->getPrice()) ?> </li>
+              <li class="list-group-item"><strong>Cinema:</strong> <?php echo $ticket->getShow()->getCinema()->getName() ?> </li>
+              <li class="list-group-item"><strong>Room:</strong> <?php echo $ticket->getShow()->getRoom()->getName(); ?> </li>
+              <li class="list-group-item"><strong>Hour:</strong> <?php echo $ticket->getShow()->getTime(); ?> </li>
             </ul>
             <br>
             <a href="<?php echo FRONT_ROOT ?>Show/showUserListView">

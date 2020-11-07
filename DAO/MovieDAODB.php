@@ -70,7 +70,7 @@ class MovieDAODB implements IMovieDAO
 
     public function getByGenre($genreId)
     {
-        $query = "SELECT * FROM movies M WHERE (SELECT S.id_movie FROM Screenings S WHERE S.id_movie = M.id_movie AND S.screening_date >= CURDATE() GROUP BY S.id_movie) IS NOT NULL 
+        $query = "SELECT * FROM movies M WHERE (SELECT S.id_movie FROM Shows S WHERE S.id_movie = M.id_movie AND S.screening_date >= CURDATE() GROUP BY S.id_movie) IS NOT NULL 
             AND (SELECT MG.id_movie FROM MovieGenre MG WHERE MG.id_movie = M.id_movie AND MG.id_genre = :idGenre GROUP BY MG.id_movie) IS NOT NULL
             ORDER BY M.title ASC";
         $parameters["idGenre"] = $genreId;
