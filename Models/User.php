@@ -7,7 +7,7 @@
 		private $name;
 		private $pass;
 		private $email;
-		private $isAdmin;
+		private $is_active;
 
 		public function setId($id) {
 			$this->id = $id;
@@ -41,14 +41,20 @@
 			return $this->email;
 		}
 
-		public function setIsAdmin($isAdmin) {
-			$this->isAdmin = $isAdmin;
+
+
+		public function getIs_active()
+		{
+				return $this->is_active;
 		}
 
-		public function getIsAdmin() {
-			return $this->isAdmin;
-		}
 
+		public function setIs_active($is_active)
+		{
+				$this->is_active = $is_active;
+
+				return $this;
+		}
 	}
 	
 ?>
