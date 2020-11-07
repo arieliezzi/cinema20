@@ -74,8 +74,8 @@ CREATE TABLE IF NOT EXISTS users(
 
 CREATE TABLE IF NOT EXISTS tickets(
  id_ticket INT NOT NULL auto_increment,
- id_user INT NOT NULL unique,
- id_show INT NOT NULL unique,
+ id_user INT NOT NULL,
+ id_show INT NOT NULL,
  quantity INT NOT NULL,
  price INT NOT NULL,
  card_type VARCHAR(50) NOT NULL,
@@ -100,4 +100,8 @@ VALUES (1,"SALA 1",150,200,1,1),
        (4,"SALA B",130,110,1,2),
        (5,"SALA I",150,180,1,3),
        (6,"SALA II",170,220,1,3);
+      
+INSERT INTO users (id_user,email,pass,is_active)
+VALUES (1,"admin@gmail.com",1234,1),
+	   (2,"user@gmail.com",1111,1);
 	

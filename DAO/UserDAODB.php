@@ -18,7 +18,7 @@ class UserDAO implements IUserDAO
 
             $parameters["email"] =$user->getEmail();
             $parameters["pass"] =$user->getPass();
-            $parameters["is_active"] =$user->getIs_active();
+            $parameters["is_active"] =$user->getIsActive();
 
             $this->connection = Connection::GetInstance();
 
@@ -34,7 +34,7 @@ class UserDAO implements IUserDAO
         try{
             $query = "UPDATE users SET is_actice=:is_active WHERE id_user=:id_user";
 
-            $parameters["is_active"] =$user->getIs_active();
+            $parameters["is_active"] =$user->getIsActive();
             $parameters["id_user"] =$user->getId();
 
             $this->connection = Connection::GetInstance();

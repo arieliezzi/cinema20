@@ -7,7 +7,7 @@
 		private $name;
 		private $pass;
 		private $email;
-		private $is_active;
+		private $isActive;
 
 		public function setId($id) {
 			$this->id = $id;
@@ -42,16 +42,14 @@
 		}
 
 
-
-		public function getIs_active()
+		public function getIsActive()
 		{
-				return $this->is_active;
+				return $this->isActive;
 		}
 
-
-		public function setIs_active($is_active)
+		public function setIsActive($isActive)
 		{
-				$this->is_active = $is_active;
+				$this->isActive = $isActive;
 
 				return $this;
 		}
