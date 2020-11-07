@@ -27,10 +27,17 @@ include('nav-guest.php');
       <!-- Final de la tarjeta -->
 
       <!-- Comienzo de tarjeta -->
-            <div class="col-md-4 mb-5">
+      <div class="col-md-4 mb-5">
         <div class="card">
-          <div class="card-body">
-            <img class="card-img-top" src="<?php echo $show->GetMovie()->getImage(); ?>" alt="Card image cap">
+          <div class="card-body text-center">
+            <h1 class="mb-4">Your Tickets</h1>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"> <img class="card-img-top" src="https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl=<?php echo "hola"; ?>" alt="Card image cap"> </li>
+            </ul>
+            <br>
+            <a href="<?php echo FRONT_ROOT ?>Show/showUserListView">
+              <button href="<?php echo FRONT_ROOT ?>Show/showUserListView" class="btn btn-primary">Save QR code</button>
+            </a>
           </div>
         </div>
       </div>
@@ -39,7 +46,7 @@ include('nav-guest.php');
       <div class="col-md-4 col-10 bg-white">
         <div class="card">
           <div class="card-body text-center">
-            <h1 class="mb-4">Purchase Tickets<br></h1>
+            <h1 class="mb-4">Tickets Details<br></h1>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><strong>Ticketes:</strong> <?php echo $quantity; ?> </li>
               <li class="list-group-item"><strong>Price: </strong> <?php echo "$" . $show->getRoom()->getPrice() ?> </li>
@@ -49,14 +56,9 @@ include('nav-guest.php');
               <li class="list-group-item"><strong>Hour:</strong> <?php echo $show->getTime(); ?> </li>
             </ul>
             <br>
-            <a href="<?php echo FRONT_ROOT ?>Show/showUserListView" >
-            <button href="<?php echo FRONT_ROOT ?>Show/showUserListView" class="btn btn-primary">Home</button>
-        </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <a href="<?php echo FRONT_ROOT ?>Show/showUserListView">
+              <button href="<?php echo FRONT_ROOT ?>Show/showUserListView" class="btn btn-primary">
+                < Back to home</button> </a> </div> </div> </div> </div> <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+                  </script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+                  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
