@@ -58,7 +58,12 @@ include('nav-guest.php');
               <div class="form-group"> <input type="hidden" class="form-control" placeholder="IDUser" name="idUser" id="idUser"> </div>
               <div class="form-group"> <input type="hidden" class="form-control" placeholder="IDShow" name="idShow" id="idShow" value="<?php echo $show->getId(); ?>"> </div>
               <div class="form-group"> <input type="hidden" class="form-control" placeholder="Quantity" name="quantity" id="quantity" value="<?php echo $show->getId(); ?>"> </div>
-              <div class="form-group"> <input required type="text" class="form-control" placeholder="Card Type" name="cardType" id="cardType"> </div>
+              <div class="form-group">
+                <select class="form-control" id="cardType" name="cardType"> 
+                  <option value="VISA">VISA</option>
+                  <option value="MASTERCARD">MASTERCARD</option>
+                </select>
+              </div>
               <div class="form-group"> <input required type="number" class="form-control" placeholder="Card Number" name="cardNumber" id="cardNumber"> </div>
               <button type="submit" class="btn btn-success">Confirm and buy tickets ><br></button>
             </form>
@@ -66,7 +71,7 @@ include('nav-guest.php');
         </div>
       </div>
       <!-- Final de la tarjeta -->
-      
+
     </div>
   </div>
 </div>
