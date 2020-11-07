@@ -7,6 +7,7 @@
 	use DAO\MovieDAODB as MovieDAODB;
 	use DAO\ShowDAODB as ShowDAODB;
 	use DAO\TicketDAODB as TicketDAODB;
+	use DAO\MovieGenreDAODB as MovieGenreDAODB;
 
 	class TicketController 
 	{
@@ -22,32 +23,39 @@
 			require_once(VIEWS_PATH."adm-list-ticket.php");
 		}	
 
-		public function showAddView($message = "")
-		{
+		public function showAddView($idShow,$message = "")
+		{	
+			$this->showDAO = new ShowDAODB();
+			$show = $this->constructShow($this->showDAO->getById($idShow));
+			$ticketsRemain=23;	
 
 			require_once(VIEWS_PATH."usr-add-ticket.php");
 		}	
 
-		public function showConfirmView($message = "")
+		public function showConfirmView($idUser,$idShow,$quantity,$message = "")
 		{
+			$this->showDAO = new ShowDAODB();
+			$show = $this->constructShow($this->showDAO->getById($idShow));
+			$ticketsRemain=23;
 
-			require_once(VIEWS_PATH."usr-confirm-ticket.php");
+			require_once(VIEWS_PATH."usr-add-ticket-confirm.php");
 		}	
 
-		public function showDetailsView($message = "")
+		public function showDetailsView($idUser,$idShow,$quantity,$cardType,$cardNumber,$message = "")
 		{
-
-			require_once(VIEWS_PATH."usr-details-ticket.php");
+			$this->showDAO = new ShowDAODB();
+			$show = $this->constructShow($this->showDAO->getById($idShow));
+			require_once(VIEWS_PATH."usr-add-ticket-details.php");
 		}	
 
-		public function add($idUser,$idShow,$price,$cardType,$cardNumber,$quantity) 
+		public function add($idUser,$idShow,$cardType,$cardNumber,$quantity) 
 		{
 			$this->ticketDAO = new TicketDAODB();
 
 			$ticket = new Ticket();
 			$ticket->setUser($idUser);
 			$ticket->setShow($idShow);
-			$ticket->setPrice(($price));
+			$ticket->setPrice(($price=0));
 			$ticket->setCardType($cardType);
 			$ticket->setCardNumber($cardNumber);
 			$ticket->setQuantity($quantity);
@@ -93,11 +101,12 @@
 			return $ticketList;
 		}
 
-		public function ConstructShow($showList) {
+		public function constructShow($showList) {
 	
 			$this->cinemaDAO = new CinemaDAODB();
 			$this->roomDAO = new RoomDAODB();
 			$this->movieDAO = new MovieDAODB();
+			$this->genreDAO = new MovieGenreDAODB();
 
 			if (is_array($showList))
 			{
@@ -106,11 +115,13 @@
 					$show->setCinema($this->cinemaDAO->getById($show->getCinema()));
 					$show->setRoom($this->roomDAO->getById($show->getRoom()));
 					$show->setMovie($this->movieDAO->getMovie($show->getMovie()));
+					$show->getMovie()->setGenres($this->genreDAO->getGenres($show->getMovie()->getId()));
 				}
 			} else {
 				$showList->setCinema($this->cinemaDAO->getById($showList->getCinema()));
 				$showList->setRoom($this->roomDAO->getById($showList->getRoom()));
 				$showList->setMovie($this->movieDAO->getMovie($showList->getMovie()));
+				$showList->getMovie()->setGenres($this->genreDAO->getGenres($showList->getMovie()->getId()));
 			}
 	
             return $showList;

@@ -78,6 +78,5 @@
         public function getQrInfo() {
 			return $this->getId()."-".$this->getShow()->getMovie()->getTitle()."-".$this->getShow()->getCinema()->getName()."-".$this->getShow()->getStartDate()."/".$this->getShow()->getTime();
 		}
-
 	}
 ?>
