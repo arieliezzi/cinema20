@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS tickets(
 
 INSERT INTO cinemas (id_cinema,name,address,capacity,imageUrl,is_active)
 VALUES (1,"Paseo Aldrey","Sarmiento 2685",0,"/cinema2020/Views/default/images/aldrey.png",1),
-	   (2,"Cine del paseo","Diagonal Pueyrredón 3058",0,"/cinema2020/Views/default/images/paseo.png",1),
+	   (2,"Cine del paseo","Diagonal Pueyrredon 3058",0,"/cinema2020/Views/default/images/paseo.png",1),
 	  (3,"Cinema Los Gallegos Shopping","Rivadavia 3050",0,"/cinema2020/Views/default/images/losgallegos.png",1);
       
    
