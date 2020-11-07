@@ -58,7 +58,7 @@ include('nav-guest.php');
             </ul>
             <br>
             <a href="<?php echo FRONT_ROOT ?>Show/showUserListView">
-              <button href="<?php echo FRONT_ROOT ?>Show/showUserListView" class="btn btn-primary">< Back to home</button>
+              <button class="btn btn-primary">< Back to home</button>
             </a> 
           </div>
         </div> 

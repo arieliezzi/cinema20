@@ -59,7 +59,7 @@
 			$ticket->setCardType($cardType);
 			$ticket->setCardNumber($cardNumber);
 
-			//$this->ticketDAO->add($ticket);
+			$this->ticketDAO->add($ticket);
 
 			require_once(VIEWS_PATH."usr-add-ticket-details.php");
 		}	

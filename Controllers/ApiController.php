@@ -15,7 +15,6 @@
 
         public function showListView($message = "", $genreID = "")
         {
-            //$this->getGenresFromAPI();
             $this->ApiDAODB = new ApiDAODB();
             $this->genreDAO = new GenreDAODB();
           
