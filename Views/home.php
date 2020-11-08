@@ -9,7 +9,7 @@
         <div class="card">
           <div class="card-body">
               <h1 class="mb-4">Log in</h1>
-                <form action="<?php echo FRONT_ROOT ?>Cinema/showAddView" method="post">
+                <form action="<?php echo FRONT_ROOT ?>Session/login " method="post"> 
                   <div class="form-group"> <input type="email" class="form-control" placeholder="Enter email" name="email" id="email"> </div>
                   <div class="form-group mb-3"> <input type="password" class="form-control" placeholder="Password" name="pass" id="password"> </div>
                   <button type="submit" class="btn btn-primary" name="btnLogin">Sign in</button>

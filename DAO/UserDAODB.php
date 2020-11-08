@@ -8,7 +8,7 @@ use DAO\QueryType as QueryType;
 use Models\User as User;
 
 
-class UserDAO implements IUserDAO
+class UserDAODB implements IUserDAO
 {
 
     function Add(User $user)
@@ -28,6 +28,28 @@ class UserDAO implements IUserDAO
               echo "no se pudo agregar el usuario";
              }
     }
+
+    ///Devuelve un usuario de la base de datos si el nombre de usuario y contraseña son los correctos
+    function validUser($email,$pass)
+    {
+        try{
+
+            $query = "SELECT *FROM users WHERE email=:email AND pass=:pass";
+
+            $parameters["email"] =$email;
+            $parameters["pass"] =$pass;
+
+            $this->connection = Connection::GetInstance();
+            $user= new User();
+            $user = $this->connection->Execute($query, $parameters ,QueryType::Query);
+            
+        }catch(Exception $exception)
+         {
+          echo "email o contraseña incorrecta";
+         }
+     return $user;
+    }
+
 
     function Remove ($id)
     {

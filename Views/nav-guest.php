@@ -17,6 +17,7 @@
         <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Movie/showListView">Internal Movies</a> </li>
         <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Show/showListView">Shows</a> </li> 
         <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Ticket/showRevenueView">Revenues</a> </li> 
+        <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Session/logout">Log out</a> </li> 
       </ul>
     </div>
   </div>
