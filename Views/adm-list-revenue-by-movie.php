@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php 
+ include("validate-session.php");
  include('header.php');
  include('nav-guest.php');
 ?>

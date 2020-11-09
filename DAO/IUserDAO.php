@@ -5,7 +5,6 @@ use Models\User as User;
     interface IUserDAO
     {
         function Add(User $user);
-        function Remove ($id);
     }
     
 ?>

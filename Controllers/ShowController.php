@@ -23,6 +23,13 @@
 			require_once(VIEWS_PATH."adm-list-show.php");
 		}	
 
+		public function showUserListView($message = "") {
+			$this->showDAO = new ShowDAODB();		
+			$showList = $this->ConstructShow($this->showDAO->getAll());
+			
+			require_once(VIEWS_PATH."usr-list-show.php");
+		}	
+
 		public function showAddView($message = "") {
 			$this->cinemaDAO = new CinemaDAODB();
 			$cinemaList = $this->cinemaDAO->getAll();
@@ -116,15 +123,6 @@
 	
             return $showList;
 		}
-
-		public function showUserListView($message = "") {
-			$this->showDAO = new ShowDAODB();		
-			$showList = $this->ConstructShow($this->showDAO->getAll());
-			
-			require_once(VIEWS_PATH."usr-list-show.php");
-		}	
-
-
 	}
 
 ?>

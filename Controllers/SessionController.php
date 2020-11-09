@@ -1,6 +1,7 @@
 <?php
     namespace Controllers;
     use DAO\UserDAODB as UserDAODB;
+    use Controllers\ShowController as ShowController;
     use Models\User as User;
 
     class SessionController
@@ -9,52 +10,64 @@
         {
             require_once(VIEWS_PATH."home.php");
         }    
+
+        public function showRegisterView($message = "")
+        {
+            require_once(VIEWS_PATH."register.php");
+        }   
         
         public function logout()
         {
-            session_start();
+            if(isset($_SESSION["loggedUser"]))
             session_destroy();
-            require_once(VIEWS_PATH."home.php");
+            $this->Index();
+        }
+
+        public function register($name,$email,$pass)
+        { 
+            $this->userDAO = new UserDAODB();
+
+            if (!(empty($this->userDAO->validEmail($email))))
+            {
+                $this->showRegisterView("❌ ¡El email ya tiene una cuenta asignada!");
+            } else 
+                {
+                    if (strlen($pass)>5)
+                    {
+                        $this->showRegisterView("❌ ¡La contraseña tiene mas de 5 caracteres!");
+                    } else
+                        {
+                            $user = new User();
+                            $user->setName($name);
+                            $user->setEmail($email);
+                            $user->setPass($pass);
+                            $user->setIsActive(1);
+                            $this->userDAO->add($user);
+                            $this->Index("✔️ ¡Cuenta creada con exito!");
+                        }
+                }
         }
 
         public function login($email,$pass)
         {
             $this->userDAO = new UserDAODB();
+            $this->showController = new ShowController();
             $loggedUser = $this->userDAO->validUser($email,$pass);  
             
-            if($loggedUser!=null) 
+            if(!(empty($loggedUser))) 
             {
                 session_start();
-                $_SESSION["loggedUser"]=$loggedUser;
-                //el usuario de id=1 es el Admin
-                if($loggedUser->getId()==1)
-                {require_once(VIEWS_PATH."adm-list-show.php");} 
+                $_SESSION["loggedUser"]=$loggedUser->getId();
+                $_SESSION["userName"]=$loggedUser->getName();
+                if($_SESSION["loggedUser"]==1) //El usuario de ID=1 es el ADM
+                $this->showController->showListView("👋 ¡Bienvenido/a ".$_SESSION["userName"]."!");
                 else
-                {require_once(VIEWS_PATH."usr-list-show.php");}
+                $this->showController->showUserListView("👋 ¡Bienvenido/a ".$_SESSION["userName"]."!");
             }
             else
             {
-                echo $this->Index("No es valido el usuario o la contraseña ¡!");
+                $this->Index("❌ ¡Usuario o contraseña incorrectos!");
             }
         }
-
-
-        //esta funcion se tendria que llamar en cada view para preguntar el estado de la sesion
-        //Si la session tiene guardado un usuario que ya se logueo se seguira mostrando esa view pero si no hay usuario logueado volvera a la view login para que se loguee
-      /* public function stateSession()
-        {
-            session_start();
-
-            if(isset $_SESSION["loggedUser"])
-            {
-                $loggedUser=$_SESSION["loggedUser"];
-                echo $loggedUser->getEmail();
-            }
-            else
-            {
-                require_once(VIEWS_PATH."login.php");  
-            }
-        }*/
-        
     }
 ?>

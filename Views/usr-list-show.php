@@ -1,11 +1,18 @@
 <?php 
- include_once('header.php');
- include_once('nav-guest.php');
+ include("validate-session.php");
+ include('header.php');
+ include('nav-guest.php');
 ?>
 <div class="pt-5 pb-1">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
+        <?php if ($message != NULL) { ?>
+              <div class="alert alert-info" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+                <h4 class="alert-heading"><?php echo $message; ?></h4>
+              </div>
+        <?php } ?>
         <h1 class="display-2">Movies in theaters now<br></h1>
         <h5 class="">Sort by</h5>
         <div class="btn-group">
@@ -18,9 +25,7 @@
         <div class="btn-group">
           <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Genre</button>
           <div class="dropdown-menu"> 
-        
             <a class="dropdown-item" href="">Genre<br></a>
-          
           </div>
         </div>
       </div>

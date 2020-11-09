@@ -13,9 +13,11 @@ class UserDAODB implements IUserDAO
 
     function Add(User $user)
     {
-        try{
-            $query = "INSERT INTO users(email,pass,is_active) VALUES (:email,:pass:is_active)";
+        try
+        {
+            $query = "INSERT INTO users (name,email,pass,is_active) VALUES (:name,:email,:pass,:is_active)";
 
+            $parameters["name"] =$user->getName();
             $parameters["email"] =$user->getEmail();
             $parameters["pass"] =$user->getPass();
             $parameters["is_active"] =$user->getIsActive();
@@ -23,52 +25,65 @@ class UserDAODB implements IUserDAO
             $this->connection = Connection::GetInstance();
 
             $this->connection->ExecuteNonQuery($query, $parameters, QueryType::Query);
-           }catch(Exception $exception)
-             {
-              echo "no se pudo agregar el usuario";
-             }
+        }catch(Exception $exception)
+            {
+                echo "no se pudo agregar el usuario";
+            }
     }
 
     ///Devuelve un usuario de la base de datos si el nombre de usuario y contraseña son los correctos
     function validUser($email,$pass)
     {
-        try{
+        try
+        {
 
-            $query = "SELECT *FROM users WHERE email=:email AND pass=:pass";
+            $query = "SELECT * FROM users WHERE email=:email AND pass=:pass";
 
             $parameters["email"] =$email;
             $parameters["pass"] =$pass;
 
             $this->connection = Connection::GetInstance();
-            $user= new User();
-            $user = $this->connection->Execute($query, $parameters ,QueryType::Query);
-            
+         
+            $result = $this->connection->Execute($query, $parameters ,QueryType::Query);
+
+            $user=null;
+
+            foreach($result as $row)
+            {
+                $user= new User();
+                $user->setId($row["id_user"]);
+                $user->setName($row["name"]);
+                $user->setEmail($row["email"]);
+                $user->setPass($row["pass"]);
+            }
+
         }catch(Exception $exception)
-         {
-          echo "email o contraseña incorrecta";
-         }
-     return $user;
+            {
+            echo "Email o contraseña incorrecta";
+            }
+
+        return $user;
     }
 
-
-    function Remove ($id)
+    function validEmail($email)
     {
-        try{
-            $query = "UPDATE users SET is_actice=:is_active WHERE id_user=:id_user";
+        try
+        {
 
-            $parameters["is_active"] =$user->getIsActive();
-            $parameters["id_user"] =$user->getId();
+            $query = "SELECT email FROM users WHERE email=:email";
+
+            $parameters["email"] =$email;
 
             $this->connection = Connection::GetInstance();
+         
+            $result = $this->connection->Execute($query, $parameters ,QueryType::Query);
 
-            $this->connection->ExecuteNonQuery($query, $parameters, QueryType::Query);
-           }catch(Exception $exception)
-             {
-              echo "no se pudo eliminar el usuario";
-             }
+        }catch(Exception $exception)
+            {
+            echo "No se pudo verificar el mail";
+            }
 
+        return $result;
     }
-
-
 }
 ?>

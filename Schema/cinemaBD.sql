@@ -66,8 +66,9 @@ CREATE TABLE IF NOT EXISTS shows(
 
 CREATE TABLE IF NOT EXISTS users(
 	 id_user INT NOT NULL auto_increment,
+     name VARCHAR(50) NOT NULL,
      email VARCHAR(50) NOT NULL,
-	 pass VARCHAR(5) NOT NULL,
+  	 pass VARCHAR(5) NOT NULL,
      is_active INT NOT NULL,
      primary key(id_user)
 )ENGINE =INNODB;
@@ -101,7 +102,7 @@ VALUES (1,"SALA 1",150,200,1,1),
        (5,"SALA I",150,180,1,3),
        (6,"SALA II",170,220,1,3);
       
-INSERT INTO users (id_user,email,pass,is_active)
-VALUES (1,"admin@gmail.com",1234,1),
-	   (2,"user@gmail.com",1111,1);
+INSERT INTO users (id_user,name,email,pass,is_active)
+VALUES (1,"Administrador","admin@gmail.com",1234,1),
+	   (2,"Ayelen","user@gmail.com",1234,1);
 	

@@ -8,20 +8,22 @@ include_once('nav-guest.php');
       <div class="mx-auto col-md-6 col-10 bg-black p-5">
         <div class="card">
           <div class="card-body">
-            <h1 class="mb-4">Log in</h1>
+            <h1 class="mb-4">Register</h1>
             <?php if ($message != NULL) { ?>
               <div class="alert alert-info" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
                 <h4 class="alert-heading"><?php echo $message; ?></h4>
               </div>
             <?php } ?>
-            <form action="<?php echo FRONT_ROOT ?>Session/login " method="post">
-              <div class="form-group"> <input required type="email" class="form-control" placeholder="Enter email" name="email" id="email"> </div>
-              <div class="form-group mb-3"> <input required type="password" class="form-control" placeholder="Password" name="pass" id="password"> </div>
+            <form action="<?php echo FRONT_ROOT ?>Session/register " method="post">
+              <div class="form-group"> <input required type="text" class="form-control" placeholder="Name" name="name" id="name"> </div>    
+              <div class="form-group"> <input required type="email" class="form-control" placeholder="Email" name="email" id="email"> </div>
+              <div class="form-group mb-3"> <input required type="password" class="form-control" placeholder="Password" name="pass" id="password">
+              <small>Max 5 characters</small></div>
               <small class="form-text text-muted text-right">
-                <a href=<?php echo FRONT_ROOT."Session/showRegisterView"?>> Don't have an account?</a>
+                <a href=<?php echo FRONT_ROOT."Session/index"?>> Don't have an account?</a>
               </small>
-              <button type="submit" class="btn btn-primary" name="btnLogin">Log in</button>
+              <button type="submit" class="btn btn-primary" name="btnLogin">Sign in</button>
             </form>
           </div>
         </div>
