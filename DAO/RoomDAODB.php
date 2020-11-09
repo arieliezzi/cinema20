@@ -114,6 +114,17 @@
                echo "No se pudo modificar la sala";
             }
         }
+
+        public function exist($nameRoom)
+        {
+            $query = "SELECT name FROM rooms WHERE name = :name";
+            $parameters["name"] = $nameRoom;
+    
+            $this->connection = Connection::GetInstance();
+            $result = $this->connection->Execute($query, $parameters, QueryType::Query);
+    
+            return $result;
+        }
         
     }
 ?>

@@ -51,10 +51,16 @@
             $room->setCapacity($capacity);
 			$room->setPrice($price);
 			$room->setIsActive($isActive);
+
+			if (!(empty($this->roomDAO->exist($room->getName()))))
+            {
+                $this->showCinemaRooms($idCinema,"❌ ¡Ya hay una sala con ese mismo nombre en este cine, vuelva a ingresar!");
+            } else 
+            {
 			$this->roomDAO->add($room,$idCinema);
 			$this->cinemaDAO->updateCapacity($idCinema,$capacity);
 
-			$this->showCinemaRooms($idCinema,"✔️ ¡Sala agregada con exito!");
+			$this->showCinemaRooms($idCinema,"✔️ ¡Sala agregada con exito!");}
 		}	
 
 		public function Update($idCinema,$idRoom,$name,$capacity,$price) 
