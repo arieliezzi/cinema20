@@ -14,22 +14,23 @@
         
         public function Add(Cinema $cinema)
         { 
-         try{
-             $query = "INSERT INTO cinemas(name, address, capacity, imageUrl, is_active) VALUES (:name,:address,:capacity,:imageUrl,:is_active)";
+          try{
+              $query = "INSERT INTO cinemas(name, address, capacity, imageUrl, is_active) VALUES (:name,:address,:capacity,:imageUrl,:is_active)";
 
-             $parameters["name"] = $cinema->getName();
-             $parameters["address"] = $cinema->getAddress();
-             $parameters["capacity"] = $cinema->getCapacity();
-             $parameters["imageUrl"] = $cinema->getImageUrl();
-             $parameters["is_active"]=$cinema->getIsActive();
+              $parameters["name"] = $cinema->getName();
+              $parameters["address"] = $cinema->getAddress();
+              $parameters["capacity"] = $cinema->getCapacity();
+              $parameters["imageUrl"] = $cinema->getImageUrl();
+              $parameters["is_active"]=$cinema->getIsActive();
 
-             $this->connection = Connection::GetInstance();
+              $this->connection = Connection::GetInstance();
 
-             $this->connection->ExecuteNonQuery($query, $parameters, QueryType::Query);
-            }catch(Exception $exception)
+              $this->connection->ExecuteNonQuery($query, $parameters, QueryType::Query);
+             }catch(Exception $exception)
               {
                echo "no se pudo agregar pelicula";
               }
+
         }
 
         public function GetRoomsByCinemaId($idCinema)
@@ -158,12 +159,23 @@
         }
         
         public function updateCapacity ($idCinema,$capacity)
-		{
-			$updatedCinema = new Cinema();
-			$updatedCinema = $this->getById($idCinema);
-			$updatedCinema->setCapacity($updatedCinema->getCapacity()+$capacity);
-			$this->update($updatedCinema);
-		}
+		    {
+		    	$updatedCinema = new Cinema();
+		    	$updatedCinema = $this->getById($idCinema);
+		    	$updatedCinema->setCapacity($updatedCinema->getCapacity()+$capacity);
+		    	$this->update($updatedCinema);
+        }
+        
+        public function exist($nameCinema)
+        {
+            $query = "SELECT name FROM cinemas WHERE name = :name";
+            $parameters["name"] = $nameCinema;
+    
+            $this->connection = Connection::GetInstance();
+            $result = $this->connection->Execute($query, $parameters, QueryType::Query);
+    
+            return $result;
+        }
 
     }
 ?>

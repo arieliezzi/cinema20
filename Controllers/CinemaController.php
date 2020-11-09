@@ -45,8 +45,13 @@
 			$cinema->setImageUrl($imageUrl);
 			$cinema->setIsActive(1);
 
+			if (!(empty($this->cinemaDAO->exist($cinema->getName()))))
+            {
+                $this->showListView("❌ ¡Ya hay un cine con ese mismo nombre, vuelva a ingresar!");
+            } else 
+            {
 			$this->cinemaDAO->add($cinema);
-			$this->showListView("✔️ ¡Cine agregado con exito!");
+			$this->showListView("✔️ ¡Cine agregado con exito!");}
 		}
 
 		public function Remove($id)
