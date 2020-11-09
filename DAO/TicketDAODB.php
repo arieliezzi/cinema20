@@ -92,7 +92,7 @@
         public function getRevenueByCinema($idCinema) 
         {
             try {
-                $query = "SELECT SUM(T.quantity) as quantity, SUM(S.price) as price FROM tickets T INNER JOIN Shows S ON T.id_show = S.id_show INNER JOIN Cinemas C ON S.id_cinema = C.id_cinema WHERE C.id_cinema = :id_cinema";
+                $query = "SELECT SUM(quantity) as quantity, SUM(price) as price FROM tickets INNER JOIN shows  ON tickets.id_show = shows.id_show INNER JOIN cinemas ON shows.id_cinema = cinemas.id_cinema WHERE cinemas.id_cinema = :id_cinema";
                 $parameters["id_cinema"] = $idCinema;
                 
                 $this->connection = Connection::GetInstance();
@@ -112,6 +112,32 @@
                         echo "No se pudo traer revenue del cine";
                     }
         }
+
+
+        public function getRevenueByMovie($idMovie) 
+        {
+            try {
+                $query = "SELECT SUM(quantity) as quantity, SUM(price) as price FROM tickets INNER JOIN shows  ON tickets.id_show = shows.id_show INNER JOIN movies ON shows.id_movie= movies.id_movie WHERE movies.id_movie =:id_movie";
+                $parameters["id_movie"] = $idMovie;
+                
+                $this->connection = Connection::GetInstance();
+
+                $result = $this->connection->Execute($query, $parameters, QueryType::Query);
+
+                $rta = array();
+
+                foreach($result as $row)
+                    $aux["quantity"] = $row["quantity"];
+                    $aux["price"] = $row["price"];
+                    array_push($rta, $aux);
+
+                return array_pop($rta);
+                } catch(Exception $exception) 
+                    {
+                        echo "No se pudo traer revenue de la pelicula";
+                    }
+        }
+
 
     }
 ?>

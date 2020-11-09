@@ -87,6 +87,20 @@ CREATE TABLE IF NOT EXISTS tickets(
  CONSTRAINT fk_ticketShow foreign key (id_show) references shows(id_show)
 )ENGINE =INNODB;
 
+SELECT SUM(price) FROM tickets INNER JOIN shows ON tickets.id_show= shows.id_show
+							   INNER JOIN cinemas ON shows.id_cinema= cinemas.id_cinema WHERE cinemas.name ="Paseo Aldrey";
+                               						
+                               
+SELECT SUM(quantity) as quantity, SUM(price) as price FROM tickets 
+                   INNER JOIN shows  ON tickets.id_show = shows.id_show 
+				   INNER JOIN cinemas ON shows.id_cinema = cinemas.id_cinema WHERE cinemas.id_cinema = 1;
+
+SELECT SUM(price) FROM tickets INNER JOIN shows ON tickets.id_show= shows.id_show
+							   INNER JOIN movies ON shows.id_movie= movies.id_movie WHERE movies.title ="Bronx";
+                               
+SELECT SUM(price) FROM tickets INNER JOIN shows ON tickets.id_show= shows.id_show
+							   INNER JOIN movieGenre ON shows.id_movie= movieGenre.id_movie WHERE movieGenre.id_genre =18;
+                               
 
 
 INSERT INTO cinemas (id_cinema,name,address,capacity,imageUrl,is_active)

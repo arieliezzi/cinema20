@@ -92,13 +92,16 @@
 		public function revenueByMovie($idMovie)
 		{
 			$this->movieDAO = new MovieDAODB();
+			$this->ticketDAO = new TicketDAODB();
 			$movie = $this->movieDAO->getMovie($idMovie);
+			$result=$this->ticketDAO->getRevenueByMovie($idMovie);
 			require_once(VIEWS_PATH."adm-list-revenue-by-movie.php");
 		}
 
 		public function revenueByGenre($idGenre)
 		{
 			$this->movieDAO = new MovieDAODB();
+			$this->ticketDAO = new TicketDAODB();
 			$movie = $this->movieDAO->getByGenre($idGenre);
 			require_once(VIEWS_PATH."adm-list-revenue-by-genre.php");
 		}
