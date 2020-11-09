@@ -69,7 +69,7 @@ class UserDAODB implements IUserDAO
     {
         try
         {
-
+            
             $query = "SELECT email FROM users WHERE email=:email";
 
             $parameters["email"] =$email;

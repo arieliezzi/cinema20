@@ -53,6 +53,7 @@ include('nav-guest.php');
             <form action="<?php echo FRONT_ROOT ?>Ticket/showConfirmView" method="post">
               <div class="form-group"> <input type="hidden" class="form-control" placeholder="IDUser" name="idUser" id="idUser"> </div>
               <div class="form-group"> <input type="hidden" class="form-control" placeholder="IDShow" name="idShow" id="idShow" value="<?php echo $show->getId(); ?>"> </div>
+              <div class="form-group"> <input required type="date" class="form-control" placeholder="Date" name="date" id="date"> </div>
               <div class="form-group"> <input required type="number" class="form-control" placeholder="Quantity" name="quantity" id="quantity"> </div>
               <button type="submit" class="btn btn-success">Next step ><br></button>
             </form>

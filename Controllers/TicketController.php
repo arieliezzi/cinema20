@@ -34,7 +34,7 @@
 			require_once(VIEWS_PATH."usr-add-ticket.php");
 		}	
 
-		public function showConfirmView($idUser,$idShow,$quantity,$message = "")
+		public function showConfirmView($idUser,$idShow,$date,$quantity,$message = "")
 		{
 			$this->showDAO = new ShowDAODB();
 			$show = $this->constructShow($this->showDAO->getById($idShow));
@@ -43,7 +43,7 @@
 			require_once(VIEWS_PATH."usr-add-ticket-confirm.php");
 		}	
 
-		public function showDetailsView($idUser,$idShow,$quantity,$cardType,$cardNumber,$message = "")
+		public function showDetailsView($idUser,$idShow,$date,$quantity,$cardType,$cardNumber,$message = "")
 		{
 			$this->ticketDAO = new TicketDAODB();
 			$this->showDAO = new ShowDAODB();
@@ -55,6 +55,7 @@
 			$ticket = new Ticket();
 			$ticket->setUser($user);
 			$ticket->setShow($show);
+			$ticket->setDate($date);
 			$ticket->setQuantity($quantity);
 			$ticket->setPrice(($ticket->getShow()->getRoom()->getPrice()*$quantity));
 			$ticket->setCardType($cardType);
@@ -102,7 +103,7 @@
 			require_once(VIEWS_PATH."adm-list-revenue-by-genre.php");
 		}
 
-		public function add($idUser,$idShow,$cardType,$cardNumber,$quantity) 
+		public function add($idUser,$idShow,$cardType,$cardNumber,$quantity,$date) 
 		{
 			$this->ticketDAO = new TicketDAODB();
 
@@ -113,6 +114,7 @@
 			$ticket->setCardType($cardType);
 			$ticket->setCardNumber($cardNumber);
 			$ticket->setQuantity($quantity);
+			$ticket->setDate($date);
 
 			$this->ticketDAO->add($ticket);
 		}

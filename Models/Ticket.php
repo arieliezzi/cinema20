@@ -14,6 +14,7 @@
         private $cardType;
         private $cardNumber;
 		private $quantity;
+		private $date;
 
 		public function setId($id) {
 			$this->id = $id;
@@ -73,7 +74,15 @@
                 $this->cardNumber = $cardNumber;
 
                 return $this;
-        }
+		}
+		
+		public function setDate($date) {
+			$this->date = $date;
+		}
+
+		public function getDate() {
+			return $this->date;
+		}
 
         public function getQrInfo() {
 			return "TICKETS: ".$this->getQuantity()." - MOVIE: ".$this->getShow()->getMovie()->getTitle()." - CINEMA: ".$this->getShow()->getCinema()->getName()."- DATE: ".$this->getShow()->getStartDate()."/".$this->getShow()->getTime();
