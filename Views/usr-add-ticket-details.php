@@ -50,7 +50,8 @@ include('nav-guest.php');
           <div class="card-body text-center">
             <h1 class="mb-4">Tickets Details<br></h1>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><strong>Ticketes:</strong> <?php $ticket->getQuantity(); ?> </li>
+              <li class="list-group-item"><strong>Tickets:</strong> <?php $ticket->getQuantity(); ?> </li>
+              <li class="list-group-item"><strong>Date:</strong> <?php $ticket->getDate(); ?> </li>
               <li class="list-group-item"><strong>Price: </strong> <?php echo "$" . $ticket->getShow()->getRoom()->getPrice() ?> </li>
               <li class="list-group-item"><strong>Grand Total:</strong> <?php echo "$" . ($ticket->getQuantity() * $ticket->getShow()->getRoom()->getPrice()) ?> </li>
               <li class="list-group-item"><strong>Cinema:</strong> <?php echo $ticket->getShow()->getCinema()->getName() ?> </li>

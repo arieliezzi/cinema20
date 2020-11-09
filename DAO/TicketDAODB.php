@@ -12,10 +12,11 @@
         public function add(Ticket $ticket)
         { 
             try {
-                $query = "INSERT INTO tickets(id_user, id_show, quantity, price, card_type, card_number) VALUES (:id_user,:id_show,:quantity,:price,:card_type,:card_number)";
+                $query = "INSERT INTO tickets(id_user, id_show, date, quantity, price, card_type, card_number) VALUES (:id_user,:id_show,:date,:quantity,:price,:card_type,:card_number)";
 
                 $parameters["id_user"] = $ticket->getUser()->getId();
                 $parameters["id_show"] = $ticket->getShow()->getId();
+                $parameters["date"] = $ticket->getDate();
                 $parameters["quantity"] = $ticket->getQuantity();
                 $parameters["price"] = $ticket->getPrice();
                 $parameters["card_type"] = $ticket->getCardType();
@@ -70,6 +71,7 @@
                     $ticket->setId($row["id_ticket"]);
                     $ticket->setUser($row["id_user"]);
                     $ticket->setShow($row["id_show"]);
+                    $ticket->setDate($row["date"]);
                     $ticket->setQuantity($row["quantity"]);
                     $ticket->setPrice($row["price"]);
                     $ticket->setCardType($row["card_type"]);

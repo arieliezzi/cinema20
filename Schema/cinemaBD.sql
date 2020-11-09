@@ -77,6 +77,7 @@ CREATE TABLE IF NOT EXISTS tickets(
  id_ticket INT NOT NULL auto_increment,
  id_user INT NOT NULL,
  id_show INT NOT NULL,
+ date DATE NOT NULL,
  quantity INT NOT NULL,
  price INT NOT NULL,
  card_type VARCHAR(50) NOT NULL,

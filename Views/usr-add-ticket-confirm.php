@@ -51,13 +51,15 @@ include('nav-guest.php');
           <div class="card-body text-center">
             <h1 class="mb-4">Purchase Tickets<br></h1>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><strong>Ticketes:</strong> <?php echo $quantity; ?> </li>
+              <li class="list-group-item"><strong>Date:</strong> <?php echo $date; ?> </li>
+              <li class="list-group-item"><strong>Tickets:</strong> <?php echo $quantity; ?> </li>
               <li class="list-group-item"><strong>Price: </strong> <?php echo "$" . $show->getRoom()->getPrice() ?> </li>
               <li class="list-group-item"><strong>Grand Total:</strong> <?php echo "$" . ($quantity * $show->getRoom()->getPrice()) ?> </li>
             </ul>
             <form action="<?php echo FRONT_ROOT ?>Ticket/showDetailsView" method="post">
               <div class="form-group"> <input type="hidden" class="form-control" placeholder="IDUser" name="idUser" id="idUser"> </div>
               <div class="form-group"> <input type="hidden" class="form-control" placeholder="IDShow" name="idShow" id="idShow" value="<?php echo $show->getId(); ?>"> </div>
+              <div class="form-group"> <input type="hidden" class="form-control" placeholder="Date" name="date" id="date" value="<?php echo $date; ?>"> </div>
               <div class="form-group"> <input type="hidden" class="form-control" placeholder="Quantity" name="quantity" id="quantity" value="<?php echo $show->getId(); ?>"> </div>
               <div class="form-group">
                 <select class="form-control" id="cardType" name="cardType"> 
