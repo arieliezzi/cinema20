@@ -25,7 +25,7 @@
 
 		public function showUserListView($message = "") {
 			$this->showDAO = new ShowDAODB();		
-			$showList = $this->ConstructShow($this->showDAO->getAll());
+			$showList = $this->ConstructShow($this->showDAO->GetAllFilterByCurrentDay());
 			
 			require_once(VIEWS_PATH."usr-list-show.php");
 		}	

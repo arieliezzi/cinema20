@@ -69,6 +69,43 @@
             return $showList;
         }
 
+        public function GetAllFilterByCurrentDay()
+        {
+            try{
+            $showList = array();
+
+            $query = "SELECT *FROM shows INNER JOIN movies ON shows.id_movie=movies.id_movie ORDER BY movies.title ASC";
+
+            $this->connection = Connection::GetInstance();
+
+            $result = $this->connection->Execute($query, array(), QueryType::Query);
+
+                foreach($result as $row)
+                    {
+                        if ((date("Y-m-d") >= $row["startDate"]) && (date("Y-m-d") <= $row["endDate"]))
+                        {
+                            $show = new Show();
+                            $show->setId($row["id_show"]);
+                            $show->setStartDate($row["startDate"]);
+                            $show->setEndDate($row["endDate"]);
+                            $show->setTime($row["time"]);
+                            $show->setDuration($row["duration"]);
+                            $show->setCinema($row["id_cinema"]);
+                            $show->setRoom($row["id_room"]);
+                            $show->setMovie($row["id_movie"]);
+                            $show->setIsActive($row["isActive"]);
+    
+                            array_push($showList, $show);
+                        }
+                    }
+
+           }catch(Exception $exception)
+            {
+            echo "No se pudo agregar la funcion";
+            }
+
+            return $showList;
+        }
 
         public function Remove($id)
         {            
