@@ -60,7 +60,7 @@ include('nav-guest.php');
               <div class="form-group"> <input type="hidden" class="form-control" placeholder="IDUser" name="idUser" id="idUser"> </div>
               <div class="form-group"> <input type="hidden" class="form-control" placeholder="IDShow" name="idShow" id="idShow" value="<?php echo $show->getId(); ?>"> </div>
               <div class="form-group"> <input type="hidden" class="form-control" placeholder="Date" name="date" id="date" value="<?php echo $date; ?>"> </div>
-              <div class="form-group"> <input type="hidden" class="form-control" placeholder="Quantity" name="quantity" id="quantity" value="<?php echo $show->getId(); ?>"> </div>
+              <div class="form-group"> <input type="hidden" class="form-control" placeholder="Quantity" name="quantity" id="quantity" value="<?php echo $quantity; ?>"> </div>
               <div class="form-group">
                 <select class="form-control" id="cardType" name="cardType"> 
                   <option value="VISA">VISA</option>
