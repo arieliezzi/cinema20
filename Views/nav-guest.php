@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse" id="navbar12"> 
           <a class="navbar-brand d-none d-md-block" href="<?php echo FRONT_ROOT ?>Home/index">
             <i class="fa d-inline fa-lg fa-circle"></i>
-            <b>MoviePass</b>
+            <b><?php echo $_SESSION["userName"]?></b>
           </a>
           <ul class="navbar-nav mx-auto">
           </ul>
@@ -71,7 +71,7 @@
         <div class="collapse navbar-collapse" id="navbar12"> 
           <a class="navbar-brand d-none d-md-block" href="<?php echo FRONT_ROOT ?>Show/showUserListView">
             <i class="fa d-inline fa-lg fa-circle"></i>
-            <b>MoviePass</b>
+            <b><?php echo $_SESSION["userName"]?></b>
           </a>
           <ul class="navbar-nav mx-auto">
           </ul>

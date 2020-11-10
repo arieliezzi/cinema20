@@ -18,8 +18,13 @@
         
         public function logout()
         {
+
             if(isset($_SESSION["loggedUser"]))
-            session_destroy();
+            {
+                unset($_SESSION);
+                session_destroy();
+            }
+       
             $this->Index();
         }
 

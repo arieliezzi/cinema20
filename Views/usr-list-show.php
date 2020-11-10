@@ -13,7 +13,7 @@
                 <h4 class="alert-heading"><?php echo $message; ?></h4>
               </div>
         <?php } ?>
-        <h1 class="display-2">Movies in theaters now<br></h1>
+        <h1 class="display-2">Now playing<br></h1>
         <h5 class="">Sort by</h5>
         <div class="btn-group">
           <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Date</button>
