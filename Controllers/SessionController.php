@@ -56,7 +56,6 @@
             
             if(!(empty($loggedUser))) 
             {
-                session_start();
                 $_SESSION["loggedUser"]=$loggedUser->getId();
                 $_SESSION["userName"]=$loggedUser->getName();
                 if($_SESSION["loggedUser"]==1) //El usuario de ID=1 es el ADM
