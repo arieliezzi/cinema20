@@ -1,6 +1,6 @@
 <?php
-include_once('header.php');
-include_once('nav-guest.php');
+include('header.php');
+include('nav-guest.php');
 ?>
 <div class="py-5 text-center filter-fade-in">
   <div class="container">

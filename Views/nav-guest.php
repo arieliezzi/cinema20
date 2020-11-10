@@ -27,35 +27,9 @@
 <?php
   } else 
     { 
-      if ($_SESSION["userId"] == 1) 
+      if ($_SESSION["loggedUser"] == 1) 
       {
 ?>
-
-    <!-- Inicio del nav del usuario -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-      <div class="container"> 
-        <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar12">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar12"> 
-          <a class="navbar-brand d-none d-md-block" href="<?php echo FRONT_ROOT ?>Show/showUserListView">
-            <i class="fa d-inline fa-lg fa-circle"></i>
-            <b>MoviePass</b>
-          </a>
-          <ul class="navbar-nav mx-auto">
-          </ul>
-          <ul class="navbar-nav">
-            <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Show/showUserListView">Shows</a> </li> 
-            <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Session/logout">Log out</a> </li> 
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- Fin del nav del usuario -->
-
-    <?php
-        } else { 
-    ?>
 
     <!-- Inicio del nav del administrador -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -66,7 +40,7 @@
         <div class="collapse navbar-collapse" id="navbar12"> 
           <a class="navbar-brand d-none d-md-block" href="<?php echo FRONT_ROOT ?>Home/index">
             <i class="fa d-inline fa-lg fa-circle"></i>
-            <b>MoviePass</b>
+            <b><?php echo $_SESSION["userName"]?></b>
           </a>
           <ul class="navbar-nav mx-auto">
           </ul>
@@ -83,6 +57,32 @@
       </div>
     </nav>
     <!-- Fin del nav del administrador -->
+
+    <?php
+        } else { 
+    ?>
+
+    <!-- Inicio del nav del usuario -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+      <div class="container"> 
+        <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar12">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar12"> 
+          <a class="navbar-brand d-none d-md-block" href="<?php echo FRONT_ROOT ?>Show/showUserListView">
+            <i class="fa d-inline fa-lg fa-circle"></i>
+            <b><?php echo $_SESSION["userName"]?></b>
+          </a>
+          <ul class="navbar-nav mx-auto">
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Show/showUserListView">Shows</a> </li> 
+            <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Session/logout">Log out</a> </li> 
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Fin del nav del usuario -->
 
 <?php
              }

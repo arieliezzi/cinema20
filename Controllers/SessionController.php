@@ -18,8 +18,13 @@
         
         public function logout()
         {
+
             if(isset($_SESSION["loggedUser"]))
-            session_destroy();
+            {
+                unset($_SESSION);
+                session_destroy();
+            }
+       
             $this->Index();
         }
 
@@ -56,7 +61,6 @@
             
             if(!(empty($loggedUser))) 
             {
-                session_start();
                 $_SESSION["loggedUser"]=$loggedUser->getId();
                 $_SESSION["userName"]=$loggedUser->getName();
                 if($_SESSION["loggedUser"]==1) //El usuario de ID=1 es el ADM
