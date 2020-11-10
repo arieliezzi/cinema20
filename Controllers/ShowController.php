@@ -37,63 +37,80 @@
 			require_once(VIEWS_PATH."adm-add-show-cinema.php");
 		}	
 
-		public function showAddViewRoomSelect($idCinema) {
+		public function showAddViewRoomSelect($idCinema,$message="") {
 			$this->roomDAO = new RoomDAODB();
 			$roomList = $this->roomDAO->getAll($idCinema);
 			require_once(VIEWS_PATH."adm-add-show-room.php");
 		}	
 
-		public function showAddViewMovieSelect($idCinema,$idRoom) {
+		public function showAddViewMovieSelect($idCinema,$idRoom,$message="") {
 			$this->movieDAO = new MovieDAODB();
 			$movieList = $this->movieDAO->getAll();
 			require_once(VIEWS_PATH."adm-add-show-movie.php");
 		}	
 
-		public function showAddViewScheduleSelect($idCinema,$idRoom,$idMovie) {
+		public function showAddViewScheduleSelect($idCinema,$idRoom,$idMovie,$message="") {
 			require_once(VIEWS_PATH."adm-add-show-schedule.php");
 		}	
 
-		public function showModifyView($idShow) {
+		public function showModifyView($idShow,$message="") {
 			$this->showDAO = new ShowDAODB();		
 			$show =$this->showDAO->getById($idShow);
 			$show = $this->ConstructShow($show);
 			require_once(VIEWS_PATH."adm-modify-show.php");
 		}	
 
-		public function Add($idCinema,$idRoom,$idMovie,$startDate,$endDate,$time,$duration) {
-			$this->cinemaDAO = new CinemaDAODB();
-			$this->roomDAO = new RoomDAODB();
-			$this->movieDAO = new MovieDAODB();
-			$this->showDAO = new ShowDAODB();
-
-			$show = new Show();
-			$show->setCinema($this->cinemaDAO->getById($idCinema));
-			$show->setRoom($this->roomDAO->getById($idRoom));
-			$show->setMovie($this->movieDAO->getMovie($idMovie));
-			$show->setStartDate($startDate);
-			$show->setEndDate($endDate);
-			$show->setTime($time);
-			$show->setDuration($duration);
-			$show->setIsActive(true);
-
-			$this->showDAO->add($show);
-			$this->showListView("✔️ ¡Funcion agregada con exito!");
+		public function Add($idCinema,$idRoom,$idMovie,$startDate,$endDate,$time,$duration) 
+		{
+			if (!($startDate>=date("Y-m-d")))
+				$this->showAddViewScheduleSelect($idCinema,$idRoom,$idMovie,"❌ ¡La fecha debe ser superior o igual a la actual: ".date("Y-m-d")."!");
+				else
+					if(!($endDate>=$startDate))
+						$this->showAddViewScheduleSelect($idCinema,$idRoom,$idMovie,"❌ ¡La fecha de inicio debe ser inferior a la final!");
+						else
+							{
+								$this->cinemaDAO = new CinemaDAODB();
+								$this->roomDAO = new RoomDAODB();
+								$this->movieDAO = new MovieDAODB();
+								$this->showDAO = new ShowDAODB();
+					
+								$show = new Show();
+								$show->setCinema($this->cinemaDAO->getById($idCinema));
+								$show->setRoom($this->roomDAO->getById($idRoom));
+								$show->setMovie($this->movieDAO->getMovie($idMovie));
+								$show->setStartDate($startDate);
+								$show->setEndDate($endDate);
+								$show->setTime($time);
+								$show->setDuration($duration);
+								$show->setIsActive(true);
+					
+								$this->showDAO->add($show);
+								$this->showListView("✔️ ¡Funcion agregada con exito!");
+							}
 		}	
 
 		public function Update($idShow,$startDate,$endDate,$time,$duration) 
 		{
-			$this->showDAO = new ShowDAODB();
-				$updatedShow = new Show();
-				$updatedShow->setId($idShow);
-				$updatedShow->setStartDate($startDate);
-				$updatedShow->setEndDate($endDate);
-				$updatedShow->setTime($time);
-				$updatedShow->setDuration($duration);
+			if (!($startDate>=date("Y-m-d")))
+			$this->showModifyView($idShow,"❌ ¡La fecha debe ser superior o igual a la actual: ".date("Y-m-d")."!");
+			else
+				if(!($endDate>=$startDate))
+					$this->showModifyView($idShow,"❌ ¡La fecha de inicio debe ser inferior a la final!");
+					else
+						{
+							$this->showDAO = new ShowDAODB();
+							$updatedShow = new Show();
+							$updatedShow->setId($idShow);
+							$updatedShow->setStartDate($startDate);
+							$updatedShow->setEndDate($endDate);
+							$updatedShow->setTime($time);
+							$updatedShow->setDuration($duration);
 
-				$this->showDAO->update($updatedShow);
-			
-			$this->showListView("✔️ ¡Funcion Modificada con exito!");
-		}	
+							$this->showDAO->update($updatedShow);
+							
+							$this->showListView("✔️ ¡Funcion Modificada con exito!");
+						}	
+		}
 
 		public function Remove($idShow) {
 

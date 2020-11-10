@@ -1,33 +1,38 @@
-<?php 
- include("validate-session.php");
- include('header.php');
- include('nav-guest.php');
+<?php
+include("validate-session.php");
+include('header.php');
+include('nav-guest.php');
 ?>
 
 <div class="py-5 text-center" style="background-image: url('default/images/background.jpg');background-size:cover;">
   <div class="container">
     <div class="row">
       <div class="mx-auto col-md-6 col-10 bg-white p-5">
-      <h1 class="mb-4">Add Show<br></h1>
+        <h1 class="mb-4">Add Show<br></h1>
         <div class="card">
           <div class="card-body">
             <h4 class="mb-4">Select Movie<br></h1>
-            <form action="<?php echo FRONT_ROOT ?>Show/showAddViewScheduleSelect" method="post">
-            <div class="form-group"> <input type="hidden" class="form-control" name="idCinema" id="idCinema" value=<?php echo $idCinema ?>> </div> 
-            <div class="form-group"> <input type="hidden" class="form-control" name="idRoom" id="idRoom" value=<?php echo $idRoom ?>> </div> 
+              <?php if ($message != NULL) { ?>
+                <div class="alert alert-info" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+                  <h4 class="alert-heading"><?php echo $message; ?></h4>
+                </div>
+              <?php } ?>
+              <form action="<?php echo FRONT_ROOT ?>Show/showAddViewScheduleSelect" method="post">
+                <div class="form-group"> <input type="hidden" class="form-control" name="idCinema" id="idCinema" value=<?php echo $idCinema ?>> </div>
+                <div class="form-group"> <input type="hidden" class="form-control" name="idRoom" id="idRoom" value=<?php echo $idRoom ?>> </div>
 
+                <div class="form-group">
+                  <select class="form-control" id="idMovie" name="rooms">
+                    <?php foreach ($movieList as $movie) { ?>
+                      <option value="<?php echo $movie->getId(); ?>"><?php echo $movie->getTitle(); ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
 
-              <div class="form-group" >
-                <select class="form-control" id="idMovie" name="rooms"> 
-                <?php foreach ($movieList as $movie) { ?>
-                 <option value="<?php echo $movie->getId(); ?>"><?php echo $movie->getTitle(); ?></option>
-                <?php } ?>
-                </select>
-              </div>
-
-              <button type="submit" class="btn btn-success">Next ><br></button>
-            </form>
-            <br>
+                <button type="submit" class="btn btn-success">Next ><br></button>
+              </form>
+              <br>
           </div>
         </div>
       </div>

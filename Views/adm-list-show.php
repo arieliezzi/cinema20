@@ -78,7 +78,7 @@ include('nav-guest.php');
               <thead class="thead-dark">
                 <tr>
                   <form action="<?php echo FRONT_ROOT . "Show/showAddView" ?>" method="">
-                    <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-success" value="<?php echo "test" ?>">Add new Show</button>
+                    <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-success">Add new Show</button>
                   </form>
                 </tr>
               </thead>
