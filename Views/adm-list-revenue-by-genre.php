@@ -12,6 +12,12 @@
       <div class="row">
         <div class="col-md-12">
           <h1 class="display-2">Revenue by genre</h1>
+          <?php if ($message != NULL) { ?>
+          <div class="alert alert-info" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+            <h4 class="alert-heading"><?php echo $message; ?></h4>
+          </div>
+          <?php } ?>
         </div>
       </div>
     </div>

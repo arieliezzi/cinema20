@@ -12,6 +12,12 @@
       <div class="row">
         <div class="col-md-12">
           <h1 class="display-2">Revenue by movie</h1>
+          <?php if ($message != NULL) { ?>
+          <div class="alert alert-info" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+            <h4 class="alert-heading"><?php echo $message; ?></h4>
+          </div>
+          <?php } ?>
         </div>
       </div>
     </div>
@@ -36,8 +42,8 @@
                   <td style="vertical-align: middle"> <center> <img src="<?php echo $movie->getImage();?>" alt="<?php echo $movie->getTitle();?> Poster" height="300" width="200"> </center> </td>
                   <td style="vertical-align: middle"><?php echo $movie->getTitle();?></td>
                   <td style="vertical-align: middle"><?php echo $movie->getDescription();?></td>
-                  <td style="vertical-align: middle"><?php echo ""?></td>
-                  <td style="vertical-align: middle"><?php echo ""?></td>
+                  <td style="vertical-align: middle"><strong><?php echo $result["quantity"]?></strong></td>
+                  <td style="vertical-align: middle"><strong><?php echo "$".$result["price"]?></strong></td>
                 </tr>
               </tbody>
             </table>

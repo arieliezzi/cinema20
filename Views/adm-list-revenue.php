@@ -12,10 +12,15 @@ include('nav-guest.php');
       <div class="row">
         <div class="col-md-12">
           <h1 class="display-2">Revenue Querys</h1>
-          
+          <?php if ($message != NULL) { ?>
+          <div class="alert alert-info" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+            <h4 class="alert-heading"><?php echo $message; ?></h4>
+          </div>
+          <?php } ?>
           <h1 class="display-5">- Revenue by cinema</h1>
           <div class="col-md">
-            <form action="<?php echo FRONT_ROOT ?>Ticket/revenueByCinema" method="post">
+            <form action="<?php echo FRONT_ROOT ?>Ticket/showRevenueByCinema" method="post">
               <div class="form-group col-md-6">
                 <select class="form-control" id="idCinema" name="cinemas">
                   <?php foreach ($cinemaList as $cinema) { ?>
@@ -31,7 +36,7 @@ include('nav-guest.php');
 
           <h1 class="display-5">- Revenue by movie</h1>
           <div class="col-md">
-            <form action="<?php echo FRONT_ROOT ?>Ticket/revenueByMovie" method="post">
+            <form action="<?php echo FRONT_ROOT ?>Ticket/showRevenueByMovie" method="post">
               <div class="form-group col-md-6">
                 <select class="form-control" id="idMovie" name="cinemas">
                   <?php foreach ($movieList as $movie) { ?>
@@ -47,7 +52,7 @@ include('nav-guest.php');
 
           <h1 class="display-5">- Revenue by genre</h1>
           <div class="col-md">
-            <form action="<?php echo FRONT_ROOT ?>Ticket/revenueByGenre" method="post">
+            <form action="<?php echo FRONT_ROOT ?>Ticket/showRevenueByGenre" method="post">
               <div class="form-group col-md-6">
                 <select class="form-control" id="idGenre" name="cinemas">
                   <?php foreach ($genreList as $genre) { ?>

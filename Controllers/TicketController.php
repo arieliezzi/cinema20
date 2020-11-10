@@ -49,7 +49,6 @@
 			$this->ticketDAO = new TicketDAODB();
 			$this->showDAO = new ShowDAODB();
 			$show = $this->constructShow($this->showDAO->getById($idShow));
-
 			$user = new User();
 			$user->setId(1);
 
@@ -69,7 +68,7 @@
 			require_once(VIEWS_PATH."usr-add-ticket-details.php");
 		}	
 
-		public function showRevenueView()
+		public function showRevenueView($message="")
 		{
 			$this->cinemaDAO = new CinemaDAODB();
 			$this->movieDAO = new MovieDAODB();
@@ -81,7 +80,7 @@
 			require_once(VIEWS_PATH."adm-list-revenue.php");
 		}
 
-		public function revenueByCinema($idCinema)
+		public function showRevenueByCinema($idCinema,$message="")
 		{
 			$this->cinemaDAO = new CinemaDAODB();
 			$this->ticketDAO = new TicketDAODB();
@@ -90,16 +89,16 @@
 			require_once(VIEWS_PATH."adm-list-revenue-by-cinema.php");
 		}
 
-		public function revenueByMovie($idMovie)
+		public function showRevenueByMovie($idMovie,$message="")
 		{
 			$this->movieDAO = new MovieDAODB();
 			$this->ticketDAO = new TicketDAODB();
 			$movie = $this->movieDAO->getMovie($idMovie);
-			$result=$this->ticketDAO->getRevenueByMovie($idMovie);
+			$result = $this->ticketDAO->getRevenueByMovie($idMovie);
 			require_once(VIEWS_PATH."adm-list-revenue-by-movie.php");
 		}
 
-		public function revenueByGenre($idGenre)
+		public function showRevenueByGenre($idGenre,$message="")
 		{
 			$this->movieDAO = new MovieDAODB();
 			$this->ticketDAO = new TicketDAODB();

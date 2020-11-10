@@ -88,7 +88,6 @@
                 }
         }
 
-
         public function getRevenueByCinema($idCinema) 
         {
             try {
@@ -102,9 +101,11 @@
                 $rta = array();
 
                 foreach($result as $row)
+                {
                     $aux["quantity"] = $row["quantity"];
                     $aux["price"] = $row["price"];
                     array_push($rta, $aux);
+                }
 
                 return array_pop($rta);
                 } catch(Exception $exception) 
@@ -112,7 +113,6 @@
                         echo "No se pudo traer revenue del cine";
                     }
         }
-
 
         public function getRevenueByMovie($idMovie) 
         {
@@ -127,9 +127,11 @@
                 $rta = array();
 
                 foreach($result as $row)
+                {
                     $aux["quantity"] = $row["quantity"];
                     $aux["price"] = $row["price"];
                     array_push($rta, $aux);
+                }
 
                 return array_pop($rta);
                 } catch(Exception $exception) 

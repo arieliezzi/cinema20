@@ -12,6 +12,12 @@
       <div class="row">
         <div class="col-md-12">
           <h1 class="display-2">Revenue by cinema</h1>
+          <?php if ($message != NULL) { ?>
+          <div class="alert alert-info" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+            <h4 class="alert-heading"><?php echo $message; ?></h4>
+          </div>
+          <?php } ?>
         </div>
       </div>
     </div>
@@ -24,6 +30,7 @@
             <table class="table table-bordered ">
               <thead class="thead-dark">
                 <tr>
+                  <th>Image</th>
                   <th>Name</th>
                   <th>Capacity</th>
                   <th>Address</th>
@@ -33,12 +40,14 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="vertical-align: middle"><?php echo $cinema->getName();?></td>
-                  <td style="vertical-align: middle"><?php echo $cinema->getCapacity();?></td>
-                  <td style="vertical-align: middle"><?php echo $cinema->getAddress();?></td>
-                  <td style="vertical-align: middle"><?php echo ""?></td>
-                  <td style="vertical-align: middle"><?php echo ""?></td>
-                  <td style="vertical-align: middle"><?php echo ""?></td>
+                  <td style="text-align: center; vertical-align: middle">
+                      <center> <img src="<?php echo $cinema->getImageUrl(); ?>" alt="Image" height="100" width="100"> </center>
+                  </td>
+                  <td style="vertical-align: middle; text-align: center;"><?php echo $cinema->getName();?></td>
+                  <td style="vertical-align: middle; text-align: center;"><?php echo $cinema->getCapacity();?></td>
+                  <td style="vertical-align: middle; text-align: center;"><?php echo $cinema->getAddress();?></td>
+                  <td style="vertical-align: middle; text-align: center;"><strong><?php echo $result["quantity"]?></td></strong>
+                  <td style="vertical-align: middle; text-align: center;"><strong><?php echo "$".$result["price"]?></td></strong>
                 </tr>
               </tbody>
             </table>
