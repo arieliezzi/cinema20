@@ -30,6 +30,7 @@
 			$this->showDAO = new ShowDAODB();
 			$show = $this->constructShow($this->showDAO->getById($idShow));
 			$ticketsRemain=20;	
+			$dateList=$this->datesByShow($show);
 
 			require_once(VIEWS_PATH."usr-add-ticket.php");
 		}	
@@ -121,6 +122,21 @@
 
 			$this->ticketDAO->add($ticket);
 		}
+
+		public function datesByShow($show) 
+		{
+			$dateList=array();
+
+			for ($date=$show->getStartDate();$date<=$show->getEndDate();$date=date('Y-m-d', strtotime($date . ' +1 day')))
+			{
+				if ($date>=date("Y-m-d"))
+				{
+					array_push($dateList, $date);
+				}
+			}
+
+			return $dateList;
+		}	
 
 		public function remove($idTicket) 
 		{
