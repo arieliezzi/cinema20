@@ -17,7 +17,7 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item"> <a class="nav-link text-primary" href="<?php echo FRONT_ROOT ?>Session/showRegisterView">Sign in</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Session/Index">Log in</a> </li>
+            <li class="nav-item"> <a class="btn navbar-btn ml-2 btn-primary" href="<?php echo FRONT_ROOT ?>Session/Index"> Log in</a>  </li> 
           </ul>
         </div>
       </div>
@@ -51,7 +51,7 @@
             <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Movie/showListView">Internal Movies</a> </li>
             <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Show/showListView">Shows</a> </li> 
             <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Ticket/showRevenueView">Revenues</a> </li> 
-            <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Session/logout">Log out</a> </li> 
+            <li class="nav-item"> <a class="btn navbar-btn ml-2 btn-primary" href="<?php echo FRONT_ROOT ?>Session/logout"> Log out</a>  </li> 
           </ul>
         </div>
       </div>
@@ -77,7 +77,7 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Show/showUserListView">Shows</a> </li> 
-            <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Session/logout">Log out</a> </li> 
+            <li class="nav-item"> <a class="btn navbar-btn ml-2 btn-secondary" href="<?php echo FRONT_ROOT ?>Session/logout"> Log out</a>  </li> 
           </ul>
         </div>
       </div>
