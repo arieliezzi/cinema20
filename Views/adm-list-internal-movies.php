@@ -30,7 +30,7 @@ include('nav-guest.php');
           <?php } ?>
 
           <div class="table-responsive">
-            <table class="table table-bordered ">
+            <table class="table table-bordered table-hover">
               <thead class="thead-dark">
                 <tr>
                   <th>#</th>

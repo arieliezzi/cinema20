@@ -38,7 +38,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar12"> 
-          <a class="navbar-brand d-none d-md-block" href="<?php echo FRONT_ROOT ?>Home/index">
+          <a class="navbar-brand d-none d-md-block" href="<?php echo FRONT_ROOT ?>Show/showListView">
             <i class="fa d-inline fa-lg fa-circle"></i>
             <b><?php echo $_SESSION["userName"]?></b>
           </a>
