@@ -79,18 +79,18 @@
 								
 								if(empty($showList = $this->showDAO->validateUniqueShow($startDate,$idMovie)))
 								{
-								$show = new Show();
-								$show->setCinema($this->cinemaDAO->getById($idCinema));
-								$show->setRoom($this->roomDAO->getById($idRoom));
-								$show->setMovie($this->movieDAO->getMovie($idMovie));
-								$show->setStartDate($startDate);
-								$show->setEndDate($endDate);
-								$show->setTime($time);
-								$show->setDuration($duration);
-								$show->setIsActive(true);
-					
-								$this->showDAO->add($show);
-								$this->showListView("✔️ ¡Funcion agregada con exito!");
+									$show = new Show();
+									$show->setCinema($this->cinemaDAO->getById($idCinema));
+									$show->setRoom($this->roomDAO->getById($idRoom));
+									$show->setMovie($this->movieDAO->getMovie($idMovie));
+									$show->setStartDate($startDate);
+									$show->setEndDate($endDate);
+									$show->setTime($time);
+									$show->setDuration($duration);
+									$show->setIsActive(true);
+						
+									$this->showDAO->add($show);
+									$this->showListView("✔️ ¡Funcion agregada con exito!");
 								}
 								else
 								{

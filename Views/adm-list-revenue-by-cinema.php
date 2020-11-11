@@ -55,7 +55,7 @@
               <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                   <tr>
-                    <form action="<?php echo FRONT_ROOT . "Ticket/showRevenueView" ?>" method="">
+                    <form action="<?php echo FRONT_ROOT . "Revenue/showRevenueView" ?>" method="">
                       <td style="text-align: center; vertical-align: middle"><button type="submit" name="id" class="btn btn-primary"> < Back to revenue querys</button>
                     </form>
                   </tr>
