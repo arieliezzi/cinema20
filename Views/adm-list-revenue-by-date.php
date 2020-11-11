@@ -38,10 +38,10 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="vertical-align: middle"><?php $startDate?></td>
-                  <td style="vertical-align: middle"><?php $endDate?></td>
-                  <td style="vertical-align: middle"><?php $result["quantity"]?></td>
-                  <td style="vertical-align: middle"><?php $result["price"]?></td>
+                  <td style="vertical-align: middle"><?php echo $startDate?></td>
+                  <td style="vertical-align: middle"><?php echo $endDate?></td>
+                  <td style="vertical-align: middle"><?php echo $result["quantity"]?></td>
+                  <td style="vertical-align: middle"><?php echo $result["price"]?></td>
                 </tr>
               </tbody>
             </table>

@@ -169,7 +169,7 @@
         public function getRevenueByDate($startDate, $endDate) 
         {
             try {
-                $query = "SELECT SUM(quantity) as quantity, SUM(price) as price FROM tickets INNER JOIN shows ON tickets.id_show= shows.id_show WHERE tickets.date between :startDate and :endDate; ";
+                $query = "SELECT SUM(quantity) as quantity, SUM(price) as price FROM tickets INNER JOIN shows ON tickets.id_show= shows.id_show WHERE tickets.date between :startDate and :endDate";
                 $parameters["startDate"] = $startDate;
                 $parameters["endDate"] = $endDate;         
                 

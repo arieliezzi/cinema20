@@ -128,14 +128,14 @@
 
         public function GetAllOrderByNewest()
         {
-            $query = "SELECT *FROM shows WHERE CURDATE() between shows.startDate AND shows.endDate ORDER BY startDate ASC";
+            $query = "SELECT *FROM shows WHERE CURDATE() between shows.startDate AND shows.endDate AND shows.isActive = 1 ORDER BY startDate ASC";
             $showList=$this->getShows($query);
             return $showList;
         }
 
         public function GetAllOrderByOldest()
         {
-            $query = "SELECT *FROM shows WHERE CURDATE() between shows.startDate AND shows.endDate ORDER BY startDate DESC";
+            $query = "SELECT *FROM shows WHERE CURDATE() between shows.startDate AND shows.endDate AND shows.isActive = 1 ORDER BY startDate DESC";
             $showList=$this->getShows($query);
             return $showList;
         }

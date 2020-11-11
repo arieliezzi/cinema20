@@ -80,7 +80,7 @@
             try {
                 $genreList = array();
 
-                $query = "SELECT genres.id_genre,name FROM genres INNER JOIN movieGenre ON genres.id_genre=movieGenre.id_genre INNER JOIN movies ON movies.id_movie=movieGenre.id_movie INNER JOIN shows ON shows.id_movie = movies.id_movie WHERE CURDATE() between shows.startDate AND shows.endDate ORDER BY genres.name ASC";
+                $query = "SELECT genres.id_genre,name FROM genres INNER JOIN movieGenre ON genres.id_genre=movieGenre.id_genre INNER JOIN movies ON movies.id_movie=movieGenre.id_movie INNER JOIN shows ON shows.id_movie = movies.id_movie WHERE shows.isActive = 1 AND CURDATE() between shows.startDate AND shows.endDate ORDER BY genres.name ASC";
 
                 $this->connection = Connection::GetInstance();
 
