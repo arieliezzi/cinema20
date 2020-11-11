@@ -6,6 +6,7 @@ use DAO\IMovieDAO as IMovieDAO;
 use DAO\Connection as Connection;
 use DAO\QueryType as QueryType;
 use Models\Movie as Movie;
+use Models\Genre as Genre;
 use DAO\MovieGenreDAODB as MovieGenreDAODB;
 
 class MovieDAODB implements IMovieDAO
@@ -115,6 +116,31 @@ class MovieDAODB implements IMovieDAO
         }
     }
 
+    public function getGenresByMovieId($movieId)
+    {
+        try {
+            $genreList = array();
+
+            $query = "SELECT * FROM genres INNER JOIN movieGenre ON genres.id_genre = movieGenre.id_genre WHERE movieGenre.id_movie= :id_movie";
+            $parameters["id_movie"] =  $movieId;
+
+            $this->connection = Connection::GetInstance();
+
+            $result = $this->connection->Execute($query, $parameters, QueryType::Query);
+
+            foreach($result as $row) {
+                $genre = new Genre();
+                $genre->setId($row["id_genre"]);
+                $genre->setName($row["name"]);
+                array_push($genreList, $genre);
+            }
+
+            return $genreList;
+        } catch(Exception $exception) {
+            echo "No se pudo obtener los generos";
+        }
+    }
+
 
     private function getMovies($query, $parameters = array())
     {
@@ -131,7 +157,8 @@ class MovieDAODB implements IMovieDAO
                 $movie->setImage($row["image"]);
                 $movie->setDescription($row["description"]);
 
-                $genres = $this->movieGenreDao->getGenres($row["id_movie"]);
+               // $genres = $this->movieGenreDao->getGenres($row["id_movie"]);
+                $genres = $this->getGenresByMovieId($row["id_movie"]);
                 $movie->setGenres($genres);
                 $movie->setPoster($row["poster"]);
                 $movie->setIs_active($row["is_active"]);

@@ -40,8 +40,8 @@ include('nav-guest.php');
                   <th>Cinema</th>
                   <th>Room</th>
                   <th>Movie</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
+                  <th>Start</th>
+                  <th>End</th>
                   <th>Hour</th>
                   <th>Duration</th>
                   <th style="text-align: center">-</th>

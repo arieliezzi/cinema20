@@ -45,6 +45,7 @@
           <div class="card-body">
             <h5 class="card-title"><strong><?php echo substr($show->getMovie()->getTitle(),0,30) ?></strong></h5>
             <p class="card-text"><?php echo substr($show->getMovie()->getDescription(),0,200)."...";?></p>
+            <p class="card-text"><?php echo $show->getMovie()->genresToString(); ?></p>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item"><strong>Cinema:</strong> <?php echo $show->getCinema()->getName(); ?> </li>
@@ -52,9 +53,6 @@
             <li class="list-group-item"><strong>Hour:</strong> <?php echo $show->getStartTime()?> </li>
             <li class="list-group-item"><strong>Duration:</strong> <?php echo $show->getDuration()." min"?> </li>
           </ul>
-      <!--    <ul class="list-group list-group-flush">
-            <li class="list-group-item">Genre: <?php// echo $show->getMovie()->genresToString(); ?> </li>
-          </ul> -->
           <div class="card-body mx-auto">
             <form action="<?php echo FRONT_ROOT . "ticket/showAddView" ?>" method="">
               <td style="text-align: center; vertical-align: middle"><button type="submit" name="idShow" class="btn btn-dark" value="<?php echo $show->getId() ?>"> Buy Tickets! </button>

@@ -19,7 +19,7 @@
                 
                 <div class="form-group"> Insert a start date <input required type="date" class="form-control" placeholder="" name="startDate"  value="<?php echo $show->getStartDate() ?>" id="startDate">  </div>
                 <div class="form-group"> Insert a end date <input required type="date" class="form-control" placeholder="" name="endDate" value="<?php echo $show->getEndDate() ?>" id="endDate"> </div>
-                <div class="form-group"> Insert time (24hs system)<input required type="time" class="form-control" placeholder="" name="time"  value="<?php echo $show->getTime() ?>" id="time"> </div>
+                <div class="form-group"> Insert time (24hs system)<input required type="time" class="form-control" placeholder="" name="time"  value="<?php echo $show->getStartDate() ?>" id="time"> </div>
                 <div class="form-group"> Insert movie duration (minutes) <input required type="number" class="form-control" placeholder="" name="duration"  value="<?php echo $show->getDuration() ?>" id="duration"> </div>
             
                 <button type="submit" class="btn btn-success">Modify show<br></button>
