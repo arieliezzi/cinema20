@@ -1,9 +1,6 @@
 <?php
 	namespace Controllers;
 
-	use Models\Cinema as Cinema;
-	use Models\Room as Room;
-	use Models\Movie as Movie;
 	use Models\Show as Show;
 	use DAO\CinemaDAODB as CinemaDAODB;
 	use DAO\RoomDAODB as RoomDAODB;
@@ -70,12 +67,14 @@
 		public function showAddViewRoomSelect($idCinema,$message="") {
 			$this->roomDAO = new RoomDAODB();
 			$roomList = $this->roomDAO->getAll($idCinema);
+
 			require_once(VIEWS_PATH."adm-add-show-room.php");
 		}	
 
 		public function showAddViewMovieSelect($idCinema,$idRoom,$message="") {
 			$this->movieDAO = new MovieDAODB();
 			$movieList = $this->movieDAO->getAll();
+
 			require_once(VIEWS_PATH."adm-add-show-movie.php");
 		}	
 
@@ -87,13 +86,11 @@
 			$this->showDAO = new ShowDAODB();		
 			$show =$this->showDAO->getById($idShow);
 			$show = $this->ConstructShow($show);
+
 			require_once(VIEWS_PATH."adm-modify-show.php");
 		}	
 
-		public function Add($idCinema,$idRoom,$idMovie,$startDate,$endDate,$time,$duration) 
-		{
-		
-
+		public function Add($idCinema,$idRoom,$idMovie,$startDate,$endDate,$time,$duration) {
 			if (!($startDate>=date("Y-m-d")))
 				$this->showAddViewScheduleSelect($idCinema,$idRoom,$idMovie,"❌ ¡La fecha debe ser superior o igual a la actual: ".date("Y-m-d")."!");
 				else
@@ -164,6 +161,7 @@
 
 			$this->showDAO=new ShowDAODB();
 			$this->showDAO->Remove($idShow);
+
             $this->showListView("✔️ ¡Funcion eliminada con exito!");
 		}
 		
@@ -189,7 +187,6 @@
 	
             return $showList;
 		}
-
 
 	}
 

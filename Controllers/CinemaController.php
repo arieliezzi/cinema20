@@ -6,8 +6,6 @@
 
 	class CinemaController {
 
-		private $cinemaDAO;
-
 		public function index($message = "") {
 			require_once(VIEWS_PATH."adm-add-cinema.php");
 		}
@@ -32,14 +30,12 @@
 		public function showModifyView ($id) {
 			$this->cinemaDAO = new CinemaDAODB();
 			$cinema = $this->cinemaDAO->GetById($id);
-		
 			require_once(VIEWS_PATH."adm-modify-cinema.php");
 		}		
 
 
 		public function add($name, $address,$capacity, $imageUrl) {
 			$this->cinemaDAO = new CinemaDAODB();
-
 			if (empty($imageUrl))
 			{
 				$imageUrl="/cinema2020/Views/default/images/image-not-found.png";
@@ -65,7 +61,6 @@
         {
 			$this->CinemaDAO = new CinemaDAODB();
             $this->CinemaDAO->Remove($id);
-
             $this->showListView("✔️ ¡Cine eliminado con exito!");
         }
 
@@ -77,7 +72,6 @@
 			$updatedCinema->setAddress($address);
 			$updatedCinema->setCapacity($capacity);
 			$updatedCinema->setImageUrl($imageUrl);
-
 
 			$this->cinemaDAO->update($updatedCinema);
 			$this->showListView("✔️ ¡Cine modificado con exito!");

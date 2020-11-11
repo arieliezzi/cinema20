@@ -19,15 +19,11 @@
 			$this->roomDAO = new RoomDAODB();
 			$room = new Room;
 			$room = $this->roomDAO->getById($idRoom);
-
-			//Todo lo anterior es de prueba para que la view funcione, en el caso de hacer bien lo de arriba la view no hay que modificarla
-
 			require_once(VIEWS_PATH."adm-modify-room.php");
 		}	
 
 		public function showCinemaRooms($idCinema,$message = "") {
-			//Aca hay que poner todo lo necesario para crear un array de rooms en base al idCinema que le llega desde la otra view
-            $roomList = array();
+	        $roomList = array();
 			$this->cinemaDAO = new CinemaDAODB();
 			$cinema = $this->cinemaDAO->getById($idCinema);
 
@@ -37,51 +33,45 @@
 			}
 
 			require_once(VIEWS_PATH."adm-list-room.php");
-		}	
+		}
 
-		public function Add($name,$capacity,$price,$idCinema) {
-			//Aca hay que poner todo lo necesario para que se agregue una sala al cine
+		public function Add($name, $capacity, $price, $idCinema) {
 			$this->roomDAO = new RoomDAODB();
 			$this->cinemaDAO = new CinemaDAODB();
 
 			$room = new Room();
 
-			$isActive=1;
+			$isActive = 1;
 			$room->setName($name);
-            $room->setCapacity($capacity);
+			$room->setCapacity($capacity);
 			$room->setPrice($price);
 			$room->setIsActive($isActive);
 
-			if (!(empty($this->roomDAO->exist($room->getName()))))
-            {
-                $this->showCinemaRooms($idCinema,"❌ ¡Ya hay una sala con ese mismo nombre en este cine, vuelva a ingresar!");
-            } else 
-            {
-			$this->roomDAO->add($room,$idCinema);
-			$this->cinemaDAO->updateCapacity($idCinema,$capacity);
+			if (!(empty($this->roomDAO->exist($room->getName())))) {
+				$this->showCinemaRooms($idCinema, "❌ ¡Ya hay una sala con ese mismo nombre en este cine, vuelva a ingresar!");
+			} else {
+				$this->roomDAO->add($room, $idCinema);
+				$this->cinemaDAO->updateCapacity($idCinema, $capacity);
+				$this->showCinemaRooms($idCinema, "✔️ ¡Sala agregada con exito!");
+			}
+		}
 
-			$this->showCinemaRooms($idCinema,"✔️ ¡Sala agregada con exito!");}
-		}	
-
-		public function Update($idCinema,$idRoom,$name,$capacity,$price) 
-		{
-			//Aca hay que poner todo lo necesario para que se modifique una sala del cine
+		public function Update($idCinema, $idRoom, $name, $capacity, $price) {
 			$this->roomDAO = new RoomDAODB();
 			$this->cinemaDAO = new CinemaDAODB();
 
-				$updatedRoom = new Room();
-				$updatedRoom->setId($idRoom);
-				$updatedRoom->setName($name);
-				$updatedRoom->setCapacity($capacity);
-				$updatedRoom->setPrice($price);
-				$this->cinemaDAO->updateCapacity($idCinema,$capacity);
-				$this->roomDAO->update($updatedRoom);
-			
-			$this->showCinemaRooms($idCinema,"✔️ ¡Sala Modificada con exito!");
+			$updatedRoom = new Room();
+			$updatedRoom->setId($idRoom);
+			$updatedRoom->setName($name);
+			$updatedRoom->setCapacity($capacity);
+			$updatedRoom->setPrice($price);
+			$this->cinemaDAO->updateCapacity($idCinema, $capacity);
+			$this->roomDAO->update($updatedRoom);
+
+			$this->showCinemaRooms($idCinema, "✔️ ¡Sala Modificada con exito!");
 		}	
 
 		public function Remove($idCinema,$idRoom) {
-			//Aca hay que poner todo lo necesario para que se elimine la sala
 			$this->RoomDAO = new RoomDAODB();
 			$this->CinemaDAO = new CinemaDAODB();
 

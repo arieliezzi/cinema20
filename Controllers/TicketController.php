@@ -9,8 +9,6 @@
 	use DAO\MovieDAODB as MovieDAODB;
 	use DAO\ShowDAODB as ShowDAODB;
 	use DAO\TicketDAODB as TicketDAODB;
-	use DAO\GenreDAODB as GenreDAODB;
-	use DAO\MovieGenreDAODB as MovieGenreDAODB;
 
 	class TicketController 
 	{

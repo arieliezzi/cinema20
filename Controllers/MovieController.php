@@ -10,7 +10,6 @@
 			require_once(VIEWS_PATH."adm-list-internal-movies.php");
 		}
 
-
 		public function showListView($message = "") {
 			$this->movieDAO = new MovieDAODB();
 			$movieList = $this->movieDAO->getAll();
