@@ -9,6 +9,7 @@
 	use DAO\RoomDAODB as RoomDAODB;
 	use DAO\MovieDAODB as MovieDAODB;
 	use DAO\ShowDAODB as ShowDAODB;
+	use DAO\GenreDAODB as GenreDAODB;
 
 	class ShowController {
 
@@ -25,7 +26,36 @@
 
 		public function showUserListView($message = "") {
 			$this->showDAO = new ShowDAODB();		
+			$this->genreDAO = new GenreDAODB();
+            $genreList = $this->genreDAO->GetAllFilterByShows();
 			$showList = $this->ConstructShow($this->showDAO->GetAllFilterByCurrentDay());
+			
+			require_once(VIEWS_PATH."usr-list-show.php");
+		}	
+
+		public function showUserListViewByNewest($message = "") {
+			$this->showDAO = new ShowDAODB();	
+			$this->genreDAO = new GenreDAODB();
+            $genreList = $this->genreDAO->GetAllFilterByShows();	
+			$showList = $this->ConstructShow($this->showDAO->GetAllOrderByNewest());
+			
+			require_once(VIEWS_PATH."usr-list-show.php");
+		}	
+
+		public function showUserListViewByOldest($message = "") {
+			$this->showDAO = new ShowDAODB();		
+			$this->genreDAO = new GenreDAODB();
+            $genreList = $this->genreDAO->GetAllFilterByShows();
+			$showList = $this->ConstructShow($this->showDAO->GetAllOrderByOldest());
+			
+			require_once(VIEWS_PATH."usr-list-show.php");
+		}	
+
+		public function showUserListByGenre($message = "",$idGenre) {
+			$this->showDAO = new ShowDAODB();		
+			$this->genreDAO = new GenreDAODB();
+            $genreList = $this->genreDAO->GetAllFilterByShows();
+			$showList = $this->ConstructShow($this->showDAO->GetAllByIdGenre($idGenre));
 			
 			require_once(VIEWS_PATH."usr-list-show.php");
 		}	

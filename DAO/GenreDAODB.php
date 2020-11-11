@@ -75,6 +75,30 @@
             }
         }
 
+        public function GetAllFilterByShows()
+        {
+            try {
+                $genreList = array();
+
+                $query = "SELECT genres.id_genre,name FROM genres INNER JOIN movieGenre ON genres.id_genre=movieGenre.id_genre INNER JOIN movies ON movies.id_movie=movieGenre.id_movie INNER JOIN shows ON shows.id_movie = movies.id_movie WHERE CURDATE() between shows.startDate AND shows.endDate ORDER BY genres.name ASC";
+
+                $this->connection = Connection::GetInstance();
+
+                $result = $this->connection->Execute($query, array(), QueryType::Query);
+
+                foreach($result as $row) {
+                    $genre = new Genre();
+                    $genre->setId($row["id_genre"]);
+                    $genre->setName($row["name"]);
+                    array_push($genreList, $genre);
+                }
+
+                return $genreList;
+            } catch(Exception $exception) {
+                echo "No se pudo obtener los generos";
+            }
+        }
+
         public function Remove($id)
         {         
             try {   

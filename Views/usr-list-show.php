@@ -18,15 +18,18 @@
         <div class="btn-group">
           <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Date</button>
           <div class="dropdown-menu"> 
-          <a class="dropdown-item" href="">Newest</a>
-          <a class="dropdown-item" href="">Oldest<br></a>
+          <a class="dropdown-item" href="<?php echo FRONT_ROOT . "show/showUserListViewByNewest" ?>">Newest</a>
+          <a class="dropdown-item" href="<?php echo FRONT_ROOT . "show/showUserListViewByOldest" ?>">Oldest<br></a>
           </div>
         </div>
         <div class="btn-group">
           <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Genre</button>
           <div class="dropdown-menu"> 
-            <a class="dropdown-item" href="">Genre<br></a>
+            <?php foreach ($genreList as $genre) { ?>
+                <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Show/showUserListByGenre?message=&&idGenre=<?php echo ($genre->getId()) ?>"><?php echo $genre->getName(); ?></a>
+              <?php } ?>
           </div>
+
         </div>
       </div>
     </div>
