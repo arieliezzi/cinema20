@@ -170,5 +170,45 @@
             }
         }
 
+
+        //valida si una funcion ya se encuentra en otros cines en las mismas fechas
+        public function validateUniqueShow($startDate,$id_movie)
+        {
+            $showList= array();
+            try{
+                $query="SELECT *FROM shows WHERE shows.id_movie=:id_movie AND shows.endDate>= :startDate AND shows.isActive=1";
+
+                $parameters["id_movie"]=$id_movie;
+                $parameters["startDate"]=$startDate;
+                $this->connection = Connection::GetInstance();
+
+                $result = $this->connection->Execute($query, $parameters, QueryType::Query);
+
+
+                foreach($result as $row)
+                 {
+                  $show = new Show();
+                  $show->setId($row["id_show"]);
+                  $show->setStartDate($row["startDate"]);
+                  $show->setEndDate($row["endDate"]);
+                  $show->setTime($row["time"]);
+                  $show->setDuration($row["duration"]);
+                  $show->setCinema($row["id_cinema"]);
+                  $show->setRoom($row["id_room"]);
+                  $show->setMovie($row["id_movie"]);
+                  $show->setIsActive($row["isActive"]);
+
+                  array_push($showList,$show);
+                 }
+
+            }catch(Exception $exception)
+             {
+             echo "No se pudo validar la funcion";
+             }
+
+         return $showList;
+        }
+
+
     }
 ?>
