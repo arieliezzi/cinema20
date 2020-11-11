@@ -62,6 +62,8 @@
 
 		public function Add($idCinema,$idRoom,$idMovie,$startDate,$endDate,$time,$duration) 
 		{
+		
+
 			if (!($startDate>=date("Y-m-d")))
 				$this->showAddViewScheduleSelect($idCinema,$idRoom,$idMovie,"❌ ¡La fecha debe ser superior o igual a la actual: ".date("Y-m-d")."!");
 				else
@@ -73,7 +75,10 @@
 								$this->roomDAO = new RoomDAODB();
 								$this->movieDAO = new MovieDAODB();
 								$this->showDAO = new ShowDAODB();
-					
+				
+								
+								if(empty($showList = $this->showDAO->validateUniqueShow($startDate,$idMovie)))
+								{
 								$show = new Show();
 								$show->setCinema($this->cinemaDAO->getById($idCinema));
 								$show->setRoom($this->roomDAO->getById($idRoom));
@@ -86,6 +91,11 @@
 					
 								$this->showDAO->add($show);
 								$this->showListView("✔️ ¡Funcion agregada con exito!");
+								}
+								else
+								{
+									$this->showAddViewScheduleSelect($idCinema,$idRoom,$idMovie,"❌ ¡Ya existe una funcion con esa pelicula en la misma fecha!");
+								}
 							}
 		}	
 
@@ -140,6 +150,8 @@
 	
             return $showList;
 		}
+
+
 	}
 
 ?>
