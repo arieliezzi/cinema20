@@ -212,5 +212,46 @@
   
         }
 
+        public function getShowsByTime($startT,$finalT,$startD,$finalD)
+        {
+            $showList= array();
+            try{
+                $query="SELECT *FROM shows INNER JOIN rooms ON shows.id_room=rooms.id_room WHERE shows.isActive=:isActive AND :endTime between shows.startTime AND shows.endTime AND :endDate between shows.startDate AND shows.endDate";
+
+                $parameters["endTime"]=$finalT;
+                $parameters["endDate"]=$finalD;
+                $parameters["isActive"]=1;
+                $this->connection = Connection::GetInstance();
+
+                $result = $this->connection->Execute($query, $parameters, QueryType::Query);
+
+
+                foreach($result as $row)
+                 {
+                  $show = new Show();
+                  $show->setId($row["id_show"]);
+                  $show->setStartDate($row["startDate"]);
+                  $show->setEndDate($row["endDate"]);
+                  $show->setStartTime($row["startTime"]);
+                  $show->setEndTime($row["endTime"]);
+                  $show->setDuration($row["duration"]);
+                  $show->setCinema($row["id_cinema"]);
+                  $show->setRoom($row["id_room"]);
+                  $show->setMovie($row["id_movie"]);
+                  $show->setIsActive($row["isActive"]);
+
+                  array_push($showList,$show);
+                 }
+
+            }catch(Exception $exception)
+             {
+             echo "No se pudo validar la funcion";
+             }
+
+         return $showList;
+        }
+
+
+
     }
 ?>

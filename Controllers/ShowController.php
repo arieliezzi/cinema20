@@ -112,19 +112,26 @@
 								}
 								 else
 								   {
-									 $show = new Show();
-									 $show->setCinema($this->cinemaDAO->getById($idCinema));
-									 $show->setRoom($this->roomDAO->getById($idRoom));
-									 $show->setMovie($this->movieDAO->getMovie($idMovie));
-									 $show->setStartDate($startDate);
-									 $show->setEndDate($endDate);
-									 $show->setStartTime($time);
-									 $show->setEndTime(date("H:i" ,strtotime($time." + ".($duration+15)."minutes")));
-									 $show->setDuration($duration);
-									 $show->setIsActive(1);
-						
-									 $this->showDAO->add($show);
-									 $this->showListView("✔️ ¡Funcion agregada con exito!");
+									   if(!(empty($showListT= $this->showDAO->getShowsByTime($time,date("H:i" ,strtotime($time." + ".($duration+15)."minutes")),$startDate,$endDate))))
+									   {
+										$this->showAddViewScheduleSelect($idCinema,$idRoom,$idMovie,"❌ ¡Ya existe una funcion a esa hora en la misma sala en esas fechas!");
+									   }
+									   else
+									   {
+											$show = new Show();
+											$show->setCinema($this->cinemaDAO->getById($idCinema));
+											$show->setRoom($this->roomDAO->getById($idRoom));
+											$show->setMovie($this->movieDAO->getMovie($idMovie));
+											$show->setStartDate($startDate);
+											$show->setEndDate($endDate);
+											$show->setStartTime($time);
+											$show->setEndTime(date("H:i" ,strtotime($time." + ".($duration+15)."minutes")));
+											$show->setDuration($duration);
+											$show->setIsActive(1);
+								
+											$this->showDAO->add($show);
+											$this->showListView("✔️ ¡Funcion agregada con exito!");
+									   }
 								   }
 							}
 		}	
