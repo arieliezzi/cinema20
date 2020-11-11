@@ -49,7 +49,7 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item"><strong>Cinema:</strong> <?php echo $show->getCinema()->getName(); ?> </li>
             <li class="list-group-item"><strong>Room:</strong> <?php echo $show->getRoom()->getName(); ?> </li>
-            <li class="list-group-item"><strong>Hour:</strong> <?php echo $show->getTime()?> </li>
+            <li class="list-group-item"><strong>Hour:</strong> <?php echo $show->getStartTime()?> </li>
             <li class="list-group-item"><strong>Duration:</strong> <?php echo $show->getDuration()." min"?> </li>
           </ul>
       <!--    <ul class="list-group list-group-flush">

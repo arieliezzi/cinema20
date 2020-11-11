@@ -60,7 +60,7 @@ include('nav-guest.php');
                     <td style="text-align: center; vertical-align: middle;"><?php echo $show->getMovie()->getTitle() ?></td>
                     <td style="text-align: center; vertical-align: middle;"><?php echo $show->getStartDate(); ?></td>
                     <td style="text-align: center; vertical-align: middle;"><?php echo $show->getEndDate(); ?></td>
-                    <td style="text-align: center; vertical-align: middle;"><?php echo $show->getTime(); ?></td>
+                    <td style="text-align: center; vertical-align: middle;"><?php echo $show->getStartTime(); ?></td>
                     <td style="text-align: center; vertical-align: middle;"><?php echo $show->getDuration() . " min"; ?></td>
 
                     <form action="<?php echo FRONT_ROOT . "Show/showModifyView" ?>" method="">
