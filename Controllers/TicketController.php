@@ -40,17 +40,24 @@
 			$this->showDAO = new ShowDAODB();
 			$show = $this->constructShow($this->showDAO->getById($idShow));
 			$ticketsRemain=20;
+			$discount=1;
 
+			if ($this->checkDiscount($date,$quantity))
+			{
+				$discount=0.75;
+			}	
+		
 			require_once(VIEWS_PATH."usr-add-ticket-confirm.php");
 		}	
 
-		public function showDetailsView($idUser,$idShow,$date,$quantity,$cardType,$cardNumber,$message = "")
+		public function showDetailsView($idShow,$date,$quantity,$discount,$cardType,$cardNumber,$message = "")
 		{
 			$this->ticketDAO = new TicketDAODB();
 			$this->showDAO = new ShowDAODB();
 			$show = $this->constructShow($this->showDAO->getById($idShow));
+		
 			$user = new User();
-			$user->setId(1);
+			$user->setId($_SESSION["loggedUser"]);
 
 			$ticket = new Ticket();
 			$ticket->setUser($user);
@@ -150,6 +157,16 @@
 			}
 
 			return $dateList;
+		}	
+
+		public function checkDiscount($date,$quantity) 
+		{
+			$result=false;
+			if (((date("l",strtotime($date))=="Tuesday") || (date("l",strtotime($date))=="Wednesday")) && $quantity>=2)
+			{
+					$result=true;
+			}
+			return $result;
 		}	
 
 		public function remove($idTicket) 

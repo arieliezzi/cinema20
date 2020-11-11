@@ -50,9 +50,12 @@ include('nav-guest.php');
           <div class="card-body text-center">
             <h1 class="mb-4">Tickets Details<br></h1>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><strong>Tickets:</strong> <?php $ticket->getQuantity(); ?> </li>
-              <li class="list-group-item"><strong>Date:</strong> <?php $ticket->getDate(); ?> </li>
+              <li class="list-group-item"><strong>Tickets:</strong> <?php echo $ticket->getQuantity(); ?> </li>
+              <li class="list-group-item"><strong>Date:</strong> <?php echo $ticket->getDate(); ?> </li>
               <li class="list-group-item"><strong>Price: </strong> <?php echo "$" . $ticket->getShow()->getRoom()->getPrice() ?> </li>
+              <?php if ($discount != 1) { ?>
+              <li class="list-group-item"><strong>Discount: </strong> <?php echo "💰 -" .(100-$discount*100)."% OFF" ?> </li>
+              <?php } ?>
               <li class="list-group-item"><strong>Grand Total:</strong> <?php echo "$" . ($ticket->getQuantity() * $ticket->getShow()->getRoom()->getPrice()) ?> </li>
               <li class="list-group-item"><strong>Cinema:</strong> <?php echo $ticket->getShow()->getCinema()->getName() ?> </li>
               <li class="list-group-item"><strong>Room:</strong> <?php echo $ticket->getShow()->getRoom()->getName(); ?> </li>
