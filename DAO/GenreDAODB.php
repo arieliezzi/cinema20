@@ -56,7 +56,7 @@
             try {
                 $genreList = array();
 
-                $query = "SELECT * FROM genres";
+                $query = "SELECT * FROM genres ORDER BY name ASC";
 
                 $this->connection = Connection::GetInstance();
 
