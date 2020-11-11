@@ -40,9 +40,14 @@
 		public function showConfirmView($idUser,$idShow,$date,$quantity,$message = "")
 		{
 			$this->showDAO = new ShowDAODB();
+			$this->ticketDAO = new TicketDAODB();	
 			$this->showController = new ShowController;
 			$show = $this->showController->constructShow($this->showDAO->getById($idShow));
-			$ticketsRemain=20;
+			$ticketsRemain=$show->getRoom()->getCapacity() - $this->ticketDAO->ticketRemain($idShow,$date);
+			if ($show->getRoom()->getCapacity()< ($this->ticketDAO->ticketRemain($idShow,$date) + $quantity))
+			$this->showAddView($idShow,"❌ ¡No hay stock para esa cantidad de tickets, el maximo disponible es: ".$ticketsRemain."!");
+			  else
+			  {
 			$discount=1;
 
 			if ($this->checkDiscount($date,$quantity))
@@ -50,7 +55,7 @@
 				$discount=0.75;
 			}	
 		
-			require_once(VIEWS_PATH."usr-add-ticket-confirm.php");
+			require_once(VIEWS_PATH."usr-add-ticket-confirm.php");}
 		}	
 
 		public function showDetailsView($idShow,$date,$quantity,$discount,$cardType,$cardNumber,$message = "")

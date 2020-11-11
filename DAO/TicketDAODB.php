@@ -193,6 +193,23 @@
                     }
         }
 
+        public function ticketRemain($showID,$date)
+         {
+          $query=" SELECT SUM(quantity) FROM tickets WHERE tickets.id_show=:id_show AND tickets.date=:date";
+          $parameters["id_show"] = $showID;
+          $parameters["date"] =$date;
+        
+          $this->connection = Connection::GetInstance();
+          $placesSold = $this->connection->Execute($query, $parameters, QueryType::Query);
+
+          foreach($placesSold as $places)
+           {
+            $result=$places["SUM(quantity)"];
+            }
+        
+         return $result;
+         }
+
 
     }
 ?>
