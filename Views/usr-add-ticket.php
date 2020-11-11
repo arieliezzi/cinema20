@@ -56,7 +56,7 @@ include('nav-guest.php');
               <div class="form-group" >
                 <select class="form-control" id="date" name="date"> 
                 <?php foreach ($dateList as $date) { ?>
-                 <option value="<?php echo $date ?>"><?php echo $show->getTime()." | ".$date?></option>
+                 <option value="<?php echo $date ?>"><?php echo $show->getTime()." | ".$date." | ".date("l",strtotime($date))?></option>
                 <?php } ?>
                 </select>
               </div>

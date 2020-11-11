@@ -40,24 +40,31 @@
 			$this->showDAO = new ShowDAODB();
 			$show = $this->constructShow($this->showDAO->getById($idShow));
 			$ticketsRemain=20;
+			$discount=1;
 
+			if ($this->checkDiscount($date,$quantity))
+			{
+				$discount=0.75;
+			}	
+		
 			require_once(VIEWS_PATH."usr-add-ticket-confirm.php");
 		}	
 
-		public function showDetailsView($idUser,$idShow,$date,$quantity,$cardType,$cardNumber,$message = "")
+		public function showDetailsView($idShow,$date,$quantity,$discount,$cardType,$cardNumber,$message = "")
 		{
 			$this->ticketDAO = new TicketDAODB();
 			$this->showDAO = new ShowDAODB();
 			$show = $this->constructShow($this->showDAO->getById($idShow));
+		
 			$user = new User();
-			$user->setId(1);
+			$user->setId($_SESSION["loggedUser"]);
 
 			$ticket = new Ticket();
 			$ticket->setUser($user);
 			$ticket->setShow($show);
 			$ticket->setDate($date);
 			$ticket->setQuantity($quantity);
-			$ticket->setPrice(($ticket->getShow()->getRoom()->getPrice()*$quantity));
+			$ticket->setPrice(($ticket->getShow()->getRoom()->getPrice()*$quantity*$discount));
 			$ticket->setCardType($cardType);
 			$ticket->setCardNumber($cardNumber);
 
@@ -101,9 +108,24 @@
 		public function showRevenueByGenre($idGenre,$message="")
 		{
 			$this->movieDAO = new MovieDAODB();
+			$this->genreDAO = new GenreDAODB();
 			$this->ticketDAO = new TicketDAODB();
-			$movie = $this->movieDAO->getByGenre($idGenre);
+			$genre = $this->genreDAO->getGenre($idGenre);
+			$movieList = $this->movieDAO->getByGenre($idGenre);
+			$result = $this->ticketDAO->getRevenueByGenre($idGenre);
 			require_once(VIEWS_PATH."adm-list-revenue-by-genre.php");
+		}
+
+		public function showRevenueByDate($startDate,$endDate,$message="")
+		{
+			if(!($endDate>=$startDate))
+						$this->showRevenueView("❌ ¡La fecha de inicio debe ser inferior a la final!");
+						else
+							{
+								$this->ticketDAO = new TicketDAODB();
+								$result = $this->ticketDAO->getRevenueByDate($startDate,$endDate);
+								require_once(VIEWS_PATH."adm-list-revenue-by-date.php");
+							}
 		}
 
 		public function add($idUser,$idShow,$cardType,$cardNumber,$quantity,$date) 
@@ -135,6 +157,16 @@
 			}
 
 			return $dateList;
+		}	
+
+		public function checkDiscount($date,$quantity) 
+		{
+			$result=false;
+			if (((date("l",strtotime($date))=="Tuesday") || (date("l",strtotime($date))=="Wednesday")) && $quantity>=2)
+			{
+					$result=true;
+			}
+			return $result;
 		}	
 
 		public function remove($idTicket) 
