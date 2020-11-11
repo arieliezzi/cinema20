@@ -65,7 +65,9 @@ include('nav-guest.php');
                       <td style="text-align: center; vertical-align: middle"><button type="submit" name="idShow" class="btn btn-primary" id="idShow" value="<?php echo $show->getId()  ?>"> Modify </button>
                     </form>
 
-                    <td style="text-align: center; vertical-align: middle;"><button type="submit" name="id" class="btn btn-danger" value="<?php echo $show->getId();  ?>"> Delete </button></td>
+                    <form action="<?php echo FRONT_ROOT . "Show/remove" ?>" method="">
+                      <td style="text-align: center; vertical-align: middle;"><button type="submit" name="id" class="btn btn-danger" value="<?php echo $show->getId();  ?>"> Delete </button></td>
+                    </form>
                   </tr>
                 <?php } ?>
               </tbody>
