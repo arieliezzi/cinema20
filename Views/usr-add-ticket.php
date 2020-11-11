@@ -33,6 +33,7 @@ include('nav-guest.php');
           <div class="card-body">
             <h5 class="card-title"><?php echo $show->getMovie()->getTitle() ?></h5>
             <p class="card-text"><?php echo $show->getMovie()->getDescription() ?></p>
+            <p class="card-text"><?php echo $show->getMovie()->genresToString() ?></p>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item"><strong>Cinema:</strong> <?php echo $show->getCinema()->getName(); ?> </li>
@@ -56,7 +57,7 @@ include('nav-guest.php');
               <div class="form-group" >
                 <select class="form-control" id="date" name="date"> 
                 <?php foreach ($dateList as $date) { ?>
-                 <option value="<?php echo $date ?>"><?php echo $show->getTime()." | ".$date." | ".date("l",strtotime($date))?></option>
+                 <option value="<?php echo $date ?>"><?php echo date('H:i', strtotime($show->getStartTime()))." | ".$date." | ".date("l",strtotime($date))?></option>
                 <?php } ?>
                 </select>
               </div>
@@ -64,9 +65,9 @@ include('nav-guest.php');
               <button type="submit" class="btn btn-success">Next step ><br></button>
             </form>
             <br>
-          </div>
-          <div class="card-footer"> <?php echo $ticketsRemain ?> Tickets Remain</div>
-        </div>
+        <!--  </div>
+          <div class="card-footer"> <?php// echo $ticketsRemain ?> Tickets Remain</div>
+        </div> -->
       </div>
       <!-- Final de la tarjeta -->
 

@@ -59,7 +59,7 @@ include('nav-guest.php');
               <li class="list-group-item"><strong>Grand Total:</strong> <?php echo "$" . ($ticket->getQuantity() * $ticket->getShow()->getRoom()->getPrice()) ?> </li>
               <li class="list-group-item"><strong>Cinema:</strong> <?php echo $ticket->getShow()->getCinema()->getName() ?> </li>
               <li class="list-group-item"><strong>Room:</strong> <?php echo $ticket->getShow()->getRoom()->getName(); ?> </li>
-              <li class="list-group-item"><strong>Hour:</strong> <?php echo $ticket->getShow()->getStartTime(); ?> </li>
+              <li class="list-group-item"><strong>Hour:</strong> <?php echo date('H:m', strtotime($show->getStartTime())) ?> </li>
             </ul>
             <br>
             <a href="<?php echo FRONT_ROOT ?>Show/showUserListView">
