@@ -3,6 +3,7 @@
 
 	use Models\Ticket as Ticket;
 	use Models\User as User;
+	use Controllers\ShowController as ShowController;
 	use DAO\CinemaDAODB as CinemaDAODB;
 	use DAO\RoomDAODB as RoomDAODB;
 	use DAO\MovieDAODB as MovieDAODB;
@@ -28,7 +29,8 @@
 		public function showAddView($idShow,$message = "")
 		{	
 			$this->showDAO = new ShowDAODB();
-			$show = $this->constructShow($this->showDAO->getById($idShow));
+			$this->showController = new ShowController;
+			$show = $this->showController->constructShow($this->showDAO->getById($idShow));
 			$ticketsRemain=20;	
 			$dateList=$this->datesByShow($show);
 
@@ -38,7 +40,8 @@
 		public function showConfirmView($idUser,$idShow,$date,$quantity,$message = "")
 		{
 			$this->showDAO = new ShowDAODB();
-			$show = $this->constructShow($this->showDAO->getById($idShow));
+			$this->showController = new ShowController;
+			$show = $this->showController->constructShow($this->showDAO->getById($idShow));
 			$ticketsRemain=20;
 			$discount=1;
 
@@ -54,7 +57,8 @@
 		{
 			$this->ticketDAO = new TicketDAODB();
 			$this->showDAO = new ShowDAODB();
-			$show = $this->constructShow($this->showDAO->getById($idShow));
+			$this->showController = new ShowController;
+			$show = $this->showController->constructShow($this->showDAO->getById($idShow));
 		
 			$user = new User();
 			$user->setId($_SESSION["loggedUser"]);
@@ -204,32 +208,6 @@
 			}
 
 			return $ticketList;
-		}
-
-		public function constructShow($showList) {
-	
-			$this->cinemaDAO = new CinemaDAODB();
-			$this->roomDAO = new RoomDAODB();
-			$this->movieDAO = new MovieDAODB();
-			$this->genreDAO = new MovieGenreDAODB();
-
-			if (is_array($showList))
-			{
-				foreach ($showList as $show)
-				{
-					$show->setCinema($this->cinemaDAO->getById($show->getCinema()));
-					$show->setRoom($this->roomDAO->getById($show->getRoom()));
-					$show->setMovie($this->movieDAO->getMovie($show->getMovie()));
-					$show->getMovie()->setGenres($this->genreDAO->getGenres($show->getMovie()->getId()));
-				}
-			} else {
-				$showList->setCinema($this->cinemaDAO->getById($showList->getCinema()));
-				$showList->setRoom($this->roomDAO->getById($showList->getRoom()));
-				$showList->setMovie($this->movieDAO->getMovie($showList->getMovie()));
-				$showList->getMovie()->setGenres($this->genreDAO->getGenres($showList->getMovie()->getId()));
-			}
-	
-            return $showList;
 		}
 	}
 
