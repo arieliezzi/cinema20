@@ -53,7 +53,8 @@ CREATE TABLE IF NOT EXISTS shows(
 		startDate DATE NOT NULL,
 		endDate DATE NOT NULL,
         duration INT NOT NULL,
-        time TIME NOT NULL,
+        startTime TIME NOT NULL,
+        endTime TIME NOT NULL,
 		id_cinema INT NOT NULL,
 		id_room INT NOT NULL,
         id_movie INT NOT NULL,
@@ -87,26 +88,13 @@ CREATE TABLE IF NOT EXISTS tickets(
  CONSTRAINT fk_ticketShow foreign key (id_show) references shows(id_show)
 )ENGINE =INNODB;
 
-SELECT SUM(price) FROM tickets INNER JOIN shows ON tickets.id_show= shows.id_show
-							   INNER JOIN cinemas ON shows.id_cinema= cinemas.id_cinema WHERE cinemas.name ="Paseo Aldrey";
-                               						
-                               
-SELECT SUM(quantity) as quantity, SUM(price) as price FROM tickets 
-                   INNER JOIN shows  ON tickets.id_show = shows.id_show 
-				   INNER JOIN cinemas ON shows.id_cinema = cinemas.id_cinema WHERE cinemas.id_cinema = 1;
-
-SELECT SUM(price) FROM tickets INNER JOIN shows ON tickets.id_show= shows.id_show
-							   INNER JOIN movies ON shows.id_movie= movies.id_movie WHERE movies.title ="Bronx";
-                               
-SELECT SUM(price) FROM tickets INNER JOIN shows ON tickets.id_show= shows.id_show
-							   INNER JOIN movieGenre ON shows.id_movie= movieGenre.id_movie WHERE movieGenre.id_genre =18;
                                
 
 
 INSERT INTO cinemas (id_cinema,name,address,capacity,imageUrl,is_active)
-VALUES (1,"Paseo Aldrey","Sarmiento 2685",0,"/cinema2020/Views/default/images/aldrey.png",1),
-	   (2,"Cine del paseo","Diagonal Pueyrredon 3058",0,"/cinema2020/Views/default/images/paseo.png",1),
-	  (3,"Cinema Los Gallegos Shopping","Rivadavia 3050",0,"/cinema2020/Views/default/images/losgallegos.png",1);
+VALUES (1,"Paseo Aldrey","Sarmiento 2685",250,"/cinema2020/Views/default/images/aldrey.png",1),
+	   (2,"Cine del paseo","Diagonal Pueyrredon 3058",250,"/cinema2020/Views/default/images/paseo.png",1),
+	  (3,"Cinema Los Gallegos Shopping","Rivadavia 3050",320,"/cinema2020/Views/default/images/losgallegos.png",1);
       
    
 INSERT INTO rooms (id_room,name,capacity,price,is_active,id_cinema)
@@ -120,4 +108,6 @@ VALUES (1,"SALA 1",150,200,1,1),
 INSERT INTO users (id_user,name,email,pass,is_active)
 VALUES (1,"Administrador","admin@gmail.com",1234,1),
 	   (2,"Ayelen","user@gmail.com",1234,1);
+       
+       
 	
