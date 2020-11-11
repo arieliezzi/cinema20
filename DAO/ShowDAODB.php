@@ -121,7 +121,7 @@
 
         public function GetAllFilterByCurrentDay()
         {
-            $query = "SELECT *FROM shows WHERE CURDATE() between shows.startDate AND shows.endDate";
+            $query = "SELECT *FROM shows WHERE CURDATE() between shows.startDate AND shows.endDate AND shows.isActive = 1";
             $showList=$this->getShows($query);
             return $showList;
         }
