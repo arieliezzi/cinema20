@@ -90,7 +90,7 @@
 									 $show->setEndDate($endDate);
 									 $show->setTime($time);
 									 $show->setDuration($duration+15);
-									 $show->setIsActive(true);
+									 $show->setIsActive(1);
 						
 									 $this->showDAO->add($show);
 									 $this->showListView("✔️ ¡Funcion agregada con exito!");
@@ -123,7 +123,8 @@
 
 		public function Remove($idShow) {
 
-
+			$this->showDAO=new ShowDAODB();
+			$this->showDAO->Remove($idShow);
             $this->showListView("✔️ ¡Funcion eliminada con exito!");
 		}
 		

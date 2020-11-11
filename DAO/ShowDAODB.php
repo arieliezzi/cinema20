@@ -39,7 +39,7 @@
             try{
             $showList = array();
 
-            $query = "SELECT *FROM shows INNER JOIN movies ON shows.id_movie=movies.id_movie ORDER BY movies.title ASC";
+            $query = "SELECT *FROM shows INNER JOIN movies ON shows.id_movie=movies.id_movie WHERE shows.isActive = 1 ORDER BY movies.title ASC";
 
             $this->connection = Connection::GetInstance();
 
@@ -208,6 +208,8 @@
 
          return $showList;
         }
+
+
 
 
     }
