@@ -77,6 +77,7 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Show/showUserListView">Shows</a> </li> 
+            <li class="nav-item"> <a class="nav-link" href="<?php echo FRONT_ROOT ?>Cinema/showUsrListView">Cinemas</a> </li> 
             <li class="nav-item"> <a class="btn navbar-btn ml-2 btn-secondary" href="<?php echo FRONT_ROOT ?>Session/logout"> Log out</a>  </li> 
           </ul>
         </div>
