@@ -41,14 +41,14 @@
         <div class="card">
           <img class="card-img-top" src="<?php echo $show->GetMovie()->getImage(); ?>" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title"><?php echo substr($show->getMovie()->getTitle(),0,30) ?></h5>
+            <h5 class="card-title"><strong><?php echo substr($show->getMovie()->getTitle(),0,30) ?></strong></h5>
             <p class="card-text"><?php echo substr($show->getMovie()->getDescription(),0,200)."...";?></p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cinema: <?php echo $show->getCinema()->getName(); ?> </li>
-            <li class="list-group-item">Room: <?php echo $show->getRoom()->getName(); ?> </li>
-            <li class="list-group-item">Hour: <?php echo $show->getTime()?> </li>
-            <li class="list-group-item">Duration: <?php echo $show->getDuration()." min"?> </li>
+            <li class="list-group-item"><strong>Cinema:</strong> <?php echo $show->getCinema()->getName(); ?> </li>
+            <li class="list-group-item"><strong>Room:</strong> <?php echo $show->getRoom()->getName(); ?> </li>
+            <li class="list-group-item"><strong>Hour:</strong> <?php echo $show->getTime()?> </li>
+            <li class="list-group-item"><strong>Duration:</strong> <?php echo $show->getDuration()." min"?> </li>
           </ul>
       <!--    <ul class="list-group list-group-flush">
             <li class="list-group-item">Genre: <?php// echo $show->getMovie()->genresToString(); ?> </li>
