@@ -8,5 +8,4 @@
         function Remove(int $movieId);
         function GetGenres(int $movieId);
     }
-
 ?>

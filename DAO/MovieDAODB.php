@@ -128,7 +128,7 @@ class MovieDAODB implements IMovieDAO
 
             $result = $this->connection->Execute($query, $parameters, QueryType::Query);
 
-            foreach($result as $row) {
+            foreach ($result as $row) {
                 $genre = new Genre();
                 $genre->setId($row["id_genre"]);
                 $genre->setName($row["name"]);
@@ -136,7 +136,7 @@ class MovieDAODB implements IMovieDAO
             }
 
             return $genreList;
-        } catch(Exception $exception) {
+        } catch (Exception $exception) {
             echo "No se pudo obtener los generos";
         }
     }
@@ -157,7 +157,7 @@ class MovieDAODB implements IMovieDAO
                 $movie->setImage($row["image"]);
                 $movie->setDescription($row["description"]);
 
-               // $genres = $this->movieGenreDao->getGenres($row["id_movie"]);
+                // $genres = $this->movieGenreDao->getGenres($row["id_movie"]);
                 $genres = $this->getGenresByMovieId($row["id_movie"]);
                 $movie->setGenres($genres);
                 $movie->setPoster($row["poster"]);
@@ -170,3 +170,4 @@ class MovieDAODB implements IMovieDAO
         }
     }
 }
+?>
