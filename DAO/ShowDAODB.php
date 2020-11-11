@@ -110,9 +110,10 @@
         public function Remove($id)
         {            
             try{
-            $query="UPDATE shows SET (is_active = 0) WHERE (id_show = :id_show)";
+            $query="UPDATE shows SET isActive = :isActive WHERE id_show = :id_show";
 
             $parameters["id_show"] =  $id;
+            $parameters["isActive"]=0;
 
             $this->connection = Connection::GetInstance();
 
