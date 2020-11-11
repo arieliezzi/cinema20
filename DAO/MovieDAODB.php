@@ -92,10 +92,16 @@ class MovieDAODB implements IMovieDAO
             $query = "UPDATE movies SET is_active = 0 WHERE id_movie = :id";
             $parameters["id"] =  $id;
             $this->connection = Connection::GetInstance();
-
+            
             $this->connection->ExecuteNonQuery($query, $parameters, QueryType::Query);
             $this->movieGenreDao = new MovieGenreDAODB();
             $this->movieGenreDao->Remove($id);
+
+            $query = "UPDATE shows SET isActive = 0 WHERE id_movie = :id";
+            $this->connection = Connection::GetInstance();
+            
+            $this->connection->ExecuteNonQuery($query, $parameters, QueryType::Query);
+
         } catch (Exception $exception) {
             echo "No se pudo eliminar la pelicula";
         }
