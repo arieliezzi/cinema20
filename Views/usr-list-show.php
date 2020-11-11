@@ -50,9 +50,9 @@
             <li class="list-group-item">Hour: <?php echo $show->getTime()?> </li>
             <li class="list-group-item">Duration: <?php echo $show->getDuration()." min"?> </li>
           </ul>
-          <ul class="list-group list-group-flush">
+      <!--    <ul class="list-group list-group-flush">
             <li class="list-group-item">Genre: <?php// echo $show->getMovie()->genresToString(); ?> </li>
-          </ul>
+          </ul> -->
           <div class="card-body mx-auto">
             <form action="<?php echo FRONT_ROOT . "ticket/showAddView" ?>" method="">
               <td style="text-align: center; vertical-align: middle"><button type="submit" name="idShow" class="btn btn-dark" value="<?php echo $show->getId() ?>"> Buy Tickets! </button>
