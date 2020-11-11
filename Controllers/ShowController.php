@@ -75,27 +75,26 @@
 								$this->roomDAO = new RoomDAODB();
 								$this->movieDAO = new MovieDAODB();
 								$this->showDAO = new ShowDAODB();
-				
 								
-								if(empty($showList = $this->showDAO->validateUniqueShow($startDate,$idMovie)))
+								if(!(empty($showList = $this->showDAO->validateUniqueShow($startDate,$idMovie))))
 								{
-									$show = new Show();
-									$show->setCinema($this->cinemaDAO->getById($idCinema));
-									$show->setRoom($this->roomDAO->getById($idRoom));
-									$show->setMovie($this->movieDAO->getMovie($idMovie));
-									$show->setStartDate($startDate);
-									$show->setEndDate($endDate);
-									$show->setTime($time);
-									$show->setDuration($duration);
-									$show->setIsActive(true);
+								  $this->showAddViewScheduleSelect($idCinema,$idRoom,$idMovie,"❌ ¡Ya existe una funcion con esa pelicula en la misma fecha!");
+								}
+								 else
+								   {
+									 $show = new Show();
+									 $show->setCinema($this->cinemaDAO->getById($idCinema));
+									 $show->setRoom($this->roomDAO->getById($idRoom));
+									 $show->setMovie($this->movieDAO->getMovie($idMovie));
+									 $show->setStartDate($startDate);
+									 $show->setEndDate($endDate);
+									 $show->setTime($time);
+									 $show->setDuration($duration+15);
+									 $show->setIsActive(true);
 						
-									$this->showDAO->add($show);
-									$this->showListView("✔️ ¡Funcion agregada con exito!");
-								}
-								else
-								{
-									$this->showAddViewScheduleSelect($idCinema,$idRoom,$idMovie,"❌ ¡Ya existe una funcion con esa pelicula en la misma fecha!");
-								}
+									 $this->showDAO->add($show);
+									 $this->showListView("✔️ ¡Funcion agregada con exito!");
+								   }
 							}
 		}	
 
