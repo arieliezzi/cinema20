@@ -9,7 +9,8 @@
 		private $movie;
 		private $startDate;
 		private $endDate;
-		private $time;
+		private $startTime;
+		private $endTime;
 		private $duration;
 		private $isActive;
 
@@ -85,14 +86,14 @@
 				return $this;
 		}
 
-		public function getTime()
+		public function getStartTime()
 		{
-				return $this->time;
+				return $this->startTime;
 		}
 
-		public function setTime($time)
+		public function setStartTime($startTime)
 		{
-				$this->time = $time;
+				$this->startTime = $startTime;
 
 				return $this;
 		}
@@ -117,6 +118,18 @@
 		public function setDuration($duration)
 		{
 				$this->duration = $duration;
+
+				return $this;
+		}
+
+		public function getEndTime()
+		{
+				return $this->endTime;
+		}
+
+		public function setEndTime($endTime)
+		{
+				$this->endTime = $endTime;
 
 				return $this;
 		}

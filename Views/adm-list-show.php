@@ -40,7 +40,8 @@ include('nav-guest.php');
                   <th>Cinema</th>
                   <th>Room</th>
                   <th>Movie</th>
-                  <th>Date</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
                   <th>Hour</th>
                   <th>Duration</th>
                   <th style="text-align: center">-</th>
@@ -58,6 +59,7 @@ include('nav-guest.php');
                     <td style="text-align: center; vertical-align: middle"><?php echo $show->getRoom()->getName(); ?></td>
                     <td style="text-align: center; vertical-align: middle;"><?php echo $show->getMovie()->getTitle() ?></td>
                     <td style="text-align: center; vertical-align: middle;"><?php echo $show->getStartDate(); ?></td>
+                    <td style="text-align: center; vertical-align: middle;"><?php echo $show->getEndDate(); ?></td>
                     <td style="text-align: center; vertical-align: middle;"><?php echo $show->getTime(); ?></td>
                     <td style="text-align: center; vertical-align: middle;"><?php echo $show->getDuration() . " min"; ?></td>
 

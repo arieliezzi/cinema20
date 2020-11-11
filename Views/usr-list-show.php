@@ -14,16 +14,15 @@
               </div>
         <?php } ?>
         <h1 class="display-2">Now playing<br></h1>
-        <h5 class="">Sort by</h5>
         <div class="btn-group">
-          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Date</button>
+          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Sort by Date</button>
           <div class="dropdown-menu"> 
           <a class="dropdown-item" href="<?php echo FRONT_ROOT . "show/showUserListViewByNewest" ?>">Newest</a>
           <a class="dropdown-item" href="<?php echo FRONT_ROOT . "show/showUserListViewByOldest" ?>">Oldest<br></a>
           </div>
         </div>
         <div class="btn-group">
-          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Genre</button>
+          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Sort by Genre</button>
           <div class="dropdown-menu"> 
             <?php foreach ($genreList as $genre) { ?>
                 <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Show/showUserListByGenre?message=&&idGenre=<?php echo ($genre->getId()) ?>"><?php echo $genre->getName(); ?></a>

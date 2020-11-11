@@ -118,8 +118,9 @@
 									 $show->setMovie($this->movieDAO->getMovie($idMovie));
 									 $show->setStartDate($startDate);
 									 $show->setEndDate($endDate);
-									 $show->setTime($time);
-									 $show->setDuration($duration+15);
+									 $show->setStartTime($time);
+									 $show->setEndTime(date("H:i" ,strtotime($time." + ".($duration+15)."minutes")));
+									 $show->setDuration($duration);
 									 $show->setIsActive(1);
 						
 									 $this->showDAO->add($show);
@@ -142,7 +143,8 @@
 							$updatedShow->setId($idShow);
 							$updatedShow->setStartDate($startDate);
 							$updatedShow->setEndDate($endDate);
-							$updatedShow->setTime($time);
+							$updatedShow->setStartTime($time);
+							$updatedShow->setEndTime(date("H:i" ,strtotime($time." + ".($duration+15)."minutes")));
 							$updatedShow->setDuration($duration);
 
 							$this->showDAO->update($updatedShow);

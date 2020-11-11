@@ -21,7 +21,7 @@
         <div class="card">
           <div class="card-body">
             <h1 class="mb-4">By Cinema<br></h1>
-            <form action="<?php echo FRONT_ROOT ?>Ticket/showRevenueByCinema" method="post">
+            <form action="<?php echo FRONT_ROOT ?>Revenue/showRevenueByCinema" method="post">
               <select class="form-control" id="idCinema" name="cinemas">
                 <?php foreach ($cinemaList as $cinema) { ?>
                     <option value="<?php echo $cinema->getId(); ?>"><?php echo $cinema->getName(); ?></option>
@@ -38,7 +38,7 @@
         <div class="card">
           <div class="card-body">
             <h1 class="mb-4">By Movie<br></h1>
-            <form action="<?php echo FRONT_ROOT ?>Ticket/showRevenueByMovie" method="">
+            <form action="<?php echo FRONT_ROOT ?>Revenue/showRevenueByMovie" method="">
               <select class="form-control" id="idMovie" name="cinemas">
                 <?php foreach ($movieList as $movie) { ?>
                   <option value="<?php echo $movie->getId(); ?>"><?php echo $movie->getTitle(); ?></option>
@@ -55,7 +55,7 @@
         <div class="card">
           <div class="card-body">
             <h1 class="mb-4">By Genre<br></h1>
-            <form action="<?php echo FRONT_ROOT ?>Ticket/showRevenueByGenre" method="post">
+            <form action="<?php echo FRONT_ROOT ?>Revenue/showRevenueByGenre" method="post">
               <select class="form-control" id="idGenre" name="cinemas">
                 <?php foreach ($genreList as $genre) { ?>
                   <option value="<?php echo $genre->getId(); ?>"><?php echo $genre->getName(); ?></option>
@@ -72,7 +72,7 @@
         <div class="card">
           <div class="card-body">
             <h1 class="mb-4">By Date<br></h1>
-            <form action="<?php echo FRONT_ROOT ?>Ticket/showRevenueByDate" method="post">
+            <form action="<?php echo FRONT_ROOT ?>Revenue/showRevenueByDate" method="post">
                 <div class="form-group"> <input required  type="date" class="form-control" placeholder="" name="startDate" id="startDate"> (start date) </div>
                 <div class="form-group"> <input required type="date" class="form-control" placeholder="" name="endDate" id="endDate"> (end date) </div>
                 <button type="submit" class="btn btn-success">Next ><br></button>

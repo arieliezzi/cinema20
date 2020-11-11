@@ -14,11 +14,12 @@
         public function Add(Show $show)
         { 
          try{
-            $query = "INSERT INTO shows(startDate,endDate,time,duration,id_cinema,id_room,id_movie,isActive) VALUES(:startDate,:endDate,:time,:duration,:id_cinema,:id_room,:id_movie,:isActive)";
+            $query = "INSERT INTO shows(startDate,endDate,startTime,endTime,duration,id_cinema,id_room,id_movie,isActive) VALUES(:startDate,:endDate,:startTime,:endTime,:duration,:id_cinema,:id_room,:id_movie,:isActive)";
            
             $parameters["startDate"] = $show->getStartDate();
             $parameters["endDate"] = $show->getEndDate();
-            $parameters["time"] = $show->getTime();
+            $parameters["startTime"] = $show->getStartTime();
+            $parameters["endTime"] = $show->getEndTime();
             $parameters["duration"] = $show->getDuration();
             $parameters["id_cinema"]=$show->getCinema()->getId();
             $parameters["id_room"]=$show->getRoom()->getId();
@@ -54,12 +55,13 @@
         public function update($updatedShow)
         {  
             try{         
-            $query = "UPDATE shows SET startDate= :startDate, endDate= :endDate, time = :time, duration = :duration WHERE (id_show = :id_show)";
+            $query = "UPDATE shows SET startDate= :startDate, endDate= :endDate, startTime = :startTime,endTime = :endTime, duration = :duration WHERE (id_show = :id_show)";
             
             $parameters["id_show"] = $updatedShow->getId();
             $parameters["startDate"] = $updatedShow->getStartDate();
             $parameters["endDate"] = $updatedShow->getEndDate();
-            $parameters["time"] = $updatedShow->getTime();
+            $parameters["startTime"] = $updatedShow->getStartTime();
+            $parameters["endTime"] = $updatedShow->getEndTime();
             $parameters["duration"] = $updatedShow->getDuration();
 
             $this->connection = Connection::GetInstance();
@@ -91,7 +93,8 @@
                   $show->setId($row["id_show"]);
                   $show->setStartDate($row["startDate"]);
                   $show->setEndDate($row["endDate"]);
-                  $show->setTime($row["time"]);
+                  $show->setStartTime($row["startTime"]);
+                  $show->setEndTime($row["endTime"]);
                   $show->setDuration($row["duration"]);
                   $show->setCinema($row["id_cinema"]);
                   $show->setRoom($row["id_room"]);
@@ -161,7 +164,8 @@
                     $show->setId($row["id_show"]);
                     $show->setStartDate($row["startDate"]);
                     $show->setEndDate($row["endDate"]);
-                    $show->setTime($row["time"]);
+                    $show->setStartTime($row["startTime"]);
+                    $show->setEndTime($row["endTime"]);
                     $show->setDuration($row["duration"]);
                     $show->setCinema($row["id_cinema"]);
                     $show->setRoom($row["id_room"]);
@@ -190,7 +194,8 @@
                     $show->setId($row["id_show"]);
                     $show->setStartDate($row["startDate"]);
                     $show->setEndDate($row["endDate"]);
-                    $show->setTime($row["time"]);
+                    $show->setStartTime($row["startTime"]);
+                    $show->setEndTime($row["endTime"]);
                     $show->setDuration($row["duration"]);
                     $show->setCinema($row["id_cinema"]);
                     $show->setRoom($row["id_room"]);

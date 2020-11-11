@@ -22,6 +22,13 @@
 			require_once(VIEWS_PATH."adm-list-cinema.php");
 		}	
 
+		public function showUsrListView($message = "") {
+			$this->cinemaDAO = new CinemaDAODB();
+			$cinemaList = $this->cinemaDAO->getAll();
+			require_once(VIEWS_PATH."usr-list-cinema.php");
+		}	
+
+
 		public function showModifyView ($id) {
 			$this->cinemaDAO = new CinemaDAODB();
 			$cinema = $this->cinemaDAO->GetById($id);
