@@ -64,7 +64,7 @@
 			$ticket->setShow($show);
 			$ticket->setDate($date);
 			$ticket->setQuantity($quantity);
-			$ticket->setPrice(($ticket->getShow()->getRoom()->getPrice()*$quantity));
+			$ticket->setPrice(($ticket->getShow()->getRoom()->getPrice()*$quantity*$discount));
 			$ticket->setCardType($cardType);
 			$ticket->setCardNumber($cardNumber);
 
