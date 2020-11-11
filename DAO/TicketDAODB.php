@@ -140,6 +140,59 @@
                     }
         }
 
+        public function getRevenueByGenre($idGenre) 
+        {
+            try {
+                $query = "  SELECT SUM(quantity) as quantity, SUM(price) as price FROM tickets INNER JOIN shows ON tickets.id_show= shows.id_show INNER JOIN movieGenre ON shows.id_movie= movieGenre.id_movie WHERE movieGenre.id_genre = :id_genre;";
+                $parameters["id_genre"] = $idGenre;
+                
+                $this->connection = Connection::GetInstance();
+
+                $result = $this->connection->Execute($query, $parameters, QueryType::Query);
+
+                $rta = array();
+
+                foreach($result as $row)
+                {
+                    $aux["quantity"] = $row["quantity"];
+                    $aux["price"] = $row["price"];
+                    array_push($rta, $aux);
+                }
+
+                return array_pop($rta);
+                } catch(Exception $exception) 
+                    {
+                        echo "No se pudo traer revenue del genero";
+                    }
+        }
+
+        public function getRevenueByDate($startDate, $endDate) 
+        {
+            try {
+                $query = "SELECT SUM(quantity) as quantity, SUM(price) as price FROM tickets INNER JOIN shows ON tickets.id_show= shows.id_show WHERE tickets.date between :startDate and :endDate; ";
+                $parameters["startDate"] = $startDate;
+                $parameters["endDate"] = $endDate;         
+                
+                $this->connection = Connection::GetInstance();
+
+                $result = $this->connection->Execute($query, $parameters, QueryType::Query);
+
+                $rta = array();
+
+                foreach($result as $row)
+                {
+                    $aux["quantity"] = $row["quantity"];
+                    $aux["price"] = $row["price"];
+                    array_push($rta, $aux);
+                }
+
+                return array_pop($rta);
+                } catch(Exception $exception) 
+                    {
+                        echo "No se pudo traer revenue del genero";
+                    }
+        }
+
 
     }
 ?>
