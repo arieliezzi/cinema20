@@ -59,13 +59,15 @@
 		public function Update($idCinema, $idRoom, $name, $capacity, $price) {
 			$this->roomDAO = new RoomDAODB();
 			$this->cinemaDAO = new CinemaDAODB();
+			$auxRoom = new Room();
+			$auxRoom = $this->roomDAO->getById($idRoom);
 
 			$updatedRoom = new Room();
 			$updatedRoom->setId($idRoom);
 			$updatedRoom->setName($name);
 			$updatedRoom->setCapacity($capacity);
 			$updatedRoom->setPrice($price);
-			$this->cinemaDAO->updateCapacity($idCinema, $capacity);
+			$this->cinemaDAO->updateCapacity($idCinema, $capacity-$auxRoom->getCapacity());
 			$this->roomDAO->update($updatedRoom);
 
 			$this->showCinemaRooms($idCinema, "✔️ ¡Sala Modificada con exito!");
