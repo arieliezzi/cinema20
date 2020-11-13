@@ -5,6 +5,7 @@
     use DAO\Connection as Connection;
     use DAO\QueryType as QueryType;
     use Models\Ticket as Ticket;
+    use Models\User as User;
 
 
     class TicketDAODB implements ITicketDAO
@@ -54,8 +55,15 @@
 
             return $this->getTickets($query);
         }
-        
 
+        public function getTicketsByUser($idUser)
+        {
+            $query = "SELECT * FROM tickets WHERE id_user=:id_user";
+            $parameters["id_user"] = $idUser;
+
+            return $this->getTickets($query,$parameters);
+        }
+        
         public function getTickets($query, $parameters = array())
         {
             try {

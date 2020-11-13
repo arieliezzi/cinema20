@@ -24,7 +24,7 @@
 			return $this->id;
 		}
 
-		public function setUser(User $user) {
+		public function setUser($user) {
 			$this->user = $user;
 		}
 
@@ -32,7 +32,7 @@
 			return $this->user;
 		}
 
-		public function setShow(Show $show) {
+		public function setShow($show) {
 			$this->show = $show;
 		}
 

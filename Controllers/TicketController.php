@@ -24,6 +24,13 @@
 			require_once(VIEWS_PATH."adm-list-ticket.php");
 		}	
 
+		public function showTicketsByUser($message = "")
+		{
+			$this->ticketDAO = new TicketDAODB();		
+			$ticketList = $this->constructTicket($this->ticketDAO->getTicketsByUser($_SESSION["loggedUser"]));
+			require_once(VIEWS_PATH."usr-list-tickets.php");
+		}	
+
 		public function showAddView($idShow,$message = "")
 		{	
 			$this->showDAO = new ShowDAODB();
@@ -153,9 +160,9 @@
 				{
 					//Aca se crea todo el objeto y dependencias del Show
 					$ticket->setShow($this->showDAO->getById($ticket->getShow()));
-					$ticket->getShow()->setCinema($this->cinemaDAO->getById($ticket->getCinema()));
-					$ticket->getShow()->setRoom($this->roomDAO->getById($ticket->getRoom()));
-					$ticket->getShow()->setMovie($this->movieDAO->getMovie($ticket->getMovie()));
+					$ticket->getShow()->setCinema($this->cinemaDAO->getById($ticket->getShow()->getCinema()));
+					$ticket->getShow()->setRoom($this->roomDAO->getById($ticket->getShow()->getRoom()));
+					$ticket->getShow()->setMovie($this->movieDAO->getMovie($ticket->getShow()->getMovie()));
 					//Aca se crea todo el objeto y dependencias del User
 				}
 			} else {
