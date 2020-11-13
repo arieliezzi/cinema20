@@ -75,7 +75,7 @@
 			$ticket->setCardType($cardType);
 			$ticket->setCardNumber($cardNumber);
 
-			$this->ticketDAO->add($ticket);
+			$ticketList=$this->add($ticket);
 
 			$message="✔️ Compra confirmada ¡Gracias por su compra!";
 
@@ -83,20 +83,29 @@
 		}	
 
 
-		public function add($idUser,$idShow,$cardType,$cardNumber,$quantity,$date) 
+		public function add($ticket) 
 		{
 			$this->ticketDAO = new TicketDAODB();
 
-			$ticket = new Ticket();
-			$ticket->setUser($idUser);
-			$ticket->setShow($idShow);
-			$ticket->setPrice(($price=0));
-			$ticket->setCardType($cardType);
-			$ticket->setCardNumber($cardNumber);
-			$ticket->setQuantity($quantity);
-			$ticket->setDate($date);
+			$ticketList=array();
 
-			$this->ticketDAO->add($ticket);
+			for ($i=1; $i<=$ticket->getQuantity(); $i++)
+			{
+				$unitaryTicket = new Ticket();
+				$unitaryTicket->setUser($ticket->getUser());
+				$unitaryTicket->setShow($ticket->getShow());
+				$unitaryTicket->setPrice($ticket->getPrice()/$ticket->getQuantity());
+				$unitaryTicket->setCardType($ticket->getCardType());
+				$unitaryTicket->setCardNumber($ticket->getCardNumber());
+				$unitaryTicket->setQuantity(1);
+				$unitaryTicket->setDate($ticket->getDate());
+	
+				$this->ticketDAO->add($unitaryTicket);
+
+				array_push($ticketList, $unitaryTicket);
+			}
+
+			return $ticketList;
 		}
 
 		public function datesByShow($show) 

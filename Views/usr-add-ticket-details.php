@@ -31,7 +31,7 @@ include('nav-guest.php');
       <div class="col-md-4 mb-5">
         <div class="card">
           <div class="card-body text-center">
-            <h1 class="mb-4">Your Tickets</h1>
+            <h1 class="mb-4">Master Ticket QR</h1>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"> <img class="card-img-top" src="https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl=<?php echo $ticket->getQrInfo(); ?>" alt="Card image cap"> </li>
             </ul>
@@ -69,6 +69,39 @@ include('nav-guest.php');
         </div> 
       </div>
       <!-- Final de la tarjeta -->
+
+      <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th style="text-align: center">#</th>
+                  <th>QR</th>
+                  <th>Movie</th>
+                  <th>Cinema</th>
+                  <th>Room</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $j=1; foreach ($ticketList as $unitaryTicket) {  ?>
+                  <tr>
+                    <th style="text-align: center; vertical-align: middle"><?php echo $j++; ?></th>
+                    <td style="text-align: center; vertical-align: middle">
+                      <center> <img class="card-img-top" src="https://chart.googleapis.com/chart?chs=50x50&cht=qr&chl=<?php echo $unitaryTicket->getQrInfo(); ?>" alt="Card image cap"> </center>
+                    </td>
+                    <td style="text-align: center; vertical-align: middle"><?php echo $show->GetMovie()->getTitle(); ?></td>
+                    <td style="text-align: center; vertical-align: middle"><?php echo $ticket->getShow()->getCinema()->getName(); ?></td>
+                    <td style="text-align: center; vertical-align: middle"><?php echo $ticket->getShow()->getRoom()->getName(); ?></td>
+                    <td style="text-align: center; vertical-align: middle;"><?php echo $ticket->getDate(); ?></td>
+                    <td style="text-align: center; vertical-align: middle;"><?php echo date('H:m', strtotime($show->getStartTime())); ?></td>
+                    <td style="text-align: center; vertical-align: middle;"><?php echo "$".$unitaryTicket->getPrice(); ?></td>
+                  </tr>
+                <?php } ?>
+              </tbody>
+            </table>            
+      </div>
 
     </div> 
   </div> 
